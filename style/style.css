@@ -1,3 +1,28 @@
+/* general styling */
+
+* {
+  caret-color: transparent;
+}
+
 /* format game container here*/
 
+.game-container {
+  margin: 0 auto;
+  aspect-ratio: 3/2;
+  max-width: 750px;
+  align-self: start;
+  background-color: rgb(254, 188, 114);
+  position: relative;
+}
+
 /* format player here */
+
+#player {
+  height: 30px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: blue;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
