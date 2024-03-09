@@ -49,3 +49,14 @@ body {
   top: 50%;
   left: 50%;
 }
+
+/* format ingredients here */
+
+.ingredient {
+  height: 30px;
+  aspect-ratio: 1;
+  background-color: green;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

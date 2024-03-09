@@ -18,3 +18,44 @@ METHODS :
 */
 
 // export
+
+class Ingredient {
+  constructor(gameContainer) {
+    this.gameContainer = gameContainer;
+    // create ingredient to make appear
+    this.element = document.createElement("div");
+    // add "ingredient" class to be able to style it in css
+    this.element.classList.add("ingredient");
+    // append ingredient to game container
+    this.gameContainer.append(this.element);
+    // generate random position (add condition of other elements not existing in the place in Game method)
+    this.position = {
+      x: Math.random() * this.gameContainer.getBoundingClientRect().width,
+      y: Math.random() * this.gameContainer.getBoundingClientRect().height,
+    };
+    // the higher the value of the ingredient key is, the more chance there is of the ingredient appearing
+    this.category = {
+      bokchoi: 10,
+      coriander: 1,
+    };
+    this.ingredientTimeCount = 1;
+    this.ingredientTimer = null;
+  }
+
+  // randomize if one or two items appear
+
+  status() {
+    // makes element disappear after 4 secondes (4 * 60)
+    if (this.ingredientTimeCount > 240) {
+      this.element.remove();
+    }
+
+    // check whether the ingredient has been taken by the player
+    // ingredientTaken() {}
+  }
+  // check whether the ingredient has been there for more than a given amount of seconds (here, 4)
+  ingredientCoolDown() {
+    //to define
+  }
+}
+export default Ingredient;

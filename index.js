@@ -1,7 +1,8 @@
 import Game from "./src/game.js";
 
+const startButton = document.getElementById("start-game");
 const game = new Game();
-console.log("test");
+
 // define start button
 // define end button
 // define restart button
@@ -9,11 +10,7 @@ console.log("test");
 
 // event listener to start game
 
-game.startGame();
+startButton.addEventListener("click", () => game.startGame());
 // event listener to end game
 
 // event listener to restart game? (maybe not necessary is start game is well written)
-
-console.log(
-  document.querySelector(".game-container").getBoundingClientRect().width
-);
