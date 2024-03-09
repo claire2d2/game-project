@@ -1,9 +1,5 @@
 import Player from "./player.js";
-<<<<<<< HEAD
 import Ingredient from "./ingredient.js";
-=======
-// import Ingredient from "./ingredient";
->>>>>>> 35d9c50f4abc928dd422d2ff16422767bf05eb05
 // import Food from "./platedFood";
 
 /*
@@ -22,17 +18,12 @@ class Game {
     this.intervalId = null;
     this.gameOn = false;
     this.score = 0;
-<<<<<<< HEAD
     this.chronometer = 0;
     this.gameSpeed = 3;
     this.player = new Player(this.gameContainer, this.gameSpeed);
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
-=======
-    this.gameSpeed = 1;
-    this.player = new Player(this.gameContainer);
     // this.ingredients = new Ingredient(this.gameContainer);
->>>>>>> 35d9c50f4abc928dd422d2ff16422767bf05eb05
     // this.platedFoods = new platedFood(this.gameContainer);
     this.pressedKeys = {
       right: false,
@@ -40,7 +31,6 @@ class Game {
       top: false,
       down: false,
     };
-<<<<<<< HEAD
     this.counter = 1;
   }
 
@@ -50,21 +40,15 @@ class Game {
 
   // ! Function to start the game
 
-  startGame() {
-=======
-  }
-
   // put methods here
   startGame() {
     console.log("test");
->>>>>>> 35d9c50f4abc928dd422d2ff16422767bf05eb05
     // if game is already running, no need for the rest to follow
     if (this.gameOn) return;
 
     // make player move according to arrow keys
     this.arrowKeysPressed();
 
-<<<<<<< HEAD
     this.gameOn = true;
     // generate food items randomly, each worth one point
     this.intervalId = setInterval(() => {
@@ -78,22 +62,12 @@ class Game {
         // start ingredient cooldown
       }
       this.counter++;
-
-      // make player move according to the pressed keys
-=======
-    console.log(this.pressedKeys);
-
-    this.gameOn = true;
-    // generate food items randomly, each worth one point
-    this.intervalId = setInterval(() => {
-      //generate foooood
->>>>>>> 35d9c50f4abc928dd422d2ff16422767bf05eb05
+      // generate food items randomly, each worth one point
       for (const direction in this.pressedKeys) {
         if (this.pressedKeys[direction]) {
           this.player.move(direction);
         }
       }
-<<<<<<< HEAD
       // make element eventually disappear
       for (const ingredient of this.ingredients) {
         // increment ingredient timer by one every second
@@ -127,31 +101,23 @@ class Game {
   }
 
   resetGame() {}
-=======
-    });
-    // BONUS : generate different food items worth different points
-  }
+  // BONUS : generate different food items worth different points
 
->>>>>>> 35d9c50f4abc928dd422d2ff16422767bf05eb05
   takeIngredient() {
     // function for when the player "hits" an ingredient
     // tally the score by one
     // makes ingredient disappear
-<<<<<<< HEAD
     // ? BONUS :
     // ? tally the score by how much the ingredient is worth
     // ? add little animation of score appearing
   }
 
   // ! function for listening to the arrow keys being pressed
-=======
-    // BONUS :
-    // tally the score by how much the ingredient is worth
-    // add little animation of score appearing
-  }
+  // BONUS :
+  // tally the score by how much the ingredient is worth
+  // add little animation of score appearing
 
   // function for listening to the arrow keys being pressed
->>>>>>> 35d9c50f4abc928dd422d2ff16422767bf05eb05
   // only one key can be pressed at the same time
   arrowKeysPressed() {
     document.addEventListener("keydown", (event) => {

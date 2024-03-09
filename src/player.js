@@ -7,10 +7,7 @@
 class Player {
   constructor(gameContainer, speed) {
     this.gameContainer = gameContainer;
-<<<<<<< HEAD
     this.speed = speed;
-=======
->>>>>>> 35d9c50f4abc928dd422d2ff16422767bf05eb05
     this.element = document.getElementById("player");
     this.element.classList = "player";
     this.position = {
@@ -36,57 +33,34 @@ class Player {
     switch (direction) {
       case "right":
         if (playerBoundaries.right >= containerBoundaries.right) {
-<<<<<<< HEAD
           this.position.x -= this.direction.x * this.speed;
         } else {
           this.position.x += this.direction.x * this.speed;
-=======
-          this.position.x--;
-        } else {
-          this.position.x++;
->>>>>>> 35d9c50f4abc928dd422d2ff16422767bf05eb05
         }
         break;
       case "left":
         if (playerBoundaries.left <= containerBoundaries.left) {
-<<<<<<< HEAD
           this.position.x += this.direction.x * this.speed;
         } else {
           this.position.x -= this.direction.x * this.speed;
-=======
-          this.position.x++;
-        } else {
-          this.position.x--;
->>>>>>> 35d9c50f4abc928dd422d2ff16422767bf05eb05
         }
         break;
       case "top":
         if (playerBoundaries.top <= containerBoundaries.top) {
-<<<<<<< HEAD
           this.position.y += this.direction.y * this.speed;
         } else {
           this.position.y -= this.direction.y * this.speed;
-=======
-          this.position.y++;
-        } else {
-          this.position.y--;
->>>>>>> 35d9c50f4abc928dd422d2ff16422767bf05eb05
         }
         break;
       case "down":
         if (playerBoundaries.bottom >= containerBoundaries.bottom) {
-<<<<<<< HEAD
           this.position.y -= this.direction.y * this.speed;
         } else {
           this.position.y += this.direction.y * this.speed;
-=======
-          this.position.y--;
-        } else {
-          this.position.y++;
->>>>>>> 35d9c50f4abc928dd422d2ff16422767bf05eb05
         }
         break;
     }
+
     this.element.style.left = `${this.position.x}px`;
     this.element.style.top = `${this.position.y}px`;
   }
