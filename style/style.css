@@ -48,6 +48,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
+<<<<<<< HEAD
 }
 
 /* format ingredients here */
@@ -59,4 +60,6 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+=======
+>>>>>>> 35d9c50f4abc928dd422d2ff16422767bf05eb05
 }
