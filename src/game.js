@@ -1,6 +1,6 @@
 import Player from "./player.js";
 import Ingredient from "./ingredient.js";
-// import Food from "./platedFood";
+import Food from "./platedFood.js";
 
 /*
 
@@ -23,8 +23,7 @@ class Game {
     this.player = new Player(this.gameContainer, this.gameSpeed);
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
-    // this.ingredients = new Ingredient(this.gameContainer);
-    // this.platedFoods = new platedFood(this.gameContainer);
+    this.platedFoods = new platedFood(this.gameContainer);
     this.pressedKeys = {
       right: false,
       left: false,
@@ -82,10 +81,10 @@ class Game {
 
     // TODO: test function to check whether the player is touching the border
 
-    // BONUS : generate different food items worth different points
+    // ? BONUS : generate different food items worth different points
   }
 
-  // function to show the chronometer during the game (and then be able to send how much time at the end)
+  // TODO: function to show the chronometer during the game (and then be able to send how much time at the end)
   chronometer() {}
 
   // ! Function to end the game
