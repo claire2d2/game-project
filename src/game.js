@@ -94,6 +94,11 @@ class Game {
       if (this.player.touchBorder()) {
         this.endGame();
       }
+
+      const pauseButton = document.getElementById("pause-button");
+      pauseButton.addEventListener("click", () => {
+        this.pauseGame();
+      });
     }, 1000 / 60);
 
     6;
@@ -116,8 +121,15 @@ class Game {
     // game over if player touches border
   }
 
-  resetGame() {}
+  resetGame() {
+    // TODO : reset a whole new game
+  }
   // BONUS : generate different food items worth different points
+
+  pauseGame() {
+    // TODO find a method to restart the game without resetting
+    clearTimeout(this.intervalId);
+  }
 
   takeIngredient() {
     // function for when the player "hits" an ingredient
