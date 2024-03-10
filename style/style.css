@@ -72,3 +72,12 @@ body {
   top: 0;
   left: 0;
 }
+
+/* test for grid method */
+
+.cell {
+  height: 50px;
+  background-color: blue;
+  aspect-ratio: 1;
+  border-radius: 60%;
+}

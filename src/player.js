@@ -14,6 +14,11 @@ class Player {
       x: this.gameContainer.getBoundingClientRect().width / 2,
       y: this.gameContainer.getBoundingClientRect().height / 2,
     };
+    // will be used to register the player's position for followers to take place
+    this.historicPosition = {
+      x: this.position.x,
+      y: this.position.y,
+    };
     this.direction = {
       x: 1,
       y: 1,
@@ -34,8 +39,11 @@ class Player {
       case "right":
         if (playerBoundaries.right >= containerBoundaries.right) {
           this.position.x -= this.direction.x * this.speed;
+          this.historicPosition = this.position.x - 30;
         } else {
           this.position.x += this.direction.x * this.speed;
+          this.historicPosition.x = this.position.x - 30;
+          this.historicPosition.y = this.position.y;
         }
         break;
       case "left":
@@ -43,6 +51,8 @@ class Player {
           this.position.x += this.direction.x * this.speed;
         } else {
           this.position.x -= this.direction.x * this.speed;
+          this.historicPosition.x = this.position.x + 30;
+          this.historicPosition.y = this.position.y;
         }
         break;
       case "top":
@@ -50,6 +60,8 @@ class Player {
           this.position.y += this.direction.y * this.speed;
         } else {
           this.position.y -= this.direction.y * this.speed;
+          this.historicPosition.y = this.position.y + 30;
+          this.historicPosition.x = this.position.x;
         }
         break;
       case "down":
@@ -57,6 +69,8 @@ class Player {
           this.position.y -= this.direction.y * this.speed;
         } else {
           this.position.y += this.direction.y * this.speed;
+          this.historicPosition.y = this.position.y - 30;
+          this.historicPosition.x = this.position.x;
         }
         break;
     }

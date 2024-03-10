@@ -1,6 +1,6 @@
 import Player from "./player.js";
 import Ingredient from "./ingredient.js";
-import Food from "./platedFood.js";
+import PlatedFood from "./platedFood.js";
 
 /*
 
@@ -23,7 +23,7 @@ class Game {
     this.player = new Player(this.gameContainer, this.gameSpeed);
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
-    this.platedFoods = new platedFood(this.gameContainer);
+    this.platedFoods = [];
     this.pressedKeys = {
       right: false,
       left: false,
@@ -41,7 +41,6 @@ class Game {
 
   // put methods here
   startGame() {
-    console.log("test");
     // if game is already running, no need for the rest to follow
     if (this.gameOn) return;
 
@@ -67,6 +66,7 @@ class Game {
           this.player.move(direction);
         }
       }
+
       // make element eventually disappear
       for (const ingredient of this.ingredients) {
         // increment ingredient timer by one every second
@@ -74,12 +74,29 @@ class Game {
         // if cooldown is over, ingredient is eliminated
         ingredient.status();
       }
+
+      // Test
+
+      const newFollower = new PlatedFood(this.gameContainer, this.speed);
+      this.platedFoods.push(newFollower);
+      newFollower.element.style.left = `${this.player.historicPosition.x}px`;
+      newFollower.element.style.top = `${this.player.historicPosition.y}px`;
+
+      //TODO : creation of tail
+
+      // logic: if player takes item, player takes places of item, and new item takes place of player
+      // when player moves, last item fills the gap just behind the player
+
+      //  // ? TEST for making a follower behind the player
+
+      //  // ? END OF TEST
+      // function to check whether the player is touching the border
       if (this.player.touchBorder()) {
         this.endGame();
       }
     }, 1000 / 60);
 
-    // TODO: test function to check whether the player is touching the border
+    6;
 
     // ? BONUS : generate different food items worth different points
   }
