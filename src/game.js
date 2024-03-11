@@ -60,7 +60,8 @@ class Game {
         // start ingredient cooldown
       }
       this.counter++;
-      // generate food items randomly, each worth one point
+
+      // make player move
       for (const direction in this.pressedKeys) {
         if (this.pressedKeys[direction]) {
           this.player.move(direction);

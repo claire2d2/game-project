@@ -45,6 +45,27 @@ class Ingredient {
     this.ingredientTimer = null;
   }
 
+  // check whether item overlaps with player or other item
+  uniquePosition(player, arrayOfIngredients) {
+    for (let otherIngredient of arrayOfIngredients) {
+      if (
+        this.position.x < otherIngredient.position.x + 30 &&
+        this.position.x + 30 > otherIngredient.position.x &&
+        this.position.y < otherIngredient.position.y + 30 &&
+        this.position.y + 30 > otherIngredient.position.y
+      ) {
+        return true;
+      }
+    }
+    return (
+      // if position of generated item overlaps player
+      this.position.x < player.position.x + 30 &&
+      this.position.x + 30 > player.position.x &&
+      this.position.y < player.position.y + 30 &&
+      this.position.y + 30 > player.position.y
+    );
+    // if touches another ingredient
+  }
   // randomize if one or two items appear
 
   status() {
