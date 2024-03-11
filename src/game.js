@@ -57,12 +57,12 @@ class Game {
         // introduce while loop, while !newIngredient.uniquePosition, remove NewIngredient and generate new const
         const newIngredient = new Ingredient(this.gameContainer);
         while (
-          this.player.touchIngredient(newIngredient) ||
+          this.player.touchElement(newIngredient) ||
           newIngredient.touchOtherIngredient(this.ingredients)
         ) {
           if (
             !(
-              this.player.touchIngredient(newIngredient) ||
+              this.player.touchElement(newIngredient) ||
               newIngredient.touchOtherIngredient(this.ingredients)
             )
           ) {
@@ -114,7 +114,8 @@ class Game {
       // ! make food items eventually disappear
       for (let i = 0; i < [...this.ingredients].length; i++) {
         this.ingredients[i].ingredientTimeCount++;
-        if (this.ingredients[i].ingredientTimeCount > 120) {
+        // ingredients disappear after 3 secondes cooldown
+        if (this.ingredients[i].ingredientTimeCount > 180) {
           this.ingredients[i].element.remove();
           this.ingredients.splice(i, 1);
           continue;
@@ -124,21 +125,21 @@ class Game {
           const follower = new PlatedFood(this.gameContainer);
 
           // define position of new follower depending on the current direction
-          if (this.pressedKeys.right) {
-            follower.position.x = this.ingredients[i].position.x - 30;
-            follower.position.y = this.player.position.y;
-          } else if (this.pressedKeys.left) {
-            follower.position.x = this.ingredients[i].position.x + 30;
-            follower.position.y = this.player.position.y;
-          } else if (this.pressedKeys.top) {
-            follower.position.y = this.ingredients[i].position.y + 30;
-            follower.position.x = this.player.position.x;
-          } else if (this.pressedKeys.down) {
-            follower.position.y = this.ingredients[i].position.y - 30;
-            follower.position.x = this.player.position.x;
-          }
-          follower.element.style.left = `${follower.position.x}px`;
-          follower.element.style.top = `${follower.position.y}px`;
+          // if (this.pressedKeys.right) {
+          //   follower.position.x = this.ingredients[i].position.x - 30;
+          //   follower.position.y = this.player.position.y;
+          // } else if (this.pressedKeys.left) {
+          //   follower.position.x = this.ingredients[i].position.x + 30;
+          //   follower.position.y = this.player.position.y;
+          // } else if (this.pressedKeys.top) {
+          //   follower.position.y = this.ingredients[i].position.y + 30;
+          //   follower.position.x = this.player.position.x;
+          // } else if (this.pressedKeys.down) {
+          //   follower.position.y = this.ingredients[i].position.y - 30;
+          //   follower.position.x = this.player.position.x;
+          // }
+          // follower.element.style.left = `${follower.position.x}px`;
+          // follower.element.style.top = `${follower.position.y}px`;
 
           // insert follower at the beginning of the array of followers
           this.platedFoods.unshift(follower);
@@ -148,24 +149,6 @@ class Game {
           this.eatenItems.push(this.ingredients.splice(i, 1));
         }
       }
-
-      //     ingredient.element.remove();
-      // splice original array
-      // use filters?
-
-      // increment ingredient timer by one every second
-      // ingredient.ingredientTimeCount++;
-      // verify if item touches ingredient
-
-      // if cooldown is over, ingredient is eliminated
-      //
-
-      // Test
-
-      //TODO : creation of tail
-
-      // TODO : if player hits item then
-
       // const newFollower = new PlatedFood(this.gameContainer, this.speed);
       // this.platedFoods.push(newFollower);
 

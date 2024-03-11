@@ -73,9 +73,9 @@ class Player {
     );
   }
 
-  // function to check whether player is touching an ingredient
+  // method to check whether player is touching an ingredient
 
-  touchIngredient(ingredient) {
+  touchElement(element) {
     return (
       this.position.x < ingredient.position.x + 30 &&
       this.position.x + 30 > ingredient.position.x &&
@@ -83,6 +83,8 @@ class Player {
       this.position.y + 30 > ingredient.position.y
     );
   }
+
+  // method to check whether the player is touching its tail
 }
 
 export default Player;
