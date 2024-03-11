@@ -1,12 +1,12 @@
-class PlatedFood {
+class Follower {
   constructor(gameContainer) {
     this.gameContainer = gameContainer;
     this.element = document.createElement("div");
     this.gameContainer.append(this.element);
     this.element.classList = "follower";
     this.position = {
-      x: this.gameContainer.getBoundingClientRect().width / 2 - 30,
-      y: this.gameContainer.getBoundingClientRect().height / 2,
+      x: 0,
+      y: 0,
     };
     this.historicPosition = {
       x: 0,
@@ -17,4 +17,4 @@ class PlatedFood {
   }
 }
 
-export default PlatedFood;
+export default Follower;

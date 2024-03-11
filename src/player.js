@@ -1,3 +1,4 @@
+import Follower from "./Follower";
 /*
 * 1 // create Object for player:
 
@@ -9,6 +10,7 @@ class Player {
     this.gameContainer = gameContainer;
     this.speed = speed;
     this.element = document.getElementById("player");
+    this.body = [];
     this.element.classList = "player";
     this.position = {
       x: this.gameContainer.getBoundingClientRect().width / 2,
@@ -55,9 +57,16 @@ class Player {
         this.historicPosition.x = this.position.x;
         break;
     }
-
     this.element.style.left = `${this.position.x}px`;
     this.element.style.top = `${this.position.y}px`;
+
+    //TODO
+    if (this.body.length > 0) {
+      this.body[0];
+    }
+
+    // 0 takes historic position of the player
+    // starting from 1, take historic position of element - 1
   }
 
   // function to check whether the player is located at the edges (use getBoundingClientRect())
@@ -77,10 +86,10 @@ class Player {
 
   touchElement(element) {
     return (
-      this.position.x < ingredient.position.x + 30 &&
-      this.position.x + 30 > ingredient.position.x &&
-      this.position.y < ingredient.position.y + 30 &&
-      this.position.y + 30 > ingredient.position.y
+      this.position.x < element.position.x + 30 &&
+      this.position.x + 30 > element.position.x &&
+      this.position.y < element.position.y + 30 &&
+      this.position.y + 30 > element.position.y
     );
   }
 
