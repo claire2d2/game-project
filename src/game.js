@@ -88,54 +88,37 @@ class Game {
           this.player.move(direction);
           // make the last item of the array follow the player
           if (this.platedFoods.length != 0) {
-            this.platedFoods[
-              this.platedFoods.length - 1
-            ].element.style.left = `${this.player.historicPosition.x}px`;
-            this.platedFoods[
-              this.platedFoods.length - 1
-            ].element.style.top = `${this.player.historicPosition.y}px`;
+            const lastFollower = this.platedFoods[this.platedFoods.length - 1];
+            lastFollower.position.x = this.player.historicPosition.x;
+            lastFollower.position.y = this.player.historicPosition.y;
+            lastFollower.element.style.left = `${lastFollower.position.x}px`;
+            lastFollower.element.style.top = `${lastFollower.position.y}px`;
           }
         }
       }
 
-      // make tail follow player
-
-      // ! Loop for assigning position to plated items
-      // if (this.platedFoods.length != 0) {
-      //   // identify last of the array of platedFoods
-      //   for (let i = this.platedFoods.length - 1; i >= 0; i--) {
-      //     this.platedFoods[i].position.x = this.player.historicPosition.x;
-      //     this.platedFoods[i].position.y = this.player.historicPosition.y;
-      //   }
-      // }
-
-      //   platedFoods[
-      //     i
-      // for (let i = 0; i < [...this.platedFoods].length; i++) {
-      //   platedFoods[
-      //     i
-      //   ].element.style.left = `${this.player.historicPosition.x}px`;
-      //   platedFoods[
-      //     i
-      //   ].element.style.top = `${this.player.historicPosition.y}px`;
-      //   console.log(plateFoods[i]);
-      // }
-
       // ! make food items eventually disappear
       for (let i = 0; i < [...this.ingredients].length; i++) {
         if (this.player.touchIngredient(this.ingredients[i])) {
-          // remove element from html
-          this.ingredients[i].element.remove();
           // push the element into the original array to count how many items have been "eaten"
-          this.eatenItems.push(this.ingredients.splice(i, 1));
+
           // ! insert a new follower
           const follower = new PlatedFood(this.gameContainer);
-          follower.position.x = this.player.historicPosition.x;
-          follower.position.y = this.player.historicPosition.y;
+          follower.position.x = this.player.position.x;
+          follower.position.y = this.player.position.y;
           follower.element.style.left = `${follower.position.x}px`;
           follower.element.style.top = `${follower.position.y}px`;
+          // !TEST
+          this.player.position.x = this.ingredients[i].position.x;
+          this.player.position.y = this.ingredients[i].position.y;
+
+          this.player.element.style.left = `${this.player.position.x}px`;
+          this.player.element.style.top = `${this.player.position.y}px`;
           // insert follower into the array of followers
           this.platedFoods.unshift(follower);
+          // remove element from html
+          this.ingredients[i].element.remove();
+          this.eatenItems.push(this.ingredients.splice(i, 1));
         }
       }
       // for (const ingredient of [...this.ingredients]) {
