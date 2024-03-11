@@ -37,40 +37,24 @@ class Player {
 
     switch (direction) {
       case "right":
-        if (playerBoundaries.right >= containerBoundaries.right) {
-          this.position.x -= this.direction.x * this.speed;
-        } else {
-          this.position.x += this.direction.x * this.speed;
-          this.historicPosition.x = this.position.x - 30;
-          this.historicPosition.y = this.position.y;
-        }
+        this.position.x += this.direction.x * this.speed;
+        this.historicPosition.x = this.position.x - 30;
+        this.historicPosition.y = this.position.y;
         break;
       case "left":
-        if (playerBoundaries.left <= containerBoundaries.left) {
-          this.position.x += this.direction.x * this.speed;
-        } else {
-          this.position.x -= this.direction.x * this.speed;
-          this.historicPosition.x = this.position.x + 30;
-          this.historicPosition.y = this.position.y;
-        }
+        this.position.x -= this.direction.x * this.speed;
+        this.historicPosition.x = this.position.x + 30;
+        this.historicPosition.y = this.position.y;
         break;
       case "top":
-        if (playerBoundaries.top <= containerBoundaries.top) {
-          this.position.y += this.direction.y * this.speed;
-        } else {
-          this.position.y -= this.direction.y * this.speed;
-          this.historicPosition.y = this.position.y + 30;
-          this.historicPosition.x = this.position.x;
-        }
+        this.position.y -= this.direction.y * this.speed;
+        this.historicPosition.y = this.position.y + 30;
+        this.historicPosition.x = this.position.x;
         break;
       case "down":
-        if (playerBoundaries.bottom >= containerBoundaries.bottom) {
-          this.position.y -= this.direction.y * this.speed;
-        } else {
-          this.position.y += this.direction.y * this.speed;
-          this.historicPosition.y = this.position.y - 30;
-          this.historicPosition.x = this.position.x;
-        }
+        this.position.y += this.direction.y * this.speed;
+        this.historicPosition.y = this.position.y - 30;
+        this.historicPosition.x = this.position.x;
         break;
     }
 
