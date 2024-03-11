@@ -101,24 +101,23 @@ class Game {
       // ! make food items eventually disappear
       for (let i = 0; i < [...this.ingredients].length; i++) {
         if (this.player.touchIngredient(this.ingredients[i])) {
-          // push the element into the original array to count how many items have been "eaten"
-          // !TEST
-          this.player.historicPosition.x = this.player.position.x;
-          this.player.historicPosition.y = this.player.position.y;
-          this.player.position.x = this.ingredients[i].position.x;
-          this.player.position.y = this.ingredients[i].position.y;
-          this.player.element.style.left = `${this.player.position.x}px`;
-          this.player.element.style.top = `${this.player.position.y}px`;
           // ! insert a new follower
           const follower = new PlatedFood(this.gameContainer);
+          if (this.platedFoods.length > 0) {
+            follower.position.x =
+              this.platedFoods[this.platedFoods.length - 1].position.x;
+            follower.position.y =
+              this.platedFoods[this.platedFoods.length - 1].position.y;
+          }
           follower.position.x = this.player.historicPosition.x;
           follower.position.y = this.player.historicPosition.y;
           follower.element.style.left = `${follower.position.x}px`;
           follower.element.style.top = `${follower.position.y}px`;
           // insert follower into the array of followers
-          this.platedFoods.unshift(follower);
+          this.platedFoods.push(follower);
           // remove element from html
           this.ingredients[i].element.remove();
+          // push the element into the original array to count how many items have been "eaten"
           this.eatenItems.push(this.ingredients.splice(i, 1));
         }
       }
@@ -154,10 +153,10 @@ class Game {
       }
 
       // TODO pauses game if pause button is clicked
-      //   const pauseButton = document.getElementById("pause-button");
-      //   pauseButton.addEventListener("click", () => {
-      //     this.pauseGame();
-      // });
+      const pauseButton = document.getElementById("pause-button");
+      pauseButton.addEventListener("click", () => {
+        this.pauseGame();
+      });
     }, 1000 / 60);
 
     // ? BONUS : generate different food items worth different points
@@ -185,6 +184,7 @@ class Game {
   pauseGame() {
     // TODO find a method to restart the game without resetting
     clearTimeout(this.intervalId);
+    this.gameOn = false;
   }
 
   takeIngredient() {

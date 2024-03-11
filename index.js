@@ -11,21 +11,6 @@ const game = new Game();
 
 startButton.addEventListener("click", () => {
   game.startGame();
-  const observer = new MutationObserver(function (mutations_list) {
-    mutations_list.forEach(function (mutation) {
-      mutation.removedNodes.forEach(function (removed_node) {
-        if (removed_node.classList == "ingredient") {
-          console.log("remove element test");
-          game.score++;
-          observer.disconnect();
-        }
-      });
-    });
-  });
-  observer.observe(document.querySelector(".game-container"), {
-    subtree: false,
-    childList: true,
-  });
 });
 // event listener to end game
 
