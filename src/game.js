@@ -18,7 +18,6 @@ class Game {
     this.intervalId = null;
     this.gameOn = false;
     this.score = 0;
-    this.chronometer = 0;
     this.gameSpeed = 3;
     this.player = new Player(this.gameContainer, this.gameSpeed);
     // calls to create new ingredients (array because more than one ingredient will be called)
@@ -67,25 +66,48 @@ class Game {
         }
       }
 
-      // make element eventually disappear
+      // make tail follow player
+
+      // const follower = new PlatedFood(this.gameContainer);
+      // follower.element.style.left = `${this.player.historicPosition.x}px`;
+      // follower.element.style.top = `${this.player.historicPosition.y}px`;
+
+      // ! Loop for when condition for touching items will be created
+      // for (let i = 0; i < this.platedFoods.length; i++) {
+      //   platedFoods[
+      //     i
+      //   ].element.style.left = `${this.player.historicPosition.x}px`;
+      //   platedFoods[
+      //     i
+      //   ].element.style.top = `${this.player.historicPosition.y}px`;
+      //   console.log(plateFoods[i]);
+      // }
+
+      // ! make food items eventually disappear
       for (const ingredient of this.ingredients) {
+        if (this.player.touchIngredient(ingredient)) {
+          console.log("removed!");
+          ingredient.element.remove();
+        }
         // increment ingredient timer by one every second
         ingredient.ingredientTimeCount++;
+        // verify if item touches ingredient
+
         // if cooldown is over, ingredient is eliminated
         ingredient.status();
       }
 
       // Test
 
-      const newFollower = new PlatedFood(this.gameContainer, this.speed);
-      this.platedFoods.push(newFollower);
-      newFollower.element.style.left = `${this.player.historicPosition.x}px`;
-      newFollower.element.style.top = `${this.player.historicPosition.y}px`;
-
       //TODO : creation of tail
 
       // logic: if player takes item, player takes places of item, and new item takes place of player
       // when player moves, last item fills the gap just behind the player
+
+      // TODO : if player hits item then
+
+      // const newFollower = new PlatedFood(this.gameContainer, this.speed);
+      // this.platedFoods.push(newFollower);
 
       //  // ? TEST for making a follower behind the player
 
@@ -95,24 +117,21 @@ class Game {
         this.endGame();
       }
 
-      const pauseButton = document.getElementById("pause-button");
-      pauseButton.addEventListener("click", () => {
-        this.pauseGame();
-      });
+      // TODO pauses game if pause button is clicked
+      //   const pauseButton = document.getElementById("pause-button");
+      //   pauseButton.addEventListener("click", () => {
+      //     this.pauseGame();
+      // });
     }, 1000 / 60);
-
-    6;
 
     // ? BONUS : generate different food items worth different points
   }
 
   // TODO: function to show the chronometer during the game (and then be able to send how much time at the end)
-  chronometer() {}
 
   // ! Function to end the game
 
   endGame() {
-    console.log("you lost!");
     this.score = this.intervalId;
     console.log(this.score);
     clearTimeout(this.intervalId);

@@ -45,8 +45,8 @@ class Ingredient {
   // randomize if one or two items appear
 
   status() {
-    // makes element disappear after 4 secondes (4 * 60)
-    if (this.ingredientTimeCount > 240) {
+    // makes element disappear after a certain time
+    if (this.ingredientTimeCount > 420) {
       this.element.remove();
     }
 

@@ -29,7 +29,7 @@ body {
 /* format game container here*/
 
 .game-container {
-  margin: 0 auto;
+  margin: 0;
   aspect-ratio: 3/2;
   max-width: 800px;
   min-width: 500px;
@@ -43,7 +43,7 @@ body {
 #player {
   height: 30px;
   aspect-ratio: 1;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   background-color: blue;
   position: absolute;
   top: 50%;
@@ -53,13 +53,13 @@ body {
 /* format tail behind player */
 
 .follower {
-  height: 28px;
+  height: 30px;
   aspect-ratio: 1;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   background-color: grey;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
 }
 
 /* format ingredients here */
@@ -71,13 +71,4 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-}
-
-/* test for grid method */
-
-.cell {
-  height: 50px;
-  background-color: blue;
-  aspect-ratio: 1;
-  border-radius: 60%;
 }

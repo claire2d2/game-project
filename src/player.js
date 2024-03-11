@@ -16,8 +16,8 @@ class Player {
     };
     // will be used to register the player's position for followers to take place
     this.historicPosition = {
-      x: this.position.x,
-      y: this.position.y,
+      x: 0,
+      y: 0,
     };
     this.direction = {
       x: 1,
@@ -39,7 +39,6 @@ class Player {
       case "right":
         if (playerBoundaries.right >= containerBoundaries.right) {
           this.position.x -= this.direction.x * this.speed;
-          this.historicPosition = this.position.x - 30;
         } else {
           this.position.x += this.direction.x * this.speed;
           this.historicPosition.x = this.position.x - 30;
@@ -93,6 +92,22 @@ class Player {
   }
 
   // function to check whether player is colliding (use getBoundingClientRect())
+
+  // TODO REVIEW THE CONDITIONS
+  touchIngredient(ingredient) {
+    const playerBoundaries = this.element.getBoundingClientRect();
+    const ingredientBoundaries = ingredient.element.getBoundingClientRect();
+    return (
+      this.position.x < ingredient.position.x + 30 &&
+      this.position.x + 30 > ingredient.position.x &&
+      this.position.y < ingredient.position.y + 30 &&
+      this.position.y + 30 > ingredient.position.y
+    );
+    //X-Horizontal check formula :
+    // (a.x < (b.x + b.width)) && ((a.x + a.width) > b.x);
+    // y-Vertical check formula :
+    // (a.y < (b.y+b.height)) && ((a.y + a.height) > b.y);
+  }
 }
 
 export default Player;
