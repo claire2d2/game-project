@@ -53,7 +53,28 @@ class Game {
       //generate an ingredient ever 10 seconds
       if (this.counter % 60 === 0) {
         this.counter = 0;
+
+        // introduce while loop, while !newIngredient.uniquePosition, remove NewIngredient and generate new const
         const newIngredient = new Ingredient(this.gameContainer);
+        while (
+          this.player.touchIngredient(newIngredient) ||
+          newIngredient.touchOtherIngredient(this.ingredients)
+        ) {
+          if (
+            !(
+              this.player.touchIngredient(newIngredient) ||
+              newIngredient.touchOtherIngredient(this.ingredients)
+            )
+          ) {
+            break;
+          }
+          newIngredient.position.x =
+            Math.random() *
+            (this.gameContainer.getBoundingClientRect().width - 30);
+          newIngredient.position.y =
+            Math.random() *
+            (this.gameContainer.getBoundingClientRect().height - 30);
+        }
         newIngredient.element.style.left = `${newIngredient.position.x}px`;
         newIngredient.element.style.top = `${newIngredient.position.y}px`;
         this.ingredients.push(newIngredient);
@@ -190,6 +211,8 @@ class Game {
     // ? tally the score by how much the ingredient is worth
     // ? add little animation of score appearing
   }
+
+  // condition check whether food items generated coordinates are overlapping
 
   // ! function for listening to the arrow keys being pressed
   // BONUS :

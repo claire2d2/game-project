@@ -91,9 +91,8 @@ class Player {
     );
   }
 
-  // function to check whether player is colliding (use getBoundingClientRect())
+  // function to check whether player is touching an ingredient
 
-  // TODO REVIEW THE CONDITIONS
   touchIngredient(ingredient) {
     return (
       this.position.x < ingredient.position.x + 30 &&

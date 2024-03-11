@@ -57,6 +57,7 @@ class Ingredient {
         return true;
       }
     }
+
     return (
       // if position of generated item overlaps player
       this.position.x < player.position.x + 30 &&
@@ -80,6 +81,19 @@ class Ingredient {
   // check whether the ingredient has been there for more than a given amount of seconds (here, 4)
   ingredientCoolDown() {
     //to define
+  }
+
+  touchOtherIngredient(arrayOfOtherIngredient) {
+    for (let otherIngredient of arrayOfOtherIngredient) {
+      if (
+        this.position.x < otherIngredient.position.x + 30 &&
+        this.position.x + 30 > otherIngredient.position.x &&
+        this.position.y < otherIngredient.position.y + 30 &&
+        this.position.y + 30 > otherIngredient.position.y
+      )
+        return true;
+    }
+    return false;
   }
 }
 export default Ingredient;
