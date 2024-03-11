@@ -95,18 +95,12 @@ class Player {
 
   // TODO REVIEW THE CONDITIONS
   touchIngredient(ingredient) {
-    const playerBoundaries = this.element.getBoundingClientRect();
-    const ingredientBoundaries = ingredient.element.getBoundingClientRect();
     return (
       this.position.x < ingredient.position.x + 30 &&
       this.position.x + 30 > ingredient.position.x &&
       this.position.y < ingredient.position.y + 30 &&
       this.position.y + 30 > ingredient.position.y
     );
-    //X-Horizontal check formula :
-    // (a.x < (b.x + b.width)) && ((a.x + a.width) > b.x);
-    // y-Vertical check formula :
-    // (a.y < (b.y+b.height)) && ((a.y + a.height) > b.y);
   }
 }
 

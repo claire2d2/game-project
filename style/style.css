@@ -43,7 +43,7 @@ body {
 #player {
   height: 30px;
   aspect-ratio: 1;
-  /* border-radius: 50%; */
+  border-radius: 50%;
   background-color: blue;
   position: absolute;
   top: 50%;
@@ -55,7 +55,7 @@ body {
 .follower {
   height: 30px;
   aspect-ratio: 1;
-  /* border-radius: 50%; */
+  border-radius: 50%;
   background-color: grey;
   position: absolute;
   top: 50%;

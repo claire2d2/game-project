@@ -30,8 +30,11 @@ class Ingredient {
     this.gameContainer.append(this.element);
     // generate random position (add condition of other elements not existing in the place in Game method)
     this.position = {
-      x: Math.random() * this.gameContainer.getBoundingClientRect().width,
-      y: Math.random() * this.gameContainer.getBoundingClientRect().height,
+      x:
+        Math.random() * (this.gameContainer.getBoundingClientRect().width - 30),
+      y:
+        Math.random() *
+        (this.gameContainer.getBoundingClientRect().height - 30),
     };
     // the higher the value of the ingredient key is, the more chance there is of the ingredient appearing
     this.category = {

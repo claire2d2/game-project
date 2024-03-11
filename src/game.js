@@ -23,6 +23,7 @@ class Game {
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
     this.platedFoods = [];
+    this.eatenItems = [];
     this.pressedKeys = {
       right: false,
       left: false,
@@ -63,17 +64,32 @@ class Game {
       for (const direction in this.pressedKeys) {
         if (this.pressedKeys[direction]) {
           this.player.move(direction);
+          // make the last item of the array follow the player
+          if (this.platedFoods.length != 0) {
+            this.platedFoods[
+              this.platedFoods.length - 1
+            ].element.style.left = `${this.player.historicPosition.x}px`;
+            this.platedFoods[
+              this.platedFoods.length - 1
+            ].element.style.top = `${this.player.historicPosition.y}px`;
+          }
         }
       }
 
       // make tail follow player
 
-      // const follower = new PlatedFood(this.gameContainer);
-      // follower.element.style.left = `${this.player.historicPosition.x}px`;
-      // follower.element.style.top = `${this.player.historicPosition.y}px`;
+      // ! Loop for assigning position to plated items
+      // if (this.platedFoods.length != 0) {
+      //   // identify last of the array of platedFoods
+      //   for (let i = this.platedFoods.length - 1; i >= 0; i--) {
+      //     this.platedFoods[i].position.x = this.player.historicPosition.x;
+      //     this.platedFoods[i].position.y = this.player.historicPosition.y;
+      //   }
+      // }
 
-      // ! Loop for when condition for touching items will be created
-      // for (let i = 0; i < this.platedFoods.length; i++) {
+      //   platedFoods[
+      //     i
+      // for (let i = 0; i < [...this.platedFoods].length; i++) {
       //   platedFoods[
       //     i
       //   ].element.style.left = `${this.player.historicPosition.x}px`;
@@ -84,25 +100,39 @@ class Game {
       // }
 
       // ! make food items eventually disappear
-      for (const ingredient of this.ingredients) {
-        if (this.player.touchIngredient(ingredient)) {
-          console.log("removed!");
-          ingredient.element.remove();
+      for (let i = 0; i < [...this.ingredients].length; i++) {
+        if (this.player.touchIngredient(this.ingredients[i])) {
+          // remove element from html
+          this.ingredients[i].element.remove();
+          // push the element into the original array to count how many items have been "eaten"
+          this.eatenItems.push(this.ingredients.splice(i, 1));
+          // ! insert a new follower
+          const follower = new PlatedFood(this.gameContainer);
+          follower.position.x = this.player.historicPosition.x;
+          follower.position.y = this.player.historicPosition.y;
+          follower.element.style.left = `${follower.position.x}px`;
+          follower.element.style.top = `${follower.position.y}px`;
+          // insert follower into the array of followers
+          this.platedFoods.unshift(follower);
         }
-        // increment ingredient timer by one every second
-        ingredient.ingredientTimeCount++;
-        // verify if item touches ingredient
-
-        // if cooldown is over, ingredient is eliminated
-        ingredient.status();
       }
+      // for (const ingredient of [...this.ingredients]) {
+      //   if (this.player.touchIngredient(ingredient)) {
+
+      //     ingredient.element.remove();
+      // splice original array
+      // use filters?
+
+      // increment ingredient timer by one every second
+      // ingredient.ingredientTimeCount++;
+      // verify if item touches ingredient
+
+      // if cooldown is over, ingredient is eliminated
+      // ingredient.status();
 
       // Test
 
       //TODO : creation of tail
-
-      // logic: if player takes item, player takes places of item, and new item takes place of player
-      // when player moves, last item fills the gap just behind the player
 
       // TODO : if player hits item then
 
@@ -132,8 +162,9 @@ class Game {
   // ! Function to end the game
 
   endGame() {
-    this.score = this.intervalId;
-    console.log(this.score);
+    console.log(this.eatenItems);
+    this.score = this.eatenItems.length;
+    console.log("Score: ", this.score);
     clearTimeout(this.intervalId);
     // this.gameOn = false;
     // this.intervalId = null;
