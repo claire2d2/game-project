@@ -32,8 +32,6 @@ class Player {
   move(direction) {
     // define element "borders" (to check for collision later on
     // if conditions ensure that ball does not get out of borders (IMPROVE later if possible)
-    const playerBoundaries = this.element.getBoundingClientRect();
-    const containerBoundaries = this.gameContainer.getBoundingClientRect();
 
     switch (direction) {
       case "right":

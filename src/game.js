@@ -87,42 +87,67 @@ class Game {
         if (this.pressedKeys[direction]) {
           this.player.move(direction);
           // make the last item of the array follow the player
-          if (this.platedFoods.length != 0) {
+          if (this.platedFoods.length > 0) {
             const lastFollower = this.platedFoods.pop();
             this.platedFoods.unshift(lastFollower);
             lastFollower.position.y = this.player.historicPosition.y;
             lastFollower.position.x = this.player.historicPosition.x;
             lastFollower.element.style.left = `${lastFollower.position.x}px`;
             lastFollower.element.style.top = `${lastFollower.position.y}px`;
+            // this.platedFoods[0].historicPosition.x =
+            //   this.platedFoods[0].position.x;
+            // this.platedFoods[0].historicPosition.y =
+            //   this.platedFoods[0].position.y;
+            // this.platedFoods[0].position.x = this.player.historicPosition.x;
+            // this.platedFoods[0].position.y = this.player.historicPosition.y;
+            for (let i = 1; i < this.platedFoods.length; i++) {
+              const follower = this.platedFoods[i];
+              follower.historicPosition.x = follower.position.x;
+              follower.historicPosition.y = follower.position.y;
+              follower.position.x = this.platedFoods[i - 1].historicPosition.x;
+              follower.position.y = this.platedFoods[i - 1].historicPosition.xy;
+            }
           }
         }
       }
 
       // ! make food items eventually disappear
       for (let i = 0; i < [...this.ingredients].length; i++) {
+        this.ingredients[i].ingredientTimeCount++;
+        if (this.ingredients[i].ingredientTimeCount > 120) {
+          this.ingredients[i].element.remove();
+          this.ingredients.splice(i, 1);
+          continue;
+        }
         if (this.player.touchIngredient(this.ingredients[i])) {
           // ! insert a new follower
           const follower = new PlatedFood(this.gameContainer);
-          if (this.platedFoods.length > 0) {
-            follower.position.x =
-              this.platedFoods[this.platedFoods.length - 1].position.x;
-            follower.position.y =
-              this.platedFoods[this.platedFoods.length - 1].position.y;
+
+          // define position of new follower depending on the current direction
+          if (this.pressedKeys.right) {
+            follower.position.x = this.ingredients[i].position.x - 30;
+            follower.position.y = this.player.position.y;
+          } else if (this.pressedKeys.left) {
+            follower.position.x = this.ingredients[i].position.x + 30;
+            follower.position.y = this.player.position.y;
+          } else if (this.pressedKeys.top) {
+            follower.position.y = this.ingredients[i].position.y + 30;
+            follower.position.x = this.player.position.x;
+          } else if (this.pressedKeys.down) {
+            follower.position.y = this.ingredients[i].position.y - 30;
+            follower.position.x = this.player.position.x;
           }
-          follower.position.x = this.player.historicPosition.x;
-          follower.position.y = this.player.historicPosition.y;
           follower.element.style.left = `${follower.position.x}px`;
           follower.element.style.top = `${follower.position.y}px`;
-          // insert follower into the array of followers
-          this.platedFoods.push(follower);
+
+          // insert follower at the beginning of the array of followers
+          this.platedFoods.unshift(follower);
           // remove element from html
           this.ingredients[i].element.remove();
           // push the element into the original array to count how many items have been "eaten"
           this.eatenItems.push(this.ingredients.splice(i, 1));
         }
       }
-      // for (const ingredient of [...this.ingredients]) {
-      //   if (this.player.touchIngredient(ingredient)) {
 
       //     ingredient.element.remove();
       // splice original array
@@ -133,7 +158,7 @@ class Game {
       // verify if item touches ingredient
 
       // if cooldown is over, ingredient is eliminated
-      // ingredient.status();
+      //
 
       // Test
 
