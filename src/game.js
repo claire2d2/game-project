@@ -153,9 +153,9 @@ class Game {
           currentIngredient.element.remove();
           // push into an array the points associated to the type of ingredient eaten
           console.log(currentIngredient.type);
-          this.pointsArray.push(
-            currentIngredient.types[currentIngredient.type].points
-          );
+          // this.pointsArray.push(
+          //   currentIngredient.types[currentIngredient.type].points
+          // );
           // push the element into the original array to count how many items have been "eaten"
           this.eatenItems.push(this.ingredients.splice(i, 1));
         }

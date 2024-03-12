@@ -1,23 +1,4 @@
-/* 2 // Create CLASS for food item
-
-takes for argument:
-- game container
-
-and has :
-- class for element : food item
-- another class for that element : which food item
-- position (x,y)
-
-METHODS :
-- randomize how many items appear
-- randomize the position at which item appears
-- make item appear on the container in an unoccupied space
-- randomize which item appears
-- how long the food item appears for
-
-*/
-
-// export
+import { randomIndex } from "../math.js";
 
 class Ingredient {
   constructor(gameContainer) {
@@ -65,7 +46,6 @@ class Ingredient {
       },
       coriander: { probability: 2, points: 0, message: ["Ugh... coriander"] },
     };
-    // ! TEST
     this.ingredientTimeCount = 1;
     this.ingredientTimer = null;
   }
@@ -99,6 +79,11 @@ class Ingredient {
     const randomIngredient = probArr[randomIndex];
     this.type = randomIngredient;
   }
+
+  // generateMessage(type, li) {
+  //   const messageArray = this.types[type].message;
+  //   li.textContent = messageArray[randomIndex(messageArray)];
+  // }
 
   touchOtherIngredient(arrayOfOtherIngredient) {
     for (let otherIngredient of arrayOfOtherIngredient) {

@@ -107,14 +107,13 @@ h1 {
 }
 
 .game-container {
-  flex: 0 0 900px;
+  flex: 0 0 910px;
   margin: 0 auto;
   border-style: solid;
   border-width: 10px;
   border-color: #d74844;
   border-radius: 2%;
   height: 600px;
-  width: 900px;
   background-color: rgb(254, 188, 114);
   position: relative;
 }
