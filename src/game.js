@@ -67,15 +67,10 @@ class Game {
           ) {
             break;
           }
-          newIngredient.position.x =
-            Math.random() *
-            (this.gameContainer.getBoundingClientRect().width - 30);
-          newIngredient.position.y =
-            Math.random() *
-            (this.gameContainer.getBoundingClientRect().height - 30);
+          // call out method to generate new coordinates for the ingredient
+          newIngredient.uniquePosition();
         }
-        newIngredient.element.style.left = `${newIngredient.position.x}px`;
-        newIngredient.element.style.top = `${newIngredient.position.y}px`;
+        newIngredient.style();
         this.ingredients.push(newIngredient);
         // start ingredient cooldown
       }
@@ -85,36 +80,14 @@ class Game {
       for (const direction in this.pressedKeys) {
         if (this.pressedKeys[direction]) {
           this.player.move(direction);
-          // make the last item of the array follow the player
-          // if (this.platedFoods.length > 0) {
-          //   const lastFollower = this.platedFoods.pop();
-          //   this.platedFoods.unshift(lastFollower);
-          //   lastFollower.position.y = this.player.historicPosition.y;
-          //   lastFollower.position.x = this.player.historicPosition.x;
-          //   lastFollower.element.style.left = `${lastFollower.position.x}px`;
-          //   lastFollower.element.style.top = `${lastFollower.position.y}px`;
-          // this.platedFoods[0].historicPosition.x =
-          //   this.platedFoods[0].position.x;
-          // this.platedFoods[0].historicPosition.y =
-          //   this.platedFoods[0].position.y;
-          // this.platedFoods[0].position.x = this.player.historicPosition.x;
-          // this.platedFoods[0].position.y = this.player.historicPosition.y;
-          // for (let i = 1; i < this.platedFoods.length; i++) {
-          //   const follower = this.platedFoods[i];
-          //   follower.historicPosition.x = follower.position.x;
-          //   follower.historicPosition.y = follower.position.y;
-          //   follower.position.x = this.platedFoods[i - 1].historicPosition.x;
-          //   follower.position.y = this.platedFoods[i - 1].historicPosition.xy;
-          // }
-          // }
         }
       }
 
       // ! make food items eventually disappear
       for (let i = 0; i < [...this.ingredients].length; i++) {
         this.ingredients[i].ingredientTimeCount++;
-        // ingredients disappear after 3 secondes cooldown
-        if (this.ingredients[i].ingredientTimeCount > 180) {
+        // ingredients disappear after cooldown
+        if (this.ingredients[i].ingredientTimeCount > 60) {
           this.ingredients[i].element.remove();
           this.ingredients.splice(i, 1);
           continue;

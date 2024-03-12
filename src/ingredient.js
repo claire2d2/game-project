@@ -95,5 +95,17 @@ class Ingredient {
     }
     return false;
   }
+
+  uniquePosition() {
+    this.position.x =
+      Math.random() * (this.gameContainer.getBoundingClientRect().width - 30);
+    this.position.y =
+      Math.random() * (this.gameContainer.getBoundingClientRect().height - 30);
+  }
+
+  style() {
+    this.element.style.left = `${this.position.x}px`;
+    this.element.style.top = `${this.position.y}px`;
+  }
 }
 export default Ingredient;
