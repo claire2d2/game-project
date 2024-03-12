@@ -1,4 +1,4 @@
-import Follower from "./Follower";
+import Follower from "./follower.js";
 /*
 * 1 // create Object for player:
 
@@ -12,6 +12,7 @@ class Player {
     this.element = document.getElementById("player");
     this.body = [];
     this.element.classList = "player";
+    // this.heading = "right"
     this.position = {
       x: this.gameContainer.getBoundingClientRect().width / 2,
       y: this.gameContainer.getBoundingClientRect().height / 2,
@@ -37,24 +38,24 @@ class Player {
 
     switch (direction) {
       case "right":
-        this.position.x += this.direction.x * this.speed;
-        this.historicPosition.x = this.position.x - 30;
+        this.historicPosition.x = this.position.x;
         this.historicPosition.y = this.position.y;
+        this.position.x += this.direction.x * this.speed;
         break;
       case "left":
-        this.position.x -= this.direction.x * this.speed;
-        this.historicPosition.x = this.position.x + 30;
+        this.historicPosition.x = this.position.x;
         this.historicPosition.y = this.position.y;
+        this.position.x -= this.direction.x * this.speed;
         break;
       case "top":
-        this.position.y -= this.direction.y * this.speed;
-        this.historicPosition.y = this.position.y + 30;
+        this.historicPosition.y = this.position.y;
         this.historicPosition.x = this.position.x;
+        this.position.y -= this.direction.y * this.speed;
         break;
       case "down":
-        this.position.y += this.direction.y * this.speed;
-        this.historicPosition.y = this.position.y - 30;
+        this.historicPosition.y = this.position.y;
         this.historicPosition.x = this.position.x;
+        this.position.y += this.direction.y * this.speed;
         break;
     }
     this.element.style.left = `${this.position.x}px`;
@@ -62,7 +63,18 @@ class Player {
 
     //TODO
     if (this.body.length > 0) {
-      this.body[0];
+      this.body[0].historicPosition.x = this.body[0].position.x;
+      this.body[0].historicPosition.y = this.body[0].position.y;
+      this.body[0].position.x = this.historicPosition.x;
+      this.body[0].position.y = this.historicPosition.y;
+      this.body[0].element.style.left = `${this.body[0].position.x}px`;
+      this.body[0].element.style.top = `${this.body[0].position.y}px`;
+      for (let i = 1; i < this.body.length - 1; i++) {
+        this.body[i].historicPosition = { ...this.body[i].position };
+        this.body[i].position = { ...this.body[i - 1].historicPosition };
+        this.body[i].element.style.left = `${this.body[i].position.x}px`;
+        this.body[i].element.style.top = `${this.body[i].position.y}px`;
+      }
     }
 
     // 0 takes historic position of the player

@@ -1,6 +1,6 @@
 import Player from "./player.js";
 import Ingredient from "./ingredient.js";
-import Follower from "./Follower.js";
+import Follower from "./follower.js";
 
 /*
 
@@ -18,7 +18,7 @@ class Game {
     this.intervalId = null;
     this.gameOn = false;
     this.score = 0;
-    this.gameSpeed = 3;
+    this.gameSpeed = 30;
     this.player = new Player(this.gameContainer, this.gameSpeed);
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
@@ -50,7 +50,7 @@ class Game {
     // generate food items randomly, each worth one point
     this.intervalId = setInterval(() => {
       //generate an ingredient ever 10 seconds
-      if (this.counter % 60 === 0) {
+      if (this.counter % 10 === 0) {
         this.counter = 0;
 
         // introduce while loop, while !newIngredient.uniquePosition, remove NewIngredient and generate new const
@@ -121,8 +121,11 @@ class Game {
         }
         if (this.player.touchElement(this.ingredients[i])) {
           // ! insert a new follower
-          const follower = new PlatedFood(this.gameContainer);
-          this.player.body.push(follower);
+          const position = !this.player.body.length
+            ? this.player.historicPosition
+            : this.player.body.at(-1).historicPosition;
+          const newFollower = new Follower(this.gameContainer, position);
+          this.player.body.push(newFollower);
           // define position of new follower depending on the current direction
           // if (this.pressedKeys.right) {
           //   follower.position.x = this.ingredients[i].position.x - 30;
@@ -165,7 +168,7 @@ class Game {
       pauseButton.addEventListener("click", () => {
         this.pauseGame();
       });
-    }, 1000 / 60);
+    }, 100);
 
     // ? BONUS : generate different food items worth different points
   }

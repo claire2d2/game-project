@@ -1,12 +1,12 @@
 class Follower {
-  constructor(gameContainer) {
+  constructor(gameContainer, position) {
     this.gameContainer = gameContainer;
     this.element = document.createElement("div");
     this.gameContainer.append(this.element);
     this.element.classList = "follower";
     this.position = {
-      x: 0,
-      y: 0,
+      x: position.x,
+      y: position.y,
     };
     this.historicPosition = {
       x: 0,

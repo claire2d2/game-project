@@ -31,8 +31,8 @@ body {
 .game-container {
   margin: 0;
   aspect-ratio: 3/2;
-  max-width: 800px;
-  min-width: 500px;
+  max-width: 900px;
+  min-width: 600px;
   align-self: start;
   background-color: rgb(254, 188, 114);
   position: relative;
