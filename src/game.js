@@ -23,6 +23,7 @@ class Game {
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
     this.eatenItems = [];
+    this.pointsArray = [];
     this.pressedKeys = {
       right: false,
       left: false,
@@ -87,44 +88,70 @@ class Game {
 
       // ! make food items eventually disappear
       for (let i = 0; i < [...this.ingredients].length; i++) {
-        this.ingredients[i].ingredientTimeCount++;
+        const currentIngredient = this.ingredients[i];
+        currentIngredient.ingredientTimeCount++;
         // ingredients disappear after cooldown
-        if (this.ingredients[i].ingredientTimeCount > 60) {
-          this.ingredients[i].element.remove();
+        if (currentIngredient.ingredientTimeCount > 60) {
+          currentIngredient.element.remove();
           this.ingredients.splice(i, 1);
           continue;
         }
-        if (this.player.touchElement(this.ingredients[i])) {
-          // ! insert a new follower
-          const position = !this.player.body.length
-            ? this.player.historicPosition
-            : this.player.body.at(-1).historicPosition;
-          const newFollower = new Follower(this.gameContainer, position);
-          this.player.body.push(newFollower);
-          this.ingredients[i].element.remove();
+        if (this.player.touchElement(currentIngredient)) {
+          //! If plater touches coriander, end game
+          if (currentIngredient.type == "coriander") {
+            console.log("Ugh, coriander ...");
+            this.endGame();
+          }
+
+          let nbIterations = 1;
+
+          // ! If ingredient is water, repeat 3 times
+          if (currentIngredient.type === "water") {
+            nbIterations = 3;
+          } else if (currentIngredient.type === "ginger") {
+            nbIterations = 0;
+          }
+          for (let i = 0; i < nbIterations; i++) {
+            // ! insert a new follower (make into a function?)
+            const position = !this.player.body.length
+              ? this.player.historicPosition
+              : this.player.body.at(-1).historicPosition;
+            const newFollower = new Follower(this.gameContainer, position);
+            this.player.body.push(newFollower);
+          }
+
+          // ! If ingredient is ginger, reset
+          if (currentIngredient.type == "ginger") {
+            for (let i = 0; i < this.player.body.length - 1; i++) {
+              this.player.body[i].element.remove();
+            }
+            this.player.body = [];
+          }
+          currentIngredient.element.remove();
+          // push into an array the points associated to the type of ingredient eaten
+          console.log(currentIngredient.type);
+          this.pointsArray.push(
+            currentIngredient.points[currentIngredient.type]
+          );
           // push the element into the original array to count how many items have been "eaten"
           this.eatenItems.push(this.ingredients.splice(i, 1));
         }
       }
-      // const newFollower = new PlatedFood(this.gameContainer, this.speed);
-      // this.platedFoods.push(newFollower);
 
-      //  // ? TEST for making a follower behind the player
-
-      //  // ? END OF TEST
-      // function to check whether the player is touching the border
-      // add condition to check if player is touching the tail
+      // ! If player touches border, end game
       if (this.player.touchBorder()) {
+        console.log("player touched border");
         this.endGame();
       }
-
+      // ! If player touches tail, end game
       for (let follower of this.player.body) {
         if (this.player.touchElement(follower)) {
+          console.log("player touched tail");
           this.endGame();
         }
       }
 
-      // TODO pauses game if pause button is clicked
+      // TODO permit to restart game when reclicking on the pause button
       const pauseButton = document.getElementById("pause-button");
       pauseButton.addEventListener("click", () => {
         this.pauseGame();
@@ -141,7 +168,8 @@ class Game {
   endGame() {
     console.log(this.eatenItems);
     this.score = this.eatenItems.length;
-    console.log("Score: ", this.score);
+    console.log("Nb eaten: ", this.score);
+    console.log(this.pointsArray);
     clearTimeout(this.intervalId);
     // this.gameOn = false;
     // this.intervalId = null;

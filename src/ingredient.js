@@ -40,10 +40,22 @@ class Ingredient {
     this.type = null;
     this.types = {
       bokchoi: 10,
-      coriander: 5,
-      ginger: 2,
+      coriander: 0,
+      ginger: 4,
       water: 3,
     };
+    this.points = {
+      bokchoi: 5,
+      coriander: -1,
+      ginger: 10,
+      water: 0,
+    };
+    // this.testTypes = [
+    //   { type: bokchoi, probability: 10, points: 2 },
+    //   { type: coriander, probability: 3, points: 0 },
+    //   { type: water, probability: 3, points: 0 },
+    //   { type: ginger, probability: 2, points: 5 },
+    // ];
     this.ingredientTimeCount = 1;
     this.ingredientTimer = null;
   }
