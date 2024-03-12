@@ -1,6 +1,6 @@
 import Game from "./src/game.js";
+const launchButton = document.getElementById("launch-game");
 const startButton = document.getElementById("start-game");
-const game = new Game();
 
 const welcomeSection = document.querySelector(".welcome");
 const gameContainer = document.querySelector(".game-container");
@@ -12,11 +12,14 @@ const gameMessages = document.querySelector(".game-messages");
 // define game
 
 // event listener to start game
+launchButton.addEventListener("click", () => {
+  welcomeSection.hidden = true;
+  gameContainer.hidden = false;
+  gameMessages.hidden = false;
+});
 
 startButton.addEventListener("click", () => {
-  //   welcomeSection.hidden = true;
-  //   gameContainer.hidden = false;
-  //   gameMessages.hidden = false;
+  const game = new Game();
   game.startGame();
 });
 // event listener to end game

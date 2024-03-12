@@ -32,7 +32,7 @@ class Game {
     this.eatenItems = [];
     this.pointsArray = [];
     this.pressedKeys = {
-      right: false,
+      right: true,
       left: false,
       top: false,
       down: false,
@@ -55,10 +55,12 @@ class Game {
     this.arrowKeysPressed();
 
     this.gameOn = true;
+
     // generate food items randomly, each worth one point
     this.intervalId = setInterval(() => {
       //generate an ingredient ever 10 seconds
       if (this.counter % 10 === 0) {
+        console.log(this.player.element.getBoundingClientRect());
         this.counter = 0;
 
         // introduce while loop, while !newIngredient.uniquePosition, remove NewIngredient and generate new const

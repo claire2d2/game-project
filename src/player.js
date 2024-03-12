@@ -9,7 +9,9 @@ class Player {
   constructor(gameContainer, speed) {
     this.gameContainer = gameContainer;
     this.speed = speed;
-    this.element = document.getElementById("player");
+    this.element = document.createElement("div");
+    this.element.id = "player";
+    this.gameContainer.append(this.element);
     this.body = [];
     this.element.classList = "player";
     // this.heading = "right"
