@@ -22,6 +22,13 @@ class Game {
     this.player = new Player(this.gameContainer, this.gameSpeed);
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
+    // object that contains the different messages to show
+    this.messages = {
+      water:
+        "Uh-oh that was not strategic. You have less space in your stomach and gained 0 points!",
+      ginger: "Way to go! +10 points and your palate is refreshed!",
+      bokchoi: "Yum! +5 points",
+    };
     this.eatenItems = [];
     this.pointsArray = [];
     this.pressedKeys = {
@@ -97,6 +104,10 @@ class Game {
           continue;
         }
         if (this.player.touchElement(currentIngredient)) {
+          // set conditions for the message to appear on the right
+          const messageList = document.getElementById("message-list");
+          const li = document.createElement("li");
+          messageList.append(li);
           //! If plater touches coriander, end game
           if (currentIngredient.type == "coriander") {
             console.log("Ugh, coriander ...");
@@ -108,8 +119,15 @@ class Game {
           // ! If ingredient is water, repeat 3 times
           if (currentIngredient.type === "water") {
             nbIterations = 3;
+
+            li.textContent = this.messages.water;
+            // TODO : add message
           } else if (currentIngredient.type === "ginger") {
             nbIterations = 0;
+            //TEST
+            li.textContent = this.messages.ginger;
+          } else if (currentIngredient.type === "bokchoi") {
+            li.textContent = this.messages.bokchoi;
           }
           for (let i = 0; i < nbIterations; i++) {
             // ! insert a new follower (make into a function?)
