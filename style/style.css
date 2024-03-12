@@ -53,13 +53,13 @@ body {
 /* format tail behind player */
 
 .follower {
-  height: 30px;
+  height: 28px;
   aspect-ratio: 1;
   border-radius: 50%;
   background-color: grey;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
 }
 
 /* format ingredients here */

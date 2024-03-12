@@ -163,6 +163,12 @@ class Game {
         this.endGame();
       }
 
+      for (let follower of this.player.body) {
+        if (this.player.touchElement(follower)) {
+          this.endGame();
+        }
+      }
+
       // TODO pauses game if pause button is clicked
       const pauseButton = document.getElementById("pause-button");
       pauseButton.addEventListener("click", () => {

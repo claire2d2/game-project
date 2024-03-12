@@ -9,8 +9,8 @@ class Follower {
       y: position.y,
     };
     this.historicPosition = {
-      x: 0,
-      y: 0,
+      x: position.x,
+      y: position.y,
     };
 
     // TODO: method for movement
