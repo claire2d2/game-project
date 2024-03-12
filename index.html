@@ -13,16 +13,23 @@
   <body>
     <h1>Bool you can eat hotpot</h1>
 
-    <img
-      class="panda-image"
-      src="./img/eating-panda.png"
-      alt="image of a panda
+    <div class="panda-says">
+      <img
+        class="speech-bubble"
+        src="./img/text-bubble.png"
+        alt="speech bubble"
+      />
+      <img
+        class="panda-image"
+        src="./img/eating-panda.png"
+        alt="image of a panda
     eating"
-    />
+      />
+    </div>
 
     <!-- Elements to show before the game -->
     <div class="welcome">
-      <div id="welcome-text" hidden>
+      <div id="welcome-text">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima
         voluptatibus minus quo itaque. Quos doloribus non saepe consectetur,
         incidunt dolor aspernatur at dignissimos? Maxime autem aut officiis hic
@@ -41,7 +48,7 @@
       <button id="launch-game">Let's go!</button>
     </div>
 
-    <div class="pause" hidden>
+    <div class="pause">
       <button id="pause-button">
         <img src="./img/pause-button.png" alt="pause button" />
       </button>
@@ -51,11 +58,11 @@
 
     <dialog>
       <p>Insert rules here</p>
-      <button id="launch-game">Let's go</button>
+      <!-- <button id="launch-game">Let's go</button> -->
     </dialog>
     <!-- Elements to show during the game -->
+    <button id="start-game">START</button>
     <div class="main-game">
-      <button id="start-game">START</button>
       <div class="game-container" hidden></div>
       <div class="game-messages" hidden>
         <h3>Let's go!</h3>

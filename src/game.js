@@ -191,9 +191,11 @@ class Game {
     console.log("Nb eaten: ", this.score);
     console.log(this.pointsArray);
     clearTimeout(this.intervalId);
-    // this.gameOn = false;
-    // this.intervalId = null;
-    // game over if player touches border
+    this.gameOn = false;
+    this.player.element.remove();
+    this.ingredients.forEach((ingredient) => {
+      ingredient.element.remove();
+    });
   }
 
   resetGame() {
