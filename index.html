@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bool you can eat hotpot</title>
 
+    <!-- import google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- link css style sheet -->
     <link rel="stylesheet" href="./style/style.css" />
     <!-- link js -->
@@ -13,22 +21,23 @@
   <body>
     <h1>Bool you can eat hotpot</h1>
 
-    <div class="panda-says">
+    <!-- <div class="panda-says">
       <img
         class="speech-bubble"
         src="./img/text-bubble.png"
         alt="speech bubble"
       />
+      <p id="panda-message">Welcome!</p>
       <img
         class="panda-image"
         src="./img/eating-panda.png"
         alt="image of a panda
     eating"
       />
-    </div>
+    </div> -->
 
     <!-- Elements to show before the game -->
-    <div class="welcome">
+    <div class="welcome" hidden>
       <div id="welcome-text">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima
         voluptatibus minus quo itaque. Quos doloribus non saepe consectetur,
@@ -48,7 +57,7 @@
       <button id="launch-game">Let's go!</button>
     </div>
 
-    <div class="pause">
+    <div class="pause" hidden>
       <button id="pause-button">
         <img src="./img/pause-button.png" alt="pause button" />
       </button>
@@ -61,7 +70,7 @@
       <!-- <button id="launch-game">Let's go</button> -->
     </dialog>
     <!-- Elements to show during the game -->
-    <button id="start-game">START</button>
+    <button id="start-game" hidden>START</button>
     <div class="main-game">
       <div class="game-container" hidden></div>
       <div class="game-messages" hidden>
@@ -69,8 +78,19 @@
         <ul id="message-list"></ul>
       </div>
     </div>
-    <footer>Game developed by Claire</footer>
+    <!-- <footer>Game developed by Claire</footer> -->
 
     <!-- Elements to show after the game (hidden by default) -->
+
+    <div class="after-game">
+      <div><h2 id="end-greeting">WELL DONE!</h2></div>
+      <p id="end-message">
+        You scored <span id="game-score">14</span> points in
+        <span id="game-minutes">1</span> minute and 13 seconds!
+      </p>
+      <p id="game-record">This was your best score so far!</p>
+      <p>Want to try again?</p>
+      <button id="restart-game">Let's go !</button>
+    </div>
   </body>
 </html>

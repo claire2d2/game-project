@@ -1,10 +1,3 @@
-import Follower from "./follower.js";
-/*
-* 1 // create Object for player:
-
-
-*/
-
 class Player {
   constructor(gameContainer, speed) {
     this.gameContainer = gameContainer;

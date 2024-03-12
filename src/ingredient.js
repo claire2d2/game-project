@@ -50,12 +50,15 @@ class Ingredient {
       ginger: 10,
       water: 0,
     };
-    // this.testTypes = [
+    // ! TEST
+    // TODO
+    // this.testTypes = {
     //   { type: bokchoi, probability: 10, points: 2 },
     //   { type: coriander, probability: 3, points: 0 },
     //   { type: water, probability: 3, points: 0 },
     //   { type: ginger, probability: 2, points: 5 },
-    // ];
+    // };
+    // ! TEST
     this.ingredientTimeCount = 1;
     this.ingredientTimer = null;
   }

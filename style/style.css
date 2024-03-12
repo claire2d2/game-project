@@ -3,16 +3,27 @@
 * {
   margin: 0;
   caret-color: transparent;
+  font-family: "Manrope";
+}
+
+/* reset styling for initialization */
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 
 body {
   background-image: url(../img/background-image.jpg);
   background-size: cover;
   position: relative;
-  min-height: 100vh;
-  max-height: 800px;
+  height: 100%;
+  width: 100%;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  overflow: hidden;
 }
 
 /* styling panda section */
@@ -64,22 +75,27 @@ h1 {
   width: 800px;
 }
 
-.main-game {
-  margin: 0 auto;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-}
-
-#start-button {
+. #start-button {
   position: absolute;
   margin: 0 auto;
 }
-/* format game container here*/
+/* format ongoing game content here*/
+
+.main-game {
+  margin: 0 auto;
+  padding-top: auto;
+  padding-bottom: auto;
+  width: 75%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  /* background-color: white; */
+}
 
 .game-container {
+  flex: 0 0 900px;
   margin: 0 auto;
-  margin-left: 25rem;
   border-style: solid;
   border-width: 10px;
   border-color: #d74844;
@@ -91,11 +107,19 @@ h1 {
 }
 
 .game-messages {
-  margin: 0 auto;
-  width: 300px;
+  width: 600px;
+  margin: 0 1rem;
   height: 600px;
-  padding: 10px;
+  border-style: solid;
+  border-width: 10px;
+  border-color: #d74844;
   background-color: white;
+  border-radius: 2%;
+  & h3 {
+    font-size: 2rem;
+    text-align: center;
+    color: #d74844;
+  }
 }
 
 /* format player here */
@@ -152,4 +176,45 @@ h1 {
 
 .coriander {
   background-color: orange;
+}
+
+/* after game  */
+
+.after-game {
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: white;
+  width: 60%;
+  height: 100%;
+  text-align: center;
+  box-shadow: 10px 5px 4px rgba(39, 34, 34, 0.466);
+  & h2 {
+    font-size: 4rem;
+    text-shadow: 6px 3px 3px rgba(97, 90, 91, 0.384);
+  }
+  & p {
+    font-size: 3rem;
+  }
+  & button {
+    margin: 2rem auto;
+    background-color: #fa6400;
+    border: 1px solid transparent;
+    padding: 1rem 2rem;
+    font-size: 2rem;
+    border-radius: 0.25%;
+    cursor: pointer;
+    color: white;
+    justify-content: center;
+    box-shadow: 3px 5px 4px rgb(129, 122, 122);
+  }
+
+  & button:hover {
+    background-color: #fb8332;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+
+    & button:active {
+      background-color: #c85000;
+      box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    }
+  }
 }

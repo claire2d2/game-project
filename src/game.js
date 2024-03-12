@@ -1,6 +1,7 @@
 import Player from "./player.js";
 import Ingredient from "./ingredient.js";
 import Follower from "./follower.js";
+import Chronometer from "./chronometer.js";
 
 /*
 
@@ -83,6 +84,7 @@ class Game {
         newIngredient.style();
         // calling method to determine the type for the ingredient
         newIngredient.whichIngredient();
+        // ? automatiser le process de créer un nouvel ingrédient ?
         newIngredient.element.classList.add(newIngredient.type);
         this.ingredients.push(newIngredient);
       }

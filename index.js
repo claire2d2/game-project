@@ -1,8 +1,10 @@
 import Game from "./src/game.js";
 const launchButton = document.getElementById("launch-game");
 const startButton = document.getElementById("start-game");
+const restartButton = document.getElementById("restart-game");
 
 const welcomeSection = document.querySelector(".welcome");
+const endSection = document.querySelector(".after-game");
 const gameContainer = document.querySelector(".game-container");
 const gameMessages = document.querySelector(".game-messages");
 
@@ -21,6 +23,15 @@ launchButton.addEventListener("click", () => {
 startButton.addEventListener("click", () => {
   const game = new Game();
   game.startGame();
+});
+
+restartButton.addEventListener("click", () => {
+  gameContainer.hidden = false;
+  gameMessages.hidden = false;
+  startButton.hidden = false;
+  endSection.hidden = true;
+  //   const game = new Game();
+  //   game.startGame();
 });
 // event listener to end game
 
