@@ -26,16 +26,24 @@ body {
   }
 }
 
+.main-game {
+  margin: 0 auto;
+  display: flex;
+}
+
 /* format game container here*/
 
 .game-container {
-  margin: 0;
+  margin: 0 auto;
   aspect-ratio: 3/2;
-  max-width: 900px;
-  min-width: 600px;
+  width: 900px;
   align-self: start;
   background-color: rgb(254, 188, 114);
   position: relative;
+}
+
+.messages {
+  margin: 0 auto;
 }
 
 /* format player here */
