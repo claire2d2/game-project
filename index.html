@@ -37,24 +37,25 @@
     </div> -->
 
     <!-- Elements to show before the game -->
-    <div class="welcome" hidden>
+    <div class="welcome">
       <div id="welcome-text">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima
-        voluptatibus minus quo itaque. Quos doloribus non saepe consectetur,
-        incidunt dolor aspernatur at dignissimos? Maxime autem aut officiis hic
-        quod laudantium. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Soluta sit voluptates reprehenderit harum quo commodi repudiandae
-        voluptate dolorum, facere autem? Ut voluptate voluptatum perferendis,
-        sint voluptates natus nisi quisquam asperiores! Lorem ipsum dolor sit
-        amet, consectetur adipisicing elit. Ducimus officia consectetur
-        nesciunt, amet maxime magnam tenetur asperiores repudiandae ea placeat.
-        Corporis officiis, nihil dicta laudantium tempore laboriosam non
-        necessitatibus facere! Lorem ipsum dolor sit, amet consectetur
-        adipisicing elit. Praesentium reprehenderit iure consequuntur quas
-        deleniti ex aut recusandae doloribus sed quaerat consequatur blanditiis
-        in suscipit accusantium sapiente nam velit, veniam quia.
+        <p>Welcome to a game of Snake ... for the foodies!</p>
+        <p>
+          Here you will not play a snake, but someone at a all you can eat
+          hotpot where the objective, as in every all you can eat restaurant, is
+          to stuff yourself with the most foods possible and get your money's
+          worth!
+        </p>
+        <p>The game will be over if :
+          <ul><li>
+           > you leave the restaurant (aka touch the game borders)</li>
+          <li> >you run over your pile of plates </li>
+        <li> >pick coriander because that is the devil's herb</li></ul>
+          
+        </p>
+        <button id="launch-game">Let's go!</button>
       </div>
-      <button id="launch-game">Let's go!</button>
+      
     </div>
 
     <div class="pause" hidden>
@@ -82,7 +83,7 @@
 
     <!-- Elements to show after the game (hidden by default) -->
 
-    <div class="after-game">
+    <div class="after-game" hidden>
       <div><h2 id="end-greeting">WELL DONE!</h2></div>
       <p id="end-message">
         You scored <span id="game-score">14</span> points in
