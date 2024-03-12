@@ -37,17 +37,15 @@ class Ingredient {
         (this.gameContainer.getBoundingClientRect().height - 30),
     };
     // the higher the value of the ingredient key is, the more chance there is of the ingredient appearing
-    this.category = {
+    this.types = {
       bokchoi: 10,
       coriander: 5,
-      ginger: 1,
-      water: 2,
+      ginger: 2,
+      water: 3,
     };
     this.ingredientTimeCount = 1;
     this.ingredientTimer = null;
   }
-
-  // TODO randomize if one or two items appear
 
   status() {
     // makes element disappear after a certain time
@@ -61,6 +59,22 @@ class Ingredient {
   // check whether the ingredient has been there for more than a given amount of seconds (here, 4)
   ingredientCoolDown() {
     //to define
+  }
+  // TODO randomize if one or two items appear
+
+  // TODO randomize which ingredient appears
+  whichIngredient() {
+    // object keys are the ingredient names
+    const probArr = Object.keys(this.types).reduce((acc, ingredient) => {
+      for (let i = 0; i < this.types[ingredient]; i++) {
+        acc.push(ingredient);
+      }
+      return acc;
+    }, []);
+    // from the array of object keys, pick one randomly
+    const randomIndex = Math.floor(Math.random() * probArr(this.types).length);
+    const randomIngredient = probArr[randomIndex];
+    return randomIngredient;
   }
 
   touchOtherIngredient(arrayOfOtherIngredient) {
