@@ -18,7 +18,7 @@ class Game {
     this.intervalId = null;
     this.gameOn = false;
     this.score = 0;
-    this.gameSpeed = 20;
+    this.gameSpeed = 30;
     this.player = new Player(this.gameContainer, this.gameSpeed);
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
@@ -136,13 +136,16 @@ class Game {
             const position = !this.player.body.length
               ? this.player.historicPosition
               : this.player.body.at(-1).historicPosition;
-            const newFollower = new Follower(this.gameContainer, position);
+            const newFollower = new Follower(position);
             this.player.body.push(newFollower);
+            newFollower.element.style.left = `${newFollower.position.x}px`;
+            newFollower.element.style.top = `${newFollower.position.y}px`;
+            this.gameContainer.append(newFollower.element);
           }
 
           // ! If ingredient is ginger, reset
           if (currentIngredient.type == "ginger") {
-            for (let i = 0; i < this.player.body.length - 1; i++) {
+            for (let i = 0; i < this.player.body.length; i++) {
               this.player.body[i].element.remove();
             }
             this.player.body = [];
@@ -186,16 +189,15 @@ class Game {
   // ! Function to end the game
 
   endGame() {
-    console.log(this.eatenItems);
     this.score = this.eatenItems.length;
-    console.log("Nb eaten: ", this.score);
-    console.log(this.pointsArray);
+    // console.log(this.pointsArray);
     clearTimeout(this.intervalId);
     this.gameOn = false;
     this.player.element.remove();
     this.ingredients.forEach((ingredient) => {
       ingredient.element.remove();
     });
+    this.player.body.forEach((follower) => follower.element.remove());
   }
 
   resetGame() {

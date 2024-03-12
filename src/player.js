@@ -64,19 +64,22 @@ class Player {
     this.element.style.top = `${this.position.y}px`;
 
     // TODO
-    if (this.body.length > 0) {
-      this.body[0].historicPosition.x = this.body[0].position.x;
-      this.body[0].historicPosition.y = this.body[0].position.y;
-      this.body[0].position.x = this.historicPosition.x;
-      this.body[0].position.y = this.historicPosition.y;
-      this.body[0].element.style.left = `${this.body[0].position.x}px`;
-      this.body[0].element.style.top = `${this.body[0].position.y}px`;
-      for (let i = 1; i < this.body.length - 1; i++) {
-        this.body[i].historicPosition = { ...this.body[i].position };
-        this.body[i].position = { ...this.body[i - 1].historicPosition };
-        this.body[i].element.style.left = `${this.body[i].position.x}px`;
-        this.body[i].element.style.top = `${this.body[i].position.y}px`;
+    for (let i = 0; i < this.body.length; i++) {
+      const follower = this.body[i];
+      if (i === 0) {
+        follower.historicPosition.x = follower.position.x;
+        follower.historicPosition.y = follower.position.y;
+        follower.position.x = this.historicPosition.x;
+        follower.position.y = this.historicPosition.y;
+      } else {
+        const previousFollower = this.body[i - 1];
+        follower.historicPosition.x = follower.position.x;
+        follower.historicPosition.y = follower.position.y;
+        follower.position.x = previousFollower.historicPosition.x;
+        follower.position.y = previousFollower.historicPosition.y;
       }
+      follower.element.style.left = `${follower.position.x}px`;
+      follower.element.style.top = `${follower.position.y}px`;
     }
 
     // 0 takes historic position of the player
@@ -100,10 +103,10 @@ class Player {
 
   touchElement(element) {
     return (
-      this.position.x < element.position.x + 20 &&
-      this.position.x + 20 > element.position.x &&
-      this.position.y < element.position.y + 20 &&
-      this.position.y + 20 > element.position.y
+      this.position.x < element.position.x + 30 &&
+      this.position.x + 30 > element.position.x &&
+      this.position.y < element.position.y + 30 &&
+      this.position.y + 30 > element.position.y
     );
   }
 
