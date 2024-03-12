@@ -18,7 +18,7 @@ class Game {
     this.intervalId = null;
     this.gameOn = false;
     this.score = 0;
-    this.gameSpeed = 30;
+    this.gameSpeed = 20;
     this.player = new Player(this.gameContainer, this.gameSpeed);
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];

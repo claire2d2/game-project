@@ -6,7 +6,8 @@
 }
 
 body {
-  background-color: pink;
+  background-image: url(../img/background-image.jpg);
+  background-size: cover;
   position: relative;
   min-height: 100vh;
   text-rendering: optimizeSpeed;
@@ -35,21 +36,29 @@ body {
 
 .game-container {
   margin: 0 auto;
+  margin-left: 25rem;
+  border-style: solid;
+  border-width: 10px;
+  border-color: #d74844;
+  border-radius: 2%;
   aspect-ratio: 3/2;
-  width: 900px;
+  width: 700px;
   align-self: start;
   background-color: rgb(254, 188, 114);
   position: relative;
 }
 
-.messages {
+.game-messages {
   margin: 0 auto;
+  width: 300px;
+  padding: 10px;
+  background-color: white;
 }
 
 /* format player here */
 
 #player {
-  height: 30px;
+  height: 20px;
   aspect-ratio: 1;
   border-radius: 50%;
   background-color: blue;
@@ -61,7 +70,7 @@ body {
 /* format tail behind player */
 
 .follower {
-  height: 28px;
+  height: 18px;
   aspect-ratio: 1;
   border-radius: 50%;
   background-color: grey;
@@ -73,7 +82,7 @@ body {
 /* format ingredients here */
 
 .ingredient {
-  height: 28px;
+  height: 18px;
   aspect-ratio: 1;
   background-color: yellow;
   position: absolute;

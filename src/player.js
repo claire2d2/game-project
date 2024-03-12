@@ -87,10 +87,10 @@ class Player {
     const containerBoundaries = this.gameContainer.getBoundingClientRect();
     // strict comparison so that the game does not end when the player is moving along the edges
     return (
-      playerBoundaries.right > containerBoundaries.right ||
-      playerBoundaries.left < containerBoundaries.left ||
-      playerBoundaries.top < containerBoundaries.top ||
-      playerBoundaries.bottom > containerBoundaries.bottom
+      playerBoundaries.right + 30 > containerBoundaries.right ||
+      playerBoundaries.left - 30 < containerBoundaries.left ||
+      playerBoundaries.top - 30 < containerBoundaries.top ||
+      playerBoundaries.bottom + 30 > containerBoundaries.bottom
     );
   }
 
@@ -98,10 +98,10 @@ class Player {
 
   touchElement(element) {
     return (
-      this.position.x < element.position.x + 30 &&
-      this.position.x + 30 > element.position.x &&
-      this.position.y < element.position.y + 30 &&
-      this.position.y + 30 > element.position.y
+      this.position.x < element.position.x + 20 &&
+      this.position.x + 20 > element.position.x &&
+      this.position.y < element.position.y + 20 &&
+      this.position.y + 20 > element.position.y
     );
   }
 
