@@ -72,7 +72,7 @@ class Ingredient {
       return acc;
     }, []);
     // from the array of object keys, pick one randomly
-    const randomIndex = Math.floor(Math.random() * probArr(this.types).length);
+    const randomIndex = Math.floor(Math.random() * probArr.length);
     const randomIngredient = probArr[randomIndex];
     return randomIngredient;
   }

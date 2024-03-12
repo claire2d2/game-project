@@ -72,7 +72,8 @@ class Game {
         }
         newIngredient.style();
         //TODO TEST CATEGORY FOR INGREDIENT
-        newIngredient.element.classList.add("water");
+        const newIngredientType = newIngredient.whichIngredient();
+        newIngredient.element.classList.add(newIngredientType);
         this.ingredients.push(newIngredient);
         // start ingredient cooldown
       }
