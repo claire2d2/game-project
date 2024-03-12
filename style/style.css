@@ -27,11 +27,29 @@ body {
   }
 }
 
+h1 {
+  color: #d74844;
+  text-align: center;
+  font-size: 4rem;
+}
+
+/* format welcome section */
+.welcome {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#welcome-text {
+  margin: 0 auto;
+  background-color: white;
+  width: 800px;
+}
+
 .main-game {
   margin: 0 auto;
   display: flex;
+  box-sizing: border-box;
 }
-
 /* format game container here*/
 
 .game-container {
@@ -41,7 +59,7 @@ body {
   border-width: 10px;
   border-color: #d74844;
   border-radius: 2%;
-  aspect-ratio: 3/2;
+  height: 500px;
   width: 700px;
   align-self: start;
   background-color: rgb(254, 188, 114);

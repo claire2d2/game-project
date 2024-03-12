@@ -61,7 +61,7 @@ class Player {
     this.element.style.left = `${this.position.x}px`;
     this.element.style.top = `${this.position.y}px`;
 
-    //TODO
+    // TODO
     if (this.body.length > 0) {
       this.body[0].historicPosition.x = this.body[0].position.x;
       this.body[0].historicPosition.y = this.body[0].position.y;
@@ -87,10 +87,10 @@ class Player {
     const containerBoundaries = this.gameContainer.getBoundingClientRect();
     // strict comparison so that the game does not end when the player is moving along the edges
     return (
-      playerBoundaries.right + 30 > containerBoundaries.right ||
-      playerBoundaries.left - 30 < containerBoundaries.left ||
-      playerBoundaries.top - 30 < containerBoundaries.top ||
-      playerBoundaries.bottom + 30 > containerBoundaries.bottom
+      playerBoundaries.right > containerBoundaries.right ||
+      playerBoundaries.left < containerBoundaries.left ||
+      playerBoundaries.top < containerBoundaries.top ||
+      playerBoundaries.bottom > containerBoundaries.bottom
     );
   }
 

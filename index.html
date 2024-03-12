@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sna(c)ke!</title>
+    <title>Bool you can eat hotpot</title>
 
     <!-- link css style sheet -->
     <link rel="stylesheet" href="./style/style.css" />
@@ -22,10 +22,26 @@
 
     <!-- Elements to show before the game -->
     <div class="welcome">
+      <div id="welcome-text" hidden>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima
+        voluptatibus minus quo itaque. Quos doloribus non saepe consectetur,
+        incidunt dolor aspernatur at dignissimos? Maxime autem aut officiis hic
+        quod laudantium. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Soluta sit voluptates reprehenderit harum quo commodi repudiandae
+        voluptate dolorum, facere autem? Ut voluptate voluptatum perferendis,
+        sint voluptates natus nisi quisquam asperiores! Lorem ipsum dolor sit
+        amet, consectetur adipisicing elit. Ducimus officia consectetur
+        nesciunt, amet maxime magnam tenetur asperiores repudiandae ea placeat.
+        Corporis officiis, nihil dicta laudantium tempore laboriosam non
+        necessitatibus facere! Lorem ipsum dolor sit, amet consectetur
+        adipisicing elit. Praesentium reprehenderit iure consequuntur quas
+        deleniti ex aut recusandae doloribus sed quaerat consequatur blanditiis
+        in suscipit accusantium sapiente nam velit, veniam quia.
+      </div>
       <button id="start-game">Start Game</button>
     </div>
 
-    <div class="pause">
+    <div class="pause" hidden>
       <button id="pause-button">
         <img src="./img/pause-button.png" alt="pause button" />
       </button>
@@ -38,7 +54,7 @@
       <button id="start-game">Let's go</button>
     </dialog>
     <!-- Elements to show during the game -->
-    <section class="main-game">
+    <div class="main-game">
       <div class="game-container">
         <div id="player"></div>
       </div>
@@ -51,7 +67,7 @@
           <li>Yeah</li>
         </ul>
       </div>
-    </section>
+    </div>
     <footer>Game developed by Claire</footer>
 
     <!-- Elements to show after the game (hidden by default) -->
