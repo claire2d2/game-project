@@ -37,6 +37,7 @@ class Ingredient {
         (this.gameContainer.getBoundingClientRect().height - 30),
     };
     // the higher the value of the ingredient key is, the more chance there is of the ingredient appearing
+    this.type = null;
     this.types = {
       bokchoi: 10,
       coriander: 5,
@@ -62,7 +63,7 @@ class Ingredient {
   }
   // TODO randomize if one or two items appear
 
-  // TODO randomize which ingredient appears
+  // randomize which ingredient appears
   whichIngredient() {
     // object keys are the ingredient names
     const probArr = Object.keys(this.types).reduce((acc, ingredient) => {
@@ -74,7 +75,7 @@ class Ingredient {
     // from the array of object keys, pick one randomly
     const randomIndex = Math.floor(Math.random() * probArr.length);
     const randomIngredient = probArr[randomIndex];
-    return randomIngredient;
+    this.type = randomIngredient;
   }
 
   touchOtherIngredient(arrayOfOtherIngredient) {

@@ -71,11 +71,10 @@ class Game {
           newIngredient.uniquePosition();
         }
         newIngredient.style();
-        //TODO TEST CATEGORY FOR INGREDIENT
-        const newIngredientType = newIngredient.whichIngredient();
-        newIngredient.element.classList.add(newIngredientType);
+        // calling method to determine the type for the ingredient
+        newIngredient.whichIngredient();
+        newIngredient.element.classList.add(newIngredient.type);
         this.ingredients.push(newIngredient);
-        // start ingredient cooldown
       }
       this.counter++;
 
@@ -102,26 +101,6 @@ class Game {
             : this.player.body.at(-1).historicPosition;
           const newFollower = new Follower(this.gameContainer, position);
           this.player.body.push(newFollower);
-          // define position of new follower depending on the current direction
-          // if (this.pressedKeys.right) {
-          //   follower.position.x = this.ingredients[i].position.x - 30;
-          //   follower.position.y = this.player.position.y;
-          // } else if (this.pressedKeys.left) {
-          //   follower.position.x = this.ingredients[i].position.x + 30;
-          //   follower.position.y = this.player.position.y;
-          // } else if (this.pressedKeys.top) {
-          //   follower.position.y = this.ingredients[i].position.y + 30;
-          //   follower.position.x = this.player.position.x;
-          // } else if (this.pressedKeys.down) {
-          //   follower.position.y = this.ingredients[i].position.y - 30;
-          //   follower.position.x = this.player.position.x;
-          // }
-          // follower.element.style.left = `${follower.position.x}px`;
-          // follower.element.style.top = `${follower.position.y}px`;
-
-          // insert follower at the beginning of the array of followers
-          // this.platedFoods.unshift(follower);
-          // remove element from html
           this.ingredients[i].element.remove();
           // push the element into the original array to count how many items have been "eaten"
           this.eatenItems.push(this.ingredients.splice(i, 1));
