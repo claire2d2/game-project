@@ -30,34 +30,41 @@ class Ingredient {
     this.gameContainer.append(this.element);
     // generate random position (add condition of other elements not existing in the place in Game method)
     this.position = {
-      x:
-        Math.random() * (this.gameContainer.getBoundingClientRect().width - 30),
-      y:
-        Math.random() *
-        (this.gameContainer.getBoundingClientRect().height - 30),
+      x: 0,
+      y: 0,
     };
-    // the higher the value of the ingredient key is, the more chance there is of the ingredient appearing
     this.type = null;
     this.types = {
-      bokchoi: 10,
-      coriander: 0,
-      ginger: 4,
-      water: 3,
+      bokchoi: {
+        probability: 10,
+        points: 2,
+        message: ["Yum! You got bokchoi! +5 pts", "Bokchoi! +5 pts"],
+      },
+      pepper: {
+        probability: 2,
+        points: 10,
+        message: ["HOT! +10 points!!", "Incredible! Take 10 pts for pepper."],
+      },
+      meat: {
+        probability: 5,
+        points: 5,
+        message: ["Yum! You got meat! + 5pts"],
+      },
+      water: {
+        probability: 5,
+        points: 0,
+        message: [
+          "Eh ... at least you're hydrated. +0pts",
+          "That wasn't strategic ...",
+        ],
+      },
+      ginger: {
+        probability: 1,
+        points: 20,
+        message: ["JACKPOT!", "Way to go! Your palate is refreshed"],
+      },
+      coriander: { probability: 2, points: 0, message: ["Ugh... coriander"] },
     };
-    this.points = {
-      bokchoi: 5,
-      coriander: -1,
-      ginger: 10,
-      water: 0,
-    };
-    // ! TEST
-    // TODO
-    // this.testTypes = {
-    //   { type: bokchoi, probability: 10, points: 2 },
-    //   { type: coriander, probability: 3, points: 0 },
-    //   { type: water, probability: 3, points: 0 },
-    //   { type: ginger, probability: 2, points: 5 },
-    // };
     // ! TEST
     this.ingredientTimeCount = 1;
     this.ingredientTimer = null;
@@ -82,7 +89,7 @@ class Ingredient {
   whichIngredient() {
     // object keys are the ingredient names
     const probArr = Object.keys(this.types).reduce((acc, ingredient) => {
-      for (let i = 0; i < this.types[ingredient]; i++) {
+      for (let i = 0; i < this.types[ingredient].probability; i++) {
         acc.push(ingredient);
       }
       return acc;

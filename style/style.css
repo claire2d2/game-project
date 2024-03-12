@@ -13,6 +13,7 @@ button {
   border: none;
   outline: none;
   box-shadow: none;
+  font-size: 3rem;
 }
 
 body {
@@ -72,12 +73,24 @@ h1 {
 #welcome-text {
   margin: 0 auto;
   background-color: white;
+  font-size: 1.5rem;
   width: 800px;
 }
 
-. #start-button {
-  position: absolute;
+#launch-game {
+  font-size: 3rem;
+}
+
+#launch-game:hover {
+  color: #d74844;
+  transition: ease-in-out 0.5s;
+}
+/* pre-game dialo */
+
+#start-button {
   margin: 0 auto;
+  font-size: 2px;
+  padding: 0;
 }
 /* format ongoing game content here*/
 
@@ -172,6 +185,14 @@ h1 {
 .water {
   background-image: url(../img/glass-water.png);
   background-size: cover;
+}
+
+.meat {
+  background-color: red;
+}
+
+.pepper {
+  background-color: pink;
 }
 
 .coriander {

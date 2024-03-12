@@ -18,6 +18,7 @@ launchButton.addEventListener("click", () => {
   welcomeSection.hidden = true;
   gameContainer.hidden = false;
   gameMessages.hidden = false;
+  startButton.hidden = false;
 });
 
 startButton.addEventListener("click", () => {

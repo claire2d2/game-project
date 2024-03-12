@@ -61,7 +61,6 @@ class Game {
     this.intervalId = setInterval(() => {
       //generate an ingredient ever 10 seconds
       if (this.counter % 10 === 0) {
-        console.log(this.player.element.getBoundingClientRect());
         this.counter = 0;
 
         // introduce while loop, while !newIngredient.uniquePosition, remove NewIngredient and generate new const
@@ -123,7 +122,6 @@ class Game {
           // ! If ingredient is water, repeat 3 times
           if (currentIngredient.type === "water") {
             nbIterations = 3;
-
             li.textContent = this.messages.water;
             // TODO : add message
           } else if (currentIngredient.type === "ginger") {
@@ -156,7 +154,7 @@ class Game {
           // push into an array the points associated to the type of ingredient eaten
           console.log(currentIngredient.type);
           this.pointsArray.push(
-            currentIngredient.points[currentIngredient.type]
+            currentIngredient.types[currentIngredient.type].points
           );
           // push the element into the original array to count how many items have been "eaten"
           this.eatenItems.push(this.ingredients.splice(i, 1));
