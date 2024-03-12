@@ -124,7 +124,7 @@ h1 {
 /* format ingredients here */
 
 .ingredient {
-  height: 33px;
+  height: 40px;
   aspect-ratio: 1;
   background-color: none;
   position: absolute;
@@ -140,7 +140,8 @@ h1 {
 }
 
 .ginger {
-  background-color: red;
+  background-image: url(../img/ginger.png);
+  background-size: contain;
 }
 
 .water {
