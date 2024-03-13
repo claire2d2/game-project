@@ -1,4 +1,4 @@
-/* general styling */
+/* reset styling for initialization */
 
 * {
   padding: 0;
@@ -13,7 +13,9 @@ html {
   margin: 0;
 }
 
-/* reset styling for initialization */
+ul {
+  list-style-type: none;
+}
 
 button {
   background: none;
@@ -164,6 +166,15 @@ h1 {
     font-size: 2rem;
     text-align: center;
     color: #d74844;
+  }
+}
+@media (width < 1400px) {
+  .game-container {
+    height: 400px;
+    flex: 0 0 730px;
+  }
+  .game-messages {
+    height: 400px;
   }
 }
 
