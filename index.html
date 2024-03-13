@@ -36,9 +36,6 @@
       />
     </div> -->
 
-    <!--Test-->
-    <div class="ingredient coriander"></div>
-
     <!-- Elements to show before the game -->
     <div class="welcome">
       <div id="welcome-text">
@@ -71,10 +68,11 @@
 
     <dialog>
       <p>Insert rules here</p>
-      <!-- <button id="launch-game">Let's go</button> -->
+      <button id="launch-game">Let's go</button>
+      <button id="start-game">start</button>
     </dialog>
     <!-- Elements to show during the game -->
-    <button id="start-game" hidden>start</button>
+
     <div class="main-game">
       <div class="game-container" hidden></div>
       <div class="game-messages" hidden>
@@ -84,6 +82,11 @@
     </div>
     <!-- <footer>Game developed by Claire</footer> -->
 
+    <div id="game-paused" hidden>
+      <div><img src="./img/pause.png" alt="panda sleeping" /></div>
+      <h3>GAME PAUSED</h3>
+      <p>Hit the spacebar to resume</p>
+    </div>
     <!-- Elements to show after the game (hidden by default) -->
 
     <div class="after-game" hidden>

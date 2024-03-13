@@ -12,6 +12,7 @@ class Game {
     this.score = 0;
     this.gameSpeed = 30; // 30 = width of player
     this.player = new Player(this.gameContainer, this.gameSpeed);
+    this.pauseMessage = document.getElementById("game-paused");
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
     // object that contains the different messages to
@@ -22,6 +23,7 @@ class Game {
       left: false,
       top: false,
       down: false,
+      space: false,
     };
     this.counter = 1;
   }
@@ -33,8 +35,9 @@ class Game {
 
     // make player move according to arrow keys
     this.arrowKeysPressed();
-
     this.gameOn = true;
+
+    this.initiatePause();
 
     // generate food items randomly, each worth one point
     this.intervalId = setInterval(() => {
@@ -112,12 +115,6 @@ class Game {
           this.endGame();
         }
       }
-
-      // TODO permit to restart game when reclicking on the pause button
-      const pauseButton = document.getElementById("pause-button");
-      pauseButton.addEventListener("click", () => {
-        this.pauseGame();
-      });
     }, 100);
 
     // ? BONUS : generate different food items worth different points
@@ -142,11 +139,38 @@ class Game {
   emptyArray(array) {
     array.forEach((item) => item.element.remove());
   }
+
   resetGame() {
     // TODO : reset a whole new game
   }
   // BONUS : generate different food items worth different points
 
+  initiatePause() {
+    // const pauseButton = document.getElementById("pause-button");
+    // pauseButton.addEventListener("click", () => {
+    //   this.pauseGame();
+    // });
+    document.addEventListener("keydown", (event) => {
+      if (event.key == " " && !this.pressedKeys.space) {
+        this.pressedKeys.space = true;
+        if (this.gameOn) {
+          this.gameOn = false;
+          this.pauseGame();
+          this.pauseMessage.hidden = false;
+        } else {
+          this.startGame();
+          console.log("unpausing game");
+          this.pauseMessage.hidden = true;
+        }
+      }
+    });
+
+    document.addEventListener("keyup", (event) => {
+      if (event.key == " ") {
+        this.pressedKeys.space = false;
+      }
+    });
+  }
   pauseGame() {
     // TODO find a method to restart the game without resetting
     clearTimeout(this.intervalId);

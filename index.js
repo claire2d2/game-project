@@ -3,6 +3,7 @@ const launchButton = document.getElementById("launch-game");
 const startButton = document.getElementById("start-game");
 const restartButton = document.getElementById("restart-game");
 
+const modal = document.querySelector("dialog");
 const welcomeSection = document.querySelector(".welcome");
 const endSection = document.querySelector(".after-game");
 const gameContainer = document.querySelector(".game-container");
@@ -15,6 +16,7 @@ const gameMessages = document.querySelector(".game-messages");
 
 // event listener to start game
 launchButton.addEventListener("click", () => {
+  modal.showModal();
   welcomeSection.hidden = true;
   gameContainer.hidden = false;
   gameMessages.hidden = false;
@@ -23,6 +25,7 @@ launchButton.addEventListener("click", () => {
 
 startButton.addEventListener("click", () => {
   const game = new Game();
+  modal.hidden = true;
   game.startGame();
 });
 
