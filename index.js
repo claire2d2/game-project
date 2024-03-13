@@ -26,6 +26,7 @@ launchButton.addEventListener("click", () => {
 startButton.addEventListener("click", () => {
   const game = new Game();
   preGame.hidden = true;
+
   game.startGame();
 });
 

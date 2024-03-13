@@ -93,7 +93,32 @@ h1 {
   color: #d74844;
   transition: ease-in-out 0.5s;
 }
-/* pre-game dialo */
+/* pre-game */
+
+.pre-game {
+  background-color: white;
+  border-style: ridge;
+  border-color: red;
+  border-width: 5px;
+  width: 60%;
+  height: 60%;
+  position: absolute;
+  padding: 5% 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  & button {
+    background-color: #d74844;
+    padding: 0.5rem;
+    border-radius: 12%;
+    margin: 1rem;
+  }
+  & button:hover {
+    color: white;
+    transition: all 1s;
+  }
+}
 
 #start-button {
   margin: 0 auto;
