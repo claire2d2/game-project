@@ -9,6 +9,7 @@ class Game {
     this.gameContainer = document.querySelector(".game-container");
     this.intervalId = null;
     this.gameOn = false;
+    this.gameOff = true;
     this.score = 0;
     this.gameSpeed = 30; // 30 = width of player
     this.player = new Player(this.gameContainer, this.gameSpeed);
@@ -37,6 +38,7 @@ class Game {
     // make player move according to arrow keys, start game and enable pausing
     this.arrowKeysPressed();
     this.gameOn = true;
+    this.gameOff = false;
     this.initiatePause();
 
     // generate food items randomly, each worth one point
@@ -124,6 +126,7 @@ class Game {
     // console.log(this.pointsArray);
     clearTimeout(this.intervalId);
     this.gameOn = false;
+    this.gameOff = true;
     this.player.element.remove();
     this.emptyArray(this.ingredients);
     this.emptyArray(this.player.body);
@@ -147,7 +150,7 @@ class Game {
     //   this.pauseGame();
     // });
     document.addEventListener("keydown", (event) => {
-      if (event.key == " " && !this.pressedKeys.space) {
+      if (event.key == " " && !this.pressedKeys.space && !this.gameOff) {
         this.pressedKeys.space = true;
         if (this.gameOn) {
           this.gameOn = false;
