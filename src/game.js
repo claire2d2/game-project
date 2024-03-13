@@ -34,29 +34,26 @@ class Game {
     // if game is already running, no need for the rest to follow
     if (this.gameOn) return;
 
-    // make player move according to arrow keys
+    // make player move according to arrow keys, start game and enable pausing
     this.arrowKeysPressed();
     this.gameOn = true;
-
     this.initiatePause();
 
     // generate food items randomly, each worth one point
     this.intervalId = setInterval(() => {
       //generate an ingredient ever few seconds
       if (this.counter % 10 === 0) {
-        this.counter = 0;
-
         // introduce while loop, while !newIngredient.uniquePosition, remove NewIngredient and generate new const
         const newIngredient = new Ingredient(this.gameContainer);
-        const ingredientOverlap =
+        let ingredientOverlap =
           this.player.touchElement(newIngredient) ||
           newIngredient.touchOtherIngredient(this.ingredients);
         while (ingredientOverlap) {
-          if (!ingredientOverlap) {
-            break;
-          }
           // call out method to generate new coordinates for the ingredient
           newIngredient.uniquePosition();
+          ingredientOverlap =
+            this.player.touchElement(newIngredient) ||
+            newIngredient.touchOtherIngredient(this.ingredients);
         }
         // calling method to determine the type for the ingredient
         newIngredient.generate();
@@ -108,14 +105,12 @@ class Game {
 
       // ! If player touches border, end game
       if (this.player.touchBorder()) {
-        this.createMessage("You left the restaurant! Game over.");
-        this.endGame();
+        this.endGame("You left the restaurant! Game over.");
       }
       // ! If player touches tail, end game
       for (let follower of this.player.body) {
         if (this.player.touchElement(follower)) {
-          this.createMessage("Oops! You made all your plates fall! Game over.");
-          this.endGame();
+          this.endGame("Oops! You made all your plates fall! Game over.");
         }
       }
     }, 100);
@@ -124,7 +119,7 @@ class Game {
   // TODO: function to show the chronometer during the game (and then be able to send how much time at the end)
 
   // ! Function to end the game
-  endGame() {
+  endGame(message) {
     this.score = this.eatenItems.length;
     // console.log(this.pointsArray);
     clearTimeout(this.intervalId);
@@ -134,6 +129,7 @@ class Game {
     this.emptyArray(this.player.body);
     this.eatenItems = [];
     this.pointsArray = [];
+    this.createMessage(message);
   }
 
   emptyArray(array) {
@@ -201,8 +197,7 @@ class Game {
 
   howManyFollowers(ingredientType) {
     if (ingredientType === "coriander") {
-      this.createMessage("Disgusting! The meal is ruined now.");
-      this.endGame();
+      this.endGame("Disgusting! The meal is ruined now.");
     } else if (ingredientType === "water") {
       return 2;
     } else if (ingredientType === "ginger") {
@@ -234,28 +229,36 @@ class Game {
     document.addEventListener("keydown", (event) => {
       switch (event.key) {
         case "ArrowRight":
-          this.pressedKeys.right = true;
-          this.pressedKeys.left = false;
-          this.pressedKeys.top = false;
-          this.pressedKeys.down = false;
+          this.pressedKeys = {
+            right: true,
+            left: false,
+            top: false,
+            down: false,
+          };
           break;
         case "ArrowLeft":
-          this.pressedKeys.left = true;
-          this.pressedKeys.right = false;
-          this.pressedKeys.top = false;
-          this.pressedKeys.down = false;
+          this.pressedKeys = {
+            right: false,
+            left: true,
+            top: false,
+            down: false,
+          };
           break;
         case "ArrowUp":
-          this.pressedKeys.top = true;
-          this.pressedKeys.left = false;
-          this.pressedKeys.right = false;
-          this.pressedKeys.down = false;
+          this.pressedKeys = {
+            right: false,
+            left: false,
+            top: true,
+            down: false,
+          };
           break;
         case "ArrowDown":
-          this.pressedKeys.down = true;
-          this.pressedKeys.left = false;
-          this.pressedKeys.top = false;
-          this.pressedKeys.right = false;
+          this.pressedKeys = {
+            right: false,
+            left: false,
+            top: false,
+            down: true,
+          };
           break;
       }
     });
