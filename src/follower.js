@@ -12,8 +12,6 @@ class Follower {
       x: position.x,
       y: position.y,
     };
-
-    // TODO: method for movement
   }
 }
 
