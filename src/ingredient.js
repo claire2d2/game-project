@@ -51,7 +51,7 @@ class Ingredient {
       },
       ginger: {
         name: "some ginger",
-        probability: 10,
+        probability: 1,
         points: 20,
         messageType: "hot",
       },

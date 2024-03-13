@@ -39,7 +39,7 @@ class Game {
     // generate food items randomly, each worth one point
     this.intervalId = setInterval(() => {
       //generate an ingredient ever few seconds
-      if (this.counter % 15 === 0) {
+      if (this.counter % 10 === 0) {
         this.counter = 0;
 
         // introduce while loop, while !newIngredient.uniquePosition, remove NewIngredient and generate new const
@@ -133,12 +133,15 @@ class Game {
     clearTimeout(this.intervalId);
     this.gameOn = false;
     this.player.element.remove();
-    this.ingredients.forEach((ingredient) => {
-      ingredient.element.remove();
-    });
-    this.player.body.forEach((follower) => follower.element.remove());
+    this.emptyArray(this.ingredients);
+    this.emptyArray(this.player.body);
+    this.eatenItems = [];
+    this.pointsArray = [];
   }
 
+  emptyArray(array) {
+    array.forEach((item) => item.element.remove());
+  }
   resetGame() {
     // TODO : reset a whole new game
   }
