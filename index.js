@@ -8,6 +8,7 @@ const welcomeSection = document.querySelector(".welcome");
 const endSection = document.querySelector(".after-game");
 const gameContainer = document.querySelector(".game-container");
 const gameMessages = document.querySelector(".game-messages");
+const gameScore = document.querySelector(".scores");
 
 let gameArray = [];
 
@@ -17,6 +18,7 @@ launchButton.addEventListener("click", () => {
   welcomeSection.hidden = true;
   gameContainer.hidden = false;
   gameMessages.hidden = false;
+  gameScore.hidden = false;
   startButton.hidden = false;
 });
 

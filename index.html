@@ -21,13 +21,6 @@
   <body>
     <h1>Bool you can eat hotpot</h1>
 
-    <div id="high-score-div">
-      Best score so far: <span id="highscore">0</span>
-    </div>
-    <div id="current-score-div">
-      Your score: <span id="currentscore">0</span>
-    </div>
-
     <!-- <div class="panda-says">
       <img
         class="speech-bubble"
@@ -44,7 +37,7 @@
     </div> -->
 
     <!-- Elements to show before the game -->
-    <div class="welcome" hidden>
+    <div class="welcome">
       <div id="welcome-text">
         <div>Welcome to a game of Snake ... for the foodies!</div>
         <div>
@@ -74,13 +67,80 @@
     <!-- Elements to show during the game -->
 
     <div class="main-game">
+      <div class="scores" hidden>
+        <div class="all-scores">
+          <div id="high-score-div">
+            Best score :
+            <p id="highscore">0</p>
+          </div>
+          <div id="current-score-div">
+            Your score:
+            <p id="currentscore">0</p>
+          </div>
+        </div>
+        <div class="points-reminder">
+          <ul>
+            <li>
+              <img
+                src="./img/ingredients/bokchoi.png"
+                alt="bokchoi"
+                class="bokchoi"
+              />Bokchoi
+            </li>
+            <li>
+              <img
+                src="./img/ingredients/tofu.png"
+                alt="tofu"
+                class="tofu"
+              />Tofu
+            </li>
+            <li>
+              <img
+                src="./img/ingredients/meat.png"
+                alt="meat"
+                class="meat"
+              />Meat
+            </li>
+            <li>
+              <img
+                src="./img/ingredients/chili.png"
+                alt="pepper"
+                class="pepper"
+              />Chili
+            </li>
+            <li>
+              <img
+                src="./img/ingredients/ginger.png"
+                alt="ginger"
+                class="ginger"
+              />Ginger
+            </li>
+            <li>
+              <img
+                src="./img/ingredients/glass-water.png"
+                alt="water"
+                class="water"
+              />Water
+            </li>
+            <li>
+              <img
+                src="./img/ingredients/coriander.png"
+                alt="coriander"
+                class="coriander"
+              />Coriander
+            </li>
+          </ul>
+        </div>
+      </div>
       <div class="game-container" hidden></div>
       <div class="game-messages" hidden>
         <h3>Let's go!</h3>
         <ul id="message-list"></ul>
       </div>
     </div>
-    <!-- <footer>Game developed by Claire</footer> -->
+    <footer>
+      Game developed by Claire during the IronHack Paris 262 Bootcamp
+    </footer>
 
     <!-- dialog box that appears when starting the game -->
 
@@ -107,7 +167,7 @@
     </div>
     <!-- Elements to show after the game (hidden by default) -->
 
-    <div class="after-game">
+    <div class="after-game" hidden>
       <div><h2 id="end-greeting" class="greeting-good-job">WELL DONE!</h2></div>
       <p id="end-message" class="message-good-job">
         You scored <span id="game-score">0</span> points!
