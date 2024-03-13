@@ -14,7 +14,12 @@ class Game {
     this.player = new Player(this.gameContainer, this.gameSpeed);
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
-    // object that contains the different messages to show
+    // object that contains the different messages to
+    this.messageBeginning = {
+      positive: ["Yum!", "Super!", "Way to go!"],
+      negative: ["Uh oh...", "Why would you do that?", "Oh no..."],
+      hot: ["YEAH!", "Incredible!", "ON FIRE!", "Whoop whoop!"],
+    };
     this.messages = {
       water:
         "Uh-oh that was not strategic. You have less space in your stomach and gained 0 points!",
@@ -45,7 +50,7 @@ class Game {
     // generate food items randomly, each worth one point
     this.intervalId = setInterval(() => {
       //generate an ingredient ever few seconds
-      if (this.counter % 20 === 0) {
+      if (this.counter % 15 === 0) {
         this.counter = 0;
 
         // introduce while loop, while !newIngredient.uniquePosition, remove NewIngredient and generate new const
@@ -85,10 +90,9 @@ class Game {
         }
         // ingredients disappear if touched by player
         if (this.player.touchElement(currentIngredient)) {
+          console.log(currentIngredient.type);
           // set conditions for the message to appear on the right
-          const messageList = document.getElementById("message-list");
-          const li = document.createElement("li");
-          messageList.append(li);
+          this.generateMessage();
           //! If plater touches coriander, end game
           if (currentIngredient.type == "coriander") {
             console.log("Ugh, coriander ...");
@@ -100,14 +104,10 @@ class Game {
           // ! If ingredient is water, repeat 3 times
           if (currentIngredient.type === "water") {
             nbIterations = 3;
-            li.textContent = this.messages.water;
             // TODO : add message
           } else if (currentIngredient.type === "ginger") {
             nbIterations = 0;
-            //TEST
-            li.textContent = this.messages.ginger;
           } else if (currentIngredient.type === "bokchoi") {
-            li.textContent = this.messages.bokchoi;
           }
           for (let i = 0; i < nbIterations; i++) {
             // ! insert a new follower (make into a function?)
@@ -204,7 +204,31 @@ class Game {
   // BONUS :
   // tally the score by how much the ingredient is worth
   // add little animation of score appearing
+  generateMessage() {
+    const messageList = document.getElementById("message-list");
+    const li = document.createElement("li");
+    messageList.append(li);
+    // const ingrDetails = ingredient.types[ingredient.type];
+    // generate random greeting
+    const messageStart = "placeholder";
+    // if ingredient.types[ingredient].messageType = positive, generate random from this.messageBeginning.positive array and !
+    // if ingredient.types[ingredient].messageType = negative and ...
+    // if ingredient.types[ingredient].messageType = hot and !!!!
+    const punctuation = "!!!";
+    const options = ["test1", "test2", "test3"];
+    const optionalMessage = options[0];
 
+    // generate options between :"you got ingredient", or just "Ingredient"
+    // const options = [
+    //   `You got ${ingrDetails.name}`,
+    //   ingrDetails.name.charAt(0).toUpperCase() + str.slice(1),
+    // ]; Math.floor(Math.random() * options.length)
+
+    const pointsWon = 10;
+    // ingrDetails.points
+
+    li.textContent = `${messageStart} ${optionalMessage} +${pointsWon}pts${punctuation}`;
+  }
   // function for listening to the arrow keys being pressed
   // only one key can be pressed at the same time
   arrowKeysPressed() {

@@ -20,34 +20,59 @@ class Ingredient {
     this.type = null;
     this.types = {
       bokchoi: {
+        name: "bok choi",
         probability: 10,
         points: 2,
+        messageType: "positive",
         message: ["Yum! You got bokchoi! +5 pts", "Bokchoi! +5 pts"],
       },
+      tofu: {
+        name: "tofu",
+        probability: 8,
+        points: 3,
+        messageType: "positive",
+        message: [" "],
+      },
       pepper: {
+        name: "chili pepper",
         probability: 2,
         points: 10,
-        message: ["HOT! +10 points!!", "Incredible! Take 10 pts for pepper."],
+        messageType: "hot",
+        message: [
+          "HOT! +10 points!!",
+          "Incredible! Take 10 pts for that spice.",
+        ],
       },
       meat: {
+        name: "a slice of beef",
         probability: 5,
         points: 5,
+        messageType: "positive",
         message: ["Yum! You got meat! + 5pts"],
       },
       water: {
+        name: "a glass of water",
         probability: 5,
         points: 0,
+        messageType: "negative",
         message: [
           "Eh ... at least you're hydrated. +0pts",
           "That wasn't strategic ...",
         ],
       },
       ginger: {
+        name: "some ginger",
         probability: 1,
         points: 20,
+        messageType: "fire",
         message: ["JACKPOT!", "Way to go! Your palate is refreshed"],
       },
-      coriander: { probability: 2, points: 0, message: ["Ugh... coriander"] },
+      coriander: {
+        name: "coriander",
+        probability: 2,
+        points: -5,
+        messageType: "negative",
+      },
     };
     this.ingredientTimeCount = 1;
     this.ingredientTimer = null;
