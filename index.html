@@ -37,7 +37,7 @@
     </div> -->
 
     <!-- Elements to show before the game -->
-    <div class="welcome">
+    <div class="welcome" hidden>
       <div id="welcome-text">
         <div>Welcome to a game of Snake ... for the foodies!</div>
         <div>
@@ -100,11 +100,10 @@
     </div>
     <!-- Elements to show after the game (hidden by default) -->
 
-    <div class="after-game" hidden>
-      <div><h2 id="end-greeting">WELL DONE!</h2></div>
-      <p id="end-message">
-        You scored <span id="game-score">14</span> points in
-        <span id="game-minutes">1</span> minute and 13 seconds!
+    <div class="after-game">
+      <div><h2 id="end-greeting" class="greeting-good-job">WELL DONE!</h2></div>
+      <p id="end-message" class="message-good-job">
+        You scored <span id="game-score">14</span> points!
       </p>
       <p id="game-record">This was your best score so far!</p>
       <p>Want to try again?</p>

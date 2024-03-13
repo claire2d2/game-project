@@ -133,22 +133,21 @@ class Game {
     this.eatenItems = [];
     this.pointsArray = [];
     this.createMessage(message);
+
+    const endWindow = document.querySelector(".after-game");
+    setTimeout(() => {
+      endWindow.hidden = false;
+    }, 1500);
   }
 
   emptyArray(array) {
     array.forEach((item) => item.element.remove());
   }
 
-  resetGame() {
-    // TODO : reset a whole new game
-  }
   // BONUS : generate different food items worth different points
 
+  // listen to spacebar to pause and unpause the game
   initiatePause() {
-    // const pauseButton = document.getElementById("pause-button");
-    // pauseButton.addEventListener("click", () => {
-    //   this.pauseGame();
-    // });
     document.addEventListener("keydown", (event) => {
       if (event.key == " " && !this.pressedKeys.space && !this.gameOff) {
         this.pressedKeys.space = true;
@@ -170,21 +169,14 @@ class Game {
       }
     });
   }
+  // pause the game
   pauseGame() {
     // TODO find a method to restart the game without resetting
     clearTimeout(this.intervalId);
     this.gameOn = false;
   }
 
-  takeIngredient() {
-    // function for when the player "hits" an ingredient
-    // tally the score by one
-    // makes ingredient disappear
-    // ? BONUS :
-    // ? tally the score by how much the ingredient is worth
-    // ? add little animation of score appearing
-  }
-
+  // generate a message on the message board
   createMessage(content) {
     const messageList = document.getElementById("message-list");
     const li = document.createElement("li");
@@ -198,6 +190,7 @@ class Game {
     }
   }
 
+  // depending on ingredient type, behavior to be expected
   howManyFollowers(ingredientType) {
     if (ingredientType === "coriander") {
       this.endGame("Disgusting! The meal is ruined now.");
@@ -213,6 +206,7 @@ class Game {
     return 1;
   }
 
+  // create plate to follow player's moves (cf Player class method)
   generateFollower() {
     const position = !this.player.body.length
       ? this.player.historicPosition
@@ -224,7 +218,7 @@ class Game {
     this.gameContainer.append(newFollower.element);
   }
 
-  // ! function for listening to the arrow keys being pressed
+  // listen to the arrow keys being pressed
   // BONUS :
   // tally the score by how much the ingredient is worth
   // add little animation of score appearing

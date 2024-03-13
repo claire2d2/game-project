@@ -295,6 +295,11 @@ h1 {
 /* after game  */
 
 .after-game {
+  position: absolute;
+  padding: 5% 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   margin: 1rem auto;
   padding: 1rem;
   background-color: white;
@@ -325,10 +330,9 @@ h1 {
   & button:hover {
     background-color: #fb8332;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-
-    & button:active {
-      background-color: #c85000;
-      box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-    }
+  }
+  & button:active {
+    background-color: #c85000;
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   }
 }
