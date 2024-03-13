@@ -112,6 +112,54 @@ class Ingredient {
   //   li.textContent = messageArray[randomIndex(messageArray)];
   // }
 
+  generateMessage(type) {
+    const messageList = document.getElementById("message-list");
+    const li = document.createElement("li");
+    messageList.append(li);
+
+    // generate start and ending of message based on whether ingredient taken was good or bad
+    const mood = this.types[type].messageType;
+    const messageStarts = {
+      positive: ["Yum!", "Super!", "Way to go!"],
+      negative: ["Uh oh...", "Why would you do that?", "Oh no..."],
+      hot: ["YEAH!", "Incredible!", "ON FIRE!", "Whoop whoop!"],
+    };
+    const messageStart = this.randomMessagePart(messageStarts[mood]);
+
+    let punctuation = ".";
+    switch (mood) {
+      case "positive":
+        punctuation = "!";
+        break;
+      case "negative":
+        punctuation = "...";
+        break;
+      case "hot":
+        punctuation = "!!!!";
+        break;
+    }
+
+    // show what ingredient was taken
+    const ingr = this.types[type].name;
+    const ingrOptions = [
+      `You got ${ingr}: `,
+      `Seems like ${ingr}; `,
+      `${ingr.charAt(0).toUpperCase() + ingr.slice(1)}: `,
+    ];
+    const ingredient = this.randomMessagePart(ingrOptions);
+
+    // show how many points
+    const pts = this.types[type].points;
+    const ptsOptions = [`you won ${pts}pts`, `+${pts}`];
+    const pointsWon = this.randomMessagePart(ptsOptions);
+
+    li.textContent = `${messageStart} ${ingredient} ${pointsWon}pts${punctuation}`;
+  }
+
+  randomMessagePart(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
   touchOtherIngredient(arrayOfOtherIngredient) {
     for (let otherIngredient of arrayOfOtherIngredient) {
       if (

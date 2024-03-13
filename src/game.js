@@ -92,7 +92,7 @@ class Game {
         if (this.player.touchElement(currentIngredient)) {
           console.log(currentIngredient.type);
           // set conditions for the message to appear on the right
-          this.generateMessage();
+          currentIngredient.generateMessage(currentIngredient.type);
           //! If plater touches coriander, end game
           if (currentIngredient.type == "coriander") {
             console.log("Ugh, coriander ...");
@@ -130,7 +130,7 @@ class Game {
           }
           currentIngredient.element.remove();
           // push into an array the points associated to the type of ingredient eaten
-          console.log(currentIngredient.type);
+
           // this.pointsArray.push(
           //   currentIngredient.types[currentIngredient.type].points
           // );
@@ -204,31 +204,7 @@ class Game {
   // BONUS :
   // tally the score by how much the ingredient is worth
   // add little animation of score appearing
-  generateMessage() {
-    const messageList = document.getElementById("message-list");
-    const li = document.createElement("li");
-    messageList.append(li);
-    // const ingrDetails = ingredient.types[ingredient.type];
-    // generate random greeting
-    const messageStart = "placeholder";
-    // if ingredient.types[ingredient].messageType = positive, generate random from this.messageBeginning.positive array and !
-    // if ingredient.types[ingredient].messageType = negative and ...
-    // if ingredient.types[ingredient].messageType = hot and !!!!
-    const punctuation = "!!!";
-    const options = ["test1", "test2", "test3"];
-    const optionalMessage = options[0];
 
-    // generate options between :"you got ingredient", or just "Ingredient"
-    // const options = [
-    //   `You got ${ingrDetails.name}`,
-    //   ingrDetails.name.charAt(0).toUpperCase() + str.slice(1),
-    // ]; Math.floor(Math.random() * options.length)
-
-    const pointsWon = 10;
-    // ingrDetails.points
-
-    li.textContent = `${messageStart} ${optionalMessage} +${pointsWon}pts${punctuation}`;
-  }
   // function for listening to the arrow keys being pressed
   // only one key can be pressed at the same time
   arrowKeysPressed() {
