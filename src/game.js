@@ -17,8 +17,6 @@ class Game {
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
     // object that contains the different messages to
-    this.eatenItems = [];
-    this.pointsArray = [];
     this.highscore = document.getElementById("highscore").textContent;
     this.messages = [];
     this.pressedKeys = {
@@ -87,7 +85,6 @@ class Game {
             currentIngredient.generateMessage(currentIngredient.type)
           );
           this.updateScore(currentIngredient);
-          this.pointsArray.push(this.getPoints(currentIngredient));
           // depending on ingredients, different nb of followers is generated
           const nbIterations = this.howManyFollowers(currentIngredient.type);
 
@@ -96,13 +93,7 @@ class Game {
           }
           // remove ingredient
           currentIngredient.element.remove();
-          // push into an array the points associated to the type of ingredient eaten
-
-          // this.pointsArray.push(
-          //   currentIngredient.types[currentIngredient.type].points
-          // );
-          // push the element into the original array to count how many items have been "eaten"
-          this.eatenItems.push(this.ingredients.splice(i, 1));
+          this.ingredients.splice(i, 1);
         }
       }
 
@@ -172,8 +163,6 @@ class Game {
     this.player.element.remove();
     this.emptyArray(this.ingredients);
     this.emptyArray(this.player.body);
-    this.eatenItems = [];
-    this.pointsArray = [];
     this.messages.forEach((message) => {
       message.remove();
     });
