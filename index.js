@@ -9,6 +9,8 @@ const endSection = document.querySelector(".after-game");
 const gameContainer = document.querySelector(".game-container");
 const gameMessages = document.querySelector(".game-messages");
 
+let gameArray = [];
+
 // event listener to start game
 launchButton.addEventListener("click", () => {
   preGame.hidden = false;
@@ -20,6 +22,7 @@ launchButton.addEventListener("click", () => {
 
 startButton.addEventListener("click", () => {
   const game = new Game();
+  gameArray.push(game);
   preGame.hidden = true;
   game.startGame();
 });
@@ -30,6 +33,7 @@ restartButton.addEventListener("click", () => {
   startButton.hidden = false;
   endSection.hidden = true;
   const game = new Game();
+  gameArray.push(game);
   game.startGame();
 });
 // event listener to end game

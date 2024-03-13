@@ -1,7 +1,7 @@
 import Player from "./player.js";
 import Ingredient from "./ingredient.js";
 import Follower from "./follower.js";
-// import Chronometer from "./chronometer.js";
+import Record from "./record.js";
 
 class Game {
   // ? takes for argument speed (later, if implementing levels)
@@ -19,6 +19,7 @@ class Game {
     // object that contains the different messages to
     this.eatenItems = [];
     this.pointsArray = [];
+    this.highscore = document.getElementById("highscore").textContent;
     this.messages = [];
     this.pressedKeys = {
       right: true,
@@ -34,7 +35,6 @@ class Game {
   startGame() {
     // if game is already running, no need for the rest to follow
     if (this.gameOn) return;
-
     // make player move according to arrow keys, start game and enable pausing
     this.arrowKeysPressed();
     this.gameOn = true;
@@ -86,7 +86,8 @@ class Game {
           this.createMessage(
             currentIngredient.generateMessage(currentIngredient.type)
           );
-
+          this.updateScore(currentIngredient);
+          this.pointsArray.push(this.getPoints(currentIngredient));
           // depending on ingredients, different nb of followers is generated
           const nbIterations = this.howManyFollowers(currentIngredient.type);
 
@@ -105,11 +106,11 @@ class Game {
         }
       }
 
-      // ! If player touches border, end game
+      // if player touches border, end game
       if (this.player.touchBorder()) {
         this.endGame("You left the restaurant! Game over.");
       }
-      // ! If player touches tail, end game
+      // if player touches tail, end game
       for (let follower of this.player.body) {
         if (this.player.touchElement(follower)) {
           this.endGame("Oops! You made all your plates fall! Game over.");
@@ -120,31 +121,68 @@ class Game {
 
   // TODO: function to show the chronometer during the game (and then be able to send how much time at the end)
 
-  // ! Function to end the game
   endGame(message) {
-    this.score = this.eatenItems.length;
-    // console.log(this.pointsArray);
     clearTimeout(this.intervalId);
     this.gameOn = false;
     this.gameOff = true;
+    this.createMessage(message);
+
+    this.endMessage();
+    const endWindow = document.querySelector(".after-game");
+    setTimeout(() => {
+      endWindow.hidden = false;
+      this.resetGame();
+    }, 1500);
+  }
+
+  endMessage() {
+    const greeting = document.getElementById("end-greeting");
+    const isHighScore = document.getElementById("game-record");
+    const currentHighScore = document.getElementById("highscore");
+    if (this.score > this.highscore) {
+      greeting.textContent = "WELL DONE!";
+      isHighScore.textContent = "This was your best score so far!";
+      currentHighScore.textContent = this.score;
+    } else if (this.score === this.highscore && this.score > 0) {
+      greeting.textContent = "Almost there!";
+      isHighScore.textContent = "You almost beat your best score!";
+    } else if (this.score > 10) {
+      greeting.textContent = "Good try!";
+      isHighScore.textContent = `The best score so far was ${this.highscore} points`;
+    } else {
+      greeting.textContent = "You can do better ...";
+      isHighScore.textContent = `The best score so far was ${this.highscore} points`;
+    }
+    const message = document.getElementById("end-message");
+    message.textContent = `You scored ${this.score} points in total`;
+  }
+
+  updateScore(ingredient) {
+    const currentScore = document.getElementById("currentscore");
+    this.score += this.getPoints(ingredient);
+    currentScore.textContent = this.score;
+  }
+
+  getPoints(ingredient) {
+    return ingredient.types[ingredient.type].points;
+  }
+
+  // remove all elements except message to free up memory
+  resetGame() {
     this.player.element.remove();
     this.emptyArray(this.ingredients);
     this.emptyArray(this.player.body);
     this.eatenItems = [];
     this.pointsArray = [];
-    this.createMessage(message);
-
-    const endWindow = document.querySelector(".after-game");
-    setTimeout(() => {
-      endWindow.hidden = false;
-    }, 1500);
+    this.messages.forEach((message) => {
+      message.remove();
+    });
+    this.messages = [];
   }
 
   emptyArray(array) {
     array.forEach((item) => item.element.remove());
   }
-
-  // BONUS : generate different food items worth different points
 
   // listen to spacebar to pause and unpause the game
   initiatePause() {
@@ -157,7 +195,6 @@ class Game {
           this.pauseMessage.hidden = false;
         } else {
           this.startGame();
-          console.log("unpausing game");
           this.pauseMessage.hidden = true;
         }
       }
@@ -183,8 +220,7 @@ class Game {
     li.textContent = content;
     messageList.append(li);
     this.messages.push(li);
-    console.log(this.messages);
-    if (this.messages.length > 15) {
+    if (this.messages.length > 3) {
       this.messages[0].remove();
       this.messages.splice(0, 1);
     }
