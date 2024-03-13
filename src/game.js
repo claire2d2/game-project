@@ -16,6 +16,7 @@ class Game {
     this.pauseMessage = document.getElementById("game-paused");
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
+    this.corianderProbability = 0;
     // object that contains the different messages to
     this.highscore = document.getElementById("highscore").textContent;
     this.messages = [];
@@ -43,8 +44,10 @@ class Game {
     this.intervalId = setInterval(() => {
       //generate an ingredient ever few seconds
       if (this.counter % 10 === 0) {
+        this.corianderProbability += 0.5;
+        console.log(this.corianderProbability);
         // introduce while loop, while !newIngredient.uniquePosition, remove NewIngredient and generate new const
-        const newIngredient = new Ingredient(this.gameContainer);
+        const newIngredient = new Ingredient(this.gameContainer, this.corianderProbability);
         let ingredientOverlap =
           this.player.touchElement(newIngredient) ||
           newIngredient.touchOtherIngredient(this.ingredients);

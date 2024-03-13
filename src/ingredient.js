@@ -1,8 +1,7 @@
-import { randomIndex } from "../math.js";
-
 class Ingredient {
-  constructor(gameContainer) {
+  constructor(gameContainer, corianderDifficulty) {
     this.gameContainer = gameContainer;
+    this.corianderDifficulty = corianderDifficulty;
     // create ingredient to make appear
     this.element = document.createElement("div");
     // add "ingredient" class to be able to style it in css
@@ -51,13 +50,13 @@ class Ingredient {
       },
       ginger: {
         name: "some ginger",
-        probability: 1,
+        probability: 2,
         points: 20,
         messageType: "hot",
       },
       coriander: {
         name: "coriander",
-        probability: 2,
+        probability: this.corianderDifficulty,
         points: -5,
         messageType: "negative",
       },
