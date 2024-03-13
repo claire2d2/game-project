@@ -1,25 +1,16 @@
 import Player from "./player.js";
 import Ingredient from "./ingredient.js";
 import Follower from "./follower.js";
-import Chronometer from "./chronometer.js";
+// import Chronometer from "./chronometer.js";
 
-/*
-
-METHODS :
-- look at method example (attach event listeners)
-- start game 
-    if running, return
-- get score
-- pause game (rules reappear during game)
-*/
 class Game {
-  // takes for argument speed (later, if implementing levels)
+  // ? takes for argument speed (later, if implementing levels)
   constructor() {
     this.gameContainer = document.querySelector(".game-container");
     this.intervalId = null;
     this.gameOn = false;
     this.score = 0;
-    this.gameSpeed = 30;
+    this.gameSpeed = 30; // 30 = width of player
     this.player = new Player(this.gameContainer, this.gameSpeed);
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
@@ -41,13 +32,7 @@ class Game {
     this.counter = 1;
   }
 
-  /* 
-  METHODS
-  */
-
   // ! Function to start the game
-
-  // put methods here
   startGame() {
     // if game is already running, no need for the rest to follow
     if (this.gameOn) return;

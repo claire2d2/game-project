@@ -23,14 +23,8 @@ class Player {
     };
   }
 
-  // Methods
-
-  // function to move the player according to the arrows
-  // Function to move according to the direction
+  // move the player according to the direction
   move(direction) {
-    // define element "borders" (to check for collision later on
-    // if conditions ensure that ball does not get out of borders (IMPROVE later if possible)
-
     switch (direction) {
       case "right":
         this.historicPosition.x = this.position.x;
@@ -56,7 +50,7 @@ class Player {
     this.element.style.left = `${this.position.x}px`;
     this.element.style.top = `${this.position.y}px`;
 
-    // TODO
+    // positioning the tail relative to the player
     for (let i = 0; i < this.body.length; i++) {
       const follower = this.body[i];
       if (i === 0) {
@@ -74,12 +68,9 @@ class Player {
       follower.element.style.left = `${follower.position.x}px`;
       follower.element.style.top = `${follower.position.y}px`;
     }
-
-    // 0 takes historic position of the player
-    // starting from 1, take historic position of element - 1
   }
 
-  // function to check whether the player is located at the edges (use getBoundingClientRect())
+  // check whether the player is located at the edges (use getBoundingClientRect())
   touchBorder() {
     const playerBoundaries = this.element.getBoundingClientRect();
     const containerBoundaries = this.gameContainer.getBoundingClientRect();
@@ -92,7 +83,7 @@ class Player {
     );
   }
 
-  // method to check whether player is touching an ingredient
+  // method to check whether player is touching an ingredient or tail element
 
   touchElement(element) {
     return (
@@ -102,8 +93,6 @@ class Player {
       this.position.y + 30 > element.position.y
     );
   }
-
-  // method to check whether the player is touching its tail
 }
 
 export default Player;
