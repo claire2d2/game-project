@@ -101,10 +101,6 @@ class Ingredient {
   // }
 
   generateMessage(type) {
-    const messageList = document.getElementById("message-list");
-    const li = document.createElement("li");
-    messageList.append(li);
-
     // generate start and ending of message based on whether ingredient taken was good or bad
     const mood = this.types[type].messageType;
     const messageStarts = {
@@ -141,7 +137,7 @@ class Ingredient {
     const ptsOptions = [`you won ${pts}`, `+${pts}`];
     const pointsWon = this.randomMessagePart(ptsOptions);
 
-    li.textContent = `${messageStart} ${ingredient} ${pointsWon}pts${punctuation}`;
+    return `${messageStart} ${ingredient} ${pointsWon}pts${punctuation}`;
   }
 
   randomMessagePart(array) {

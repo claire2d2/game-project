@@ -18,6 +18,7 @@ class Game {
     // object that contains the different messages to
     this.eatenItems = [];
     this.pointsArray = [];
+    this.messages = [];
     this.pressedKeys = {
       right: true,
       left: false,
@@ -82,9 +83,11 @@ class Game {
         }
         // ingredients disappear if touched by player
         if (this.player.touchElement(currentIngredient)) {
-          console.log(currentIngredient.type);
           // set conditions for the message to appear on the right
-          currentIngredient.generateMessage(currentIngredient.type);
+          this.createMessage(
+            currentIngredient.generateMessage(currentIngredient.type)
+          );
+
           // depending on ingredients, different nb of followers is generated
           const nbIterations = this.howManyFollowers(currentIngredient.type);
 
@@ -105,25 +108,22 @@ class Game {
 
       // ! If player touches border, end game
       if (this.player.touchBorder()) {
-        console.log("player touched border");
+        this.createMessage("You left the restaurant! Game over.");
         this.endGame();
       }
       // ! If player touches tail, end game
       for (let follower of this.player.body) {
         if (this.player.touchElement(follower)) {
-          console.log("player touched tail");
+          this.createMessage("Oops! You made all your plates fall! Game over.");
           this.endGame();
         }
       }
     }, 100);
-
-    // ? BONUS : generate different food items worth different points
   }
 
   // TODO: function to show the chronometer during the game (and then be able to send how much time at the end)
 
   // ! Function to end the game
-
   endGame() {
     this.score = this.eatenItems.length;
     // console.log(this.pointsArray);
@@ -186,8 +186,22 @@ class Game {
     // ? add little animation of score appearing
   }
 
+  createMessage(content) {
+    const messageList = document.getElementById("message-list");
+    const li = document.createElement("li");
+    li.textContent = content;
+    messageList.append(li);
+    this.messages.push(li);
+    console.log(this.messages);
+    if (this.messages.length > 15) {
+      this.messages[0].remove();
+      this.messages.splice(0, 1);
+    }
+  }
+
   howManyFollowers(ingredientType) {
     if (ingredientType === "coriander") {
+      this.createMessage("Disgusting! The meal is ruined now.");
       this.endGame();
     } else if (ingredientType === "water") {
       return 2;
