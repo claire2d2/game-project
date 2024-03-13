@@ -15,17 +15,6 @@ class Game {
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
     // object that contains the different messages to
-    this.messageBeginning = {
-      positive: ["Yum!", "Super!", "Way to go!"],
-      negative: ["Uh oh...", "Why would you do that?", "Oh no..."],
-      hot: ["YEAH!", "Incredible!", "ON FIRE!", "Whoop whoop!"],
-    };
-    this.messages = {
-      water:
-        "Uh-oh that was not strategic. You have less space in your stomach and gained 0 points!",
-      ginger: "Way to go! +10 points and your palate is refreshed!",
-      bokchoi: "Yum! +5 points",
-    };
     this.eatenItems = [];
     this.pointsArray = [];
     this.pressedKeys = {
@@ -93,41 +82,13 @@ class Game {
           console.log(currentIngredient.type);
           // set conditions for the message to appear on the right
           currentIngredient.generateMessage(currentIngredient.type);
-          //! If plater touches coriander, end game
-          if (currentIngredient.type == "coriander") {
-            console.log("Ugh, coriander ...");
-            this.endGame();
-          }
+          // depending on ingredients, different nb of followers is generated
+          const nbIterations = this.howManyFollowers(currentIngredient.type);
 
-          let nbIterations = 1;
-
-          // ! If ingredient is water, repeat 3 times
-          if (currentIngredient.type === "water") {
-            nbIterations = 3;
-            // TODO : add message
-          } else if (currentIngredient.type === "ginger") {
-            nbIterations = 0;
-          } else if (currentIngredient.type === "bokchoi") {
-          }
           for (let i = 0; i < nbIterations; i++) {
-            // ! insert a new follower (make into a function?)
-            const position = !this.player.body.length
-              ? this.player.historicPosition
-              : this.player.body.at(-1).historicPosition;
-            const newFollower = new Follower(position);
-            this.player.body.push(newFollower);
-            newFollower.element.style.left = `${newFollower.position.x}px`;
-            newFollower.element.style.top = `${newFollower.position.y}px`;
-            this.gameContainer.append(newFollower.element);
+            this.generateFollower();
           }
-
-          // ! If ingredient is ginger, reset
-          if (currentIngredient.type == "ginger") {
-            for (let i = 0; i < this.player.body.length; i++) {
-              this.player.body[i].element.remove();
-            }
-            this.player.body = [];
-          }
+          // remove ingredient
           currentIngredient.element.remove();
           // push into an array the points associated to the type of ingredient eaten
 
@@ -198,15 +159,36 @@ class Game {
     // ? add little animation of score appearing
   }
 
-  // condition check whether food items generated coordinates are overlapping
+  howManyFollowers(ingredientType) {
+    if (ingredientType === "coriander") {
+      this.endGame();
+    } else if (ingredientType === "water") {
+      return 2;
+    } else if (ingredientType === "ginger") {
+      this.player.body.forEach((follower) => {
+        follower.element.remove();
+      });
+      this.player.body = [];
+      return 0;
+    }
+    return 1;
+  }
+
+  generateFollower() {
+    const position = !this.player.body.length
+      ? this.player.historicPosition
+      : this.player.body.at(-1).historicPosition;
+    const newFollower = new Follower(position);
+    this.player.body.push(newFollower);
+    newFollower.element.style.left = `${newFollower.position.x}px`;
+    newFollower.element.style.top = `${newFollower.position.y}px`;
+    this.gameContainer.append(newFollower.element);
+  }
 
   // ! function for listening to the arrow keys being pressed
   // BONUS :
   // tally the score by how much the ingredient is worth
   // add little animation of score appearing
-
-  // function for listening to the arrow keys being pressed
-  // only one key can be pressed at the same time
   arrowKeysPressed() {
     document.addEventListener("keydown", (event) => {
       switch (event.key) {

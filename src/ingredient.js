@@ -24,48 +24,36 @@ class Ingredient {
         probability: 10,
         points: 2,
         messageType: "positive",
-        message: ["Yum! You got bokchoi! +5 pts", "Bokchoi! +5 pts"],
       },
       tofu: {
         name: "tofu",
         probability: 8,
         points: 3,
         messageType: "positive",
-        message: [" "],
       },
       pepper: {
         name: "chili pepper",
         probability: 2,
         points: 10,
         messageType: "hot",
-        message: [
-          "HOT! +10 points!!",
-          "Incredible! Take 10 pts for that spice.",
-        ],
       },
       meat: {
         name: "a slice of beef",
         probability: 5,
         points: 5,
         messageType: "positive",
-        message: ["Yum! You got meat! + 5pts"],
       },
       water: {
         name: "a glass of water",
         probability: 5,
         points: 0,
         messageType: "negative",
-        message: [
-          "Eh ... at least you're hydrated. +0pts",
-          "That wasn't strategic ...",
-        ],
       },
       ginger: {
         name: "some ginger",
-        probability: 1,
+        probability: 10,
         points: 20,
-        messageType: "fire",
-        message: ["JACKPOT!", "Way to go! Your palate is refreshed"],
+        messageType: "hot",
       },
       coriander: {
         name: "coriander",
@@ -150,7 +138,7 @@ class Ingredient {
 
     // show how many points
     const pts = this.types[type].points;
-    const ptsOptions = [`you won ${pts}pts`, `+${pts}`];
+    const ptsOptions = [`you won ${pts}`, `+${pts}`];
     const pointsWon = this.randomMessagePart(ptsOptions);
 
     li.textContent = `${messageStart} ${ingredient} ${pointsWon}pts${punctuation}`;
