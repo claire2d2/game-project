@@ -44,44 +44,36 @@ class Game {
 
     // generate food items randomly, each worth one point
     this.intervalId = setInterval(() => {
-      //generate an ingredient ever 10 seconds
-      if (this.counter % 10 === 0) {
+      //generate an ingredient ever few seconds
+      if (this.counter % 20 === 0) {
         this.counter = 0;
 
         // introduce while loop, while !newIngredient.uniquePosition, remove NewIngredient and generate new const
         const newIngredient = new Ingredient(this.gameContainer);
-        while (
+        const ingredientOverlap =
           this.player.touchElement(newIngredient) ||
-          newIngredient.touchOtherIngredient(this.ingredients)
-        ) {
-          if (
-            !(
-              this.player.touchElement(newIngredient) ||
-              newIngredient.touchOtherIngredient(this.ingredients)
-            )
-          ) {
+          newIngredient.touchOtherIngredient(this.ingredients);
+        while (ingredientOverlap) {
+          if (!ingredientOverlap) {
             break;
           }
           // call out method to generate new coordinates for the ingredient
           newIngredient.uniquePosition();
         }
-        newIngredient.style();
         // calling method to determine the type for the ingredient
-        newIngredient.whichIngredient();
-        // ? automatiser le process de créer un nouvel ingrédient ?
-        newIngredient.element.classList.add(newIngredient.type);
+        newIngredient.generate();
         this.ingredients.push(newIngredient);
       }
       this.counter++;
 
-      // make player move
+      // make player and tail move
       for (const direction in this.pressedKeys) {
         if (this.pressedKeys[direction]) {
           this.player.move(direction);
         }
       }
 
-      // ! make food items eventually disappear
+      // make food items eventually disappear
       for (let i = 0; i < [...this.ingredients].length; i++) {
         const currentIngredient = this.ingredients[i];
         currentIngredient.ingredientTimeCount++;
@@ -91,6 +83,7 @@ class Game {
           this.ingredients.splice(i, 1);
           continue;
         }
+        // ingredients disappear if touched by player
         if (this.player.touchElement(currentIngredient)) {
           // set conditions for the message to appear on the right
           const messageList = document.getElementById("message-list");

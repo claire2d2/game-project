@@ -7,12 +7,11 @@ class Player {
     this.gameContainer.append(this.element);
     this.body = [];
     this.element.classList = "player";
-    // this.heading = "right"
     this.position = {
       x: this.gameContainer.getBoundingClientRect().width / 2,
       y: this.gameContainer.getBoundingClientRect().height / 2,
     };
-    // will be used to register the player's position for followers to take place
+    // used to register the player's position for followers to take place
     this.historicPosition = {
       x: 0,
       y: 0,
@@ -70,11 +69,10 @@ class Player {
     }
   }
 
-  // check whether the player is located at the edges (use getBoundingClientRect())
+  // check whether the player is located at the edges
   touchBorder() {
     const playerBoundaries = this.element.getBoundingClientRect();
     const containerBoundaries = this.gameContainer.getBoundingClientRect();
-    // strict comparison so that the game does not end when the player is moving along the edges
     return (
       playerBoundaries.right > containerBoundaries.right ||
       playerBoundaries.left < containerBoundaries.left ||
@@ -95,4 +93,5 @@ class Player {
   }
 }
 
+// TODO add styling method for giving appearance to the player
 export default Player;

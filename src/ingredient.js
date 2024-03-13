@@ -11,8 +11,11 @@ class Ingredient {
     this.gameContainer.append(this.element);
     // generate random position (add condition of other elements not existing in the place in Game method)
     this.position = {
-      x: 0,
-      y: 0,
+      x:
+        Math.random() * (this.gameContainer.getBoundingClientRect().width - 30),
+      y:
+        Math.random() *
+        (this.gameContainer.getBoundingClientRect().height - 30),
     };
     this.type = null;
     this.types = {
@@ -59,25 +62,24 @@ class Ingredient {
     // check whether the ingredient has been taken by the player
     // ingredientTaken() {}
   }
-  // check whether the ingredient has been there for more than a given amount of seconds (here, 4)
-  ingredientCoolDown() {
-    //to define
-  }
+
   // TODO randomize if one or two items appear
 
-  // randomize which ingredient appears
-  whichIngredient() {
-    // object keys are the ingredient names
+  generate() {
+    // randomize which ingredient appears
     const probArr = Object.keys(this.types).reduce((acc, ingredient) => {
       for (let i = 0; i < this.types[ingredient].probability; i++) {
         acc.push(ingredient);
       }
       return acc;
     }, []);
-    // from the array of object keys, pick one randomly
     const randomIndex = Math.floor(Math.random() * probArr.length);
     const randomIngredient = probArr[randomIndex];
     this.type = randomIngredient;
+    // position and style ingredient
+    this.element.style.left = `${this.position.x}px`;
+    this.element.style.top = `${this.position.y}px`;
+    this.element.classList.add(this.type);
   }
 
   // generateMessage(type, li) {
