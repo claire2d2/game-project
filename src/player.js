@@ -6,7 +6,7 @@ class Player {
     this.element.id = "player";
     this.gameContainer.append(this.element);
     this.body = [];
-    this.element.classList = "player";
+    this.element.classList = "right";
     this.position = {
       x: this.gameContainer.getBoundingClientRect().width / 2,
       y: this.gameContainer.getBoundingClientRect().height / 2,
@@ -26,21 +26,25 @@ class Player {
   move(direction) {
     switch (direction) {
       case "right":
+        this.element.classList = "right";
         this.historicPosition.x = this.position.x;
         this.historicPosition.y = this.position.y;
         this.position.x += this.direction.x * this.speed;
         break;
       case "left":
+        this.element.classList = "left";
         this.historicPosition.x = this.position.x;
         this.historicPosition.y = this.position.y;
         this.position.x -= this.direction.x * this.speed;
         break;
       case "top":
+        this.element.classList = "top";
         this.historicPosition.y = this.position.y;
         this.historicPosition.x = this.position.x;
         this.position.y -= this.direction.y * this.speed;
         break;
       case "down":
+        this.element.classList = "down";
         this.historicPosition.y = this.position.y;
         this.historicPosition.x = this.position.x;
         this.position.y += this.direction.y * this.speed;

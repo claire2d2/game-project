@@ -184,13 +184,24 @@ h1 {
   height: 30px;
   aspect-ratio: 1;
   border-radius: 50%;
-  background-image: url("../img/player-walking-top-1.png");
   background-size: contain;
   position: absolute;
   top: 50%;
   left: 50%;
 }
 
+.right {
+  background-image: url("../img/player/player-walking-right-1.png");
+}
+.top {
+  background-image: url("../img/player/player-walking-top-1.png");
+}
+.down {
+  background-image: url("../img/player/player-walking-down-1.png");
+}
+.left {
+  background-image: url("../img/player/player-walking-left-1.png");
+}
 /* format tail behind player */
 
 .follower {
@@ -206,7 +217,7 @@ h1 {
 /* format ingredients here */
 
 .ingredient {
-  height: 40px;
+  height: 30px;
   aspect-ratio: 1;
   background-color: none;
   position: absolute;
