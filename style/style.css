@@ -38,7 +38,7 @@ body {
   width: 100vw;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 /* styling game title */
