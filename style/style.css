@@ -280,7 +280,6 @@ dialog {
 }
 
 .game-messages {
-  min-width: 15%;
   max-width: 600px;
   margin: 0 0.5rem;
   height: 600px;
@@ -293,6 +292,12 @@ dialog {
     font-size: 2rem;
     text-align: center;
     color: #d74844;
+  }
+  & ul {
+    width: 400px;
+    & li {
+      width: 400px;
+    }
   }
 }
 @media (width < 1400px) {

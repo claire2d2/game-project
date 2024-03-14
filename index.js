@@ -7,7 +7,7 @@ const startButtonCoriander = document.getElementById("start-game-coriander");
 const musicOnOff = document.getElementById("music");
 const backgroundMusic = document.getElementById("background-music");
 const soundOnOff = document.getElementById("sound-effect");
-let soundEffects = false;
+let soundEffect = false;
 let musicOn = false;
 
 const welcomeSection = document.querySelector(".welcome");
@@ -49,12 +49,12 @@ musicOnOff.addEventListener("click", () => {
 });
 
 soundOnOff.addEventListener("click", () => {
-  if (!soundEffects) {
-    soundEffects = true;
+  if (!soundEffect) {
+    soundEffect = true;
   } else {
-    soundEffects = false;
+    soundEffect = false;
   }
-  console.log(soundEffects);
+  console.log(soundEffect);
 });
 
 // event listener to show dialog game
