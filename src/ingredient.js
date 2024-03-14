@@ -22,42 +22,56 @@ class Ingredient {
         name: "bok choi",
         probability: 10,
         points: 2,
+        content: "🥬",
+        class: "neutral-ingredient",
         messageType: "positive",
       },
       tofu: {
         name: "tofu",
         probability: 8,
         points: 3,
+        content: "🧈",
+        class: "neutral-ingredient",
         messageType: "positive",
       },
       pepper: {
         name: "chili pepper",
         probability: 2,
         points: 10,
+        content: "🌶️",
+        class: "good-ingredient",
         messageType: "hot",
       },
       meat: {
         name: "a slice of beef",
         probability: 5,
         points: 5,
+        content: "🥬",
+        class: "neutral-ingredient",
         messageType: "positive",
       },
       water: {
         name: "a glass of water",
         probability: 5,
         points: 0,
+        content: "🥛",
+        class: "neutral-ingredient",
         messageType: "negative",
       },
       ginger: {
         name: "some ginger",
         probability: 2,
         points: 20,
+        content: "🫚",
+        class: "good-ingredient",
         messageType: "hot",
       },
       coriander: {
         name: "coriander",
         probability: this.corianderDifficulty,
         points: -5,
+        content: "🌿",
+        class: "bad-ingredient",
         messageType: "negative",
       },
     };
@@ -91,7 +105,8 @@ class Ingredient {
     // position and style ingredient
     this.element.style.left = `${this.position.x}px`;
     this.element.style.top = `${this.position.y}px`;
-    this.element.classList.add(this.type);
+    this.element.textContent = this.types[this.type].content;
+    this.element.classList.add(this.types[this.type].class);
   }
 
   // generateMessage(type, li) {

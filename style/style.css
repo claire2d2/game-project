@@ -4,7 +4,7 @@
   --main-color-red: #d74844;
 }
 
-* {
+*:not(dialog) {
   padding: 0;
   box-sizing: border-box;
   margin: 0;
@@ -38,7 +38,7 @@ body {
   width: 100vw;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* styling game title */
@@ -207,7 +207,7 @@ h1 {
   border-color: #d74844;
   border-radius: 2%;
   height: 600px;
-  background-color: rgba(255, 64, 0, 0.404);
+  background-color: rgba(255, 255, 255, 0.637);
   position: relative;
 }
 
@@ -280,6 +280,7 @@ h1 {
 
 .ingredient {
   height: 30px;
+  font-size: 1.5rem;
   aspect-ratio: 1;
   background-color: none;
   position: absolute;
@@ -289,34 +290,11 @@ h1 {
 
 /* format different types of ingredients */
 
-.bokchoi {
-  background-image: url(../img/ingredients/bokchoi.png);
-  background-size: contain;
-}
-
-.tofu {
-  background-image: url(../img/ingredients/tofu.png);
-  background-size: contain;
-}
-.ginger {
-  background-image: url(../img/ingredients/ginger.png);
-  background-size: contain;
-}
-
-.water {
-  background-image: url(../img/ingredients/glass-water.png);
-  background-size: cover;
-}
-
-.meat {
-  background-image: url(../img/ingredients/meat.png);
-  background-size: cover;
-}
-
-.pepper {
-  background-image: url(../img/ingredients/chili.png);
-  background-size: cover;
+.good-ingredient {
   filter: drop-shadow(0 0 0.75rem yellow);
+}
+.bad-ingredient {
+  filter: drop-shadow(0 0 0.75rem red);
 }
 
 .coriander {
