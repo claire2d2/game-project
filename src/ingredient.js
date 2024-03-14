@@ -141,7 +141,7 @@ class Ingredient {
     const ingr = this.types[type].name;
     const ingrOptions = [
       `You got ${ingr}: `,
-      `Seems like ${ingr}; `,
+      `Seems like ${ingr}: `,
       `${ingr.charAt(0).toUpperCase() + ingr.slice(1)}: `,
     ];
     const ingredient = this.randomMessagePart(ingrOptions);
