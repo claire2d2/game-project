@@ -264,15 +264,34 @@ dialog {
   border-radius: 2%;
   margin: 0 0.5rem;
 }
-.points-reminder {
-  margin-top: 3rem;
-  & img {
-    height: 18px;
-    aspect-ratio: 1;
-    background-color: none;
-    top: 0;
-    left: 0;
+
+.all-scores {
+  margin-top: 0.7rem;
+  & p {
+    text-align: center;
+    font-size: 1.2rem;
   }
+  & .game-class {
+    font-weight: bolder;
+    font-size: 1.4rem;
+  }
+}
+.points-reminder {
+  margin: 3rem;
+  text-align: center;
+  & p {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 1rem;
+  }
+  & ul {
+    text-align: left;
+  }
+}
+
+.pts-reminder {
+  font-weight: bolder;
 }
 
 .game-container {
