@@ -53,7 +53,7 @@ h1 {
 /* styling sound effects section */
 
 nav {
-  height: 1rem;
+  height: 6rem;
   position: absolute;
   top: 0;
   left: 1rem;
@@ -72,6 +72,7 @@ nav {
   width: 100%;
   padding: 25% auto;
   position: absolute;
+  height: calc(100vh -6rem);
 }
 
 #welcome-text {
@@ -85,7 +86,7 @@ nav {
   border-color: white;
   border-width: 10px;
   border-radius: 5%;
-  max-height: 440px;
+  /* max-height: 440px; */
   & h2 {
     color: white;
   }
@@ -241,16 +242,21 @@ dialog {
   margin: auto;
   padding-top: auto;
   padding-bottom: auto;
-  width: 90%;
-  height: 90%;
+  /* width: 90%;
+  height: 90%; */
   box-sizing: border-box;
 
   /* background-color: white; */
 }
 
+/* use display: none for flex objects? */
+
 .flex-display {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: calcl(100vh - 6rem);
 }
 .scores {
   min-width: 200px;
@@ -277,7 +283,6 @@ dialog {
   }
 }
 .points-reminder {
-  margin: 0.4rem;
   text-align: center;
   & p {
     text-align: center;
@@ -308,7 +313,6 @@ dialog {
 .game-messages {
   max-width: 600px;
   min-width: 230px;
-  margin: 0 0.5rem;
   /* padding: 1.5rem 1rem; */
   height: 600px;
   border-style: solid;

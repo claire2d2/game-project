@@ -11,8 +11,8 @@ class Game {
     this.score = 0;
     this.difficulty = difficulty; // interval
     this.gameSpeed = 30; // 30 = width of player
-    (this.soundEffects = soundEffects),
-      (this.player = new Player(this.gameContainer, this.gameSpeed));
+    this.soundEffects = soundEffects;
+    this.player = new Player(this.gameContainer, this.gameSpeed);
     this.pauseMessage = document.getElementById("game-paused");
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
@@ -120,12 +120,14 @@ class Game {
 
       // if player touches border, end game
       if (this.player.touchBorder()) {
+        document.getElementById("audio-wall-crash").play();
         this.endGame("You left the restaurant! Game over.");
       }
 
       // if player touches tail, end game
       for (let follower of this.player.body) {
         if (this.player.touchElement(follower)) {
+          document.getElementById("audio-plates-crash").play();
           this.endGame("Oops! You made all your plates fall! Game over.");
         }
       }
@@ -149,9 +151,9 @@ class Game {
   }
 
   endMessage() {
-    this.player.position = this.player.historicPosition;
-    this.player.element.style.left = `${this.player.position.x}px`;
-    this.player.element.style.top = `${this.player.position.y}px`;
+    // this.player.position = this.player.historicPosition;
+    // this.player.element.style.left = `${this.player.position.x}px`;
+    // this.player.element.style.top = `${this.player.position.y}px`;
     const greeting = document.getElementById("end-greeting");
     const isHighScore = document.getElementById("game-record");
     const isHighScoreNumber = document.getElementById("end-current-high-score");
@@ -264,6 +266,7 @@ class Game {
   // depending on ingredient type, behavior to be expected
   howManyFollowers(ingredientType) {
     if (ingredientType === "coriander") {
+      document.getElementById("audio-coriander").play();
       this.endGame("Disgusting! The meal is ruined now.");
     } else if (ingredientType === "water") {
       return 2;

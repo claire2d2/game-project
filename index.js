@@ -9,6 +9,8 @@ const backgroundMusic = document.getElementById("background-music");
 const soundOnOff = document.getElementById("sound-effect");
 let soundEffect = false;
 let musicOn = false;
+let allSoundEffects = document.getElementsByClassName("sound-effect");
+muteSound(allSoundEffects);
 
 const welcomeSection = document.querySelector(".welcome");
 
@@ -40,9 +42,13 @@ if (localStorage.getItem("normalHighScore") === null) {
 
 musicOnOff.addEventListener("click", () => {
   if (musicOn) {
+    musicOnOff.innerHTML =
+      '<img src="./img/music-off.png" alt="sound effect icon" />';
     backgroundMusic.pause();
     musicOn = false;
   } else {
+    musicOnOff.innerHTML =
+      '<img src="./img/music-on.png" alt="sound effect icon" />';
     backgroundMusic.play();
     musicOn = true;
   }
@@ -50,11 +56,16 @@ musicOnOff.addEventListener("click", () => {
 
 soundOnOff.addEventListener("click", () => {
   if (!soundEffect) {
+    soundOnOff.innerHTML =
+      '<img src="./img/sound-on.png" alt="sound effect icon" />';
     soundEffect = true;
+    muteSound(allSoundEffects);
   } else {
+    soundOnOff.innerHTML =
+      '<img src="./img/sound-muted.png" alt="sound effect icon" />';
     soundEffect = false;
+    muteSound(allSoundEffects);
   }
-  console.log(soundEffect);
 });
 
 // event listener to show dialog game
@@ -125,3 +136,9 @@ restartButtonOther.addEventListener("click", () => {
   const game = new Game(gameDifficulty, corianderOn);
   game.startGame();
 });
+
+function muteSound(arrayOfAudios) {
+  for (let i = 0; i < arrayOfAudios.length; i++) {
+    arrayOfAudios[i].muted = false;
+  }
+}
