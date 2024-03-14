@@ -32,10 +32,10 @@ let gameDifficulty = 150;
 
 // track high score, create items for local storage if they don't yet exist
 if (localStorage.getItem("corianderHighScore") === null) {
-  localStorage.setItem("corianderHighScore", 0);
+  localStorage.setItem("corianderHighScore", "0");
 }
 if (localStorage.getItem("normalHighScore") === null) {
-  localStorage.setItem("normalHighScore", 0);
+  localStorage.setItem("normalHighScore", "0");
 }
 
 // ! Audio parameters
@@ -59,7 +59,7 @@ soundOnOff.addEventListener("click", () => {
     soundOnOff.innerHTML =
       '<img src="./img/sound-on.png" alt="sound effect icon" />';
     soundEffect = true;
-    muteSound(allSoundEffects);
+    unMuteSound(allSoundEffects);
   } else {
     soundOnOff.innerHTML =
       '<img src="./img/sound-muted.png" alt="sound effect icon" />';
@@ -138,6 +138,12 @@ restartButtonOther.addEventListener("click", () => {
 });
 
 function muteSound(arrayOfAudios) {
+  for (let i = 0; i < arrayOfAudios.length; i++) {
+    arrayOfAudios[i].muted = true;
+  }
+}
+
+function unMuteSound(arrayOfAudios) {
   for (let i = 0; i < arrayOfAudios.length; i++) {
     arrayOfAudios[i].muted = false;
   }

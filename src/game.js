@@ -45,11 +45,16 @@ class Game {
     this.gameOff = false;
     this.initiatePause();
 
+    // change text Content on the left
+
     const gameMode = document.getElementById("game-mode");
+    const highScoreShown = document.getElementById("current-highscore");
     if (this.coriander) {
       gameMode.textContent = "Coriander";
+      highScoreShown.textContent = this.highscoreCoriander;
     } else {
       gameMode.textContent = "Normal";
+      highScoreShown.textContent = this.highscoreNormal;
     }
 
     // generate food items randomly, each worth one point
@@ -100,6 +105,13 @@ class Game {
         }
         // ingredients disappear if touched by player
         if (this.player.touchElement(currentIngredient)) {
+          // cute audio when touching ginger or pepper
+          if (
+            currentIngredient.types[currentIngredient.type].messageType ===
+            "hot"
+          ) {
+            document.getElementById("good-ingredient").play();
+          }
           // set conditions for the message to appear on the right
           this.createMessage(
             currentIngredient.generateMessage(currentIngredient.type)
@@ -165,6 +177,7 @@ class Game {
       newHighScore = this.score > this.highscoreCoriander;
       if (newHighScore) {
         localStorage.setItem("corianderHighScore", this.score.toString());
+        document.getElementById("applause").play();
       }
     } else {
       currentHighScore = this.highscoreNormal;
