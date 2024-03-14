@@ -43,10 +43,16 @@ class Game {
     this.initiatePause();
 
     const gameMode = document.getElementById("game-mode");
+    const highScoreNormal = document.getElementById("highscore-normal");
+    const highScoreCoriander = document.getElementById("highscore-coriander");
     if (this.coriander) {
       gameMode.textContent = "Coriander";
+      highScoreNormal.hidden = true;
+      highScoreCoriander.hidden = false;
     } else {
       gameMode.textContent = "Normal";
+      highScoreNormal.hidden = false;
+      highScoreCoriander.hidden = true;
     }
 
     // generate food items randomly, each worth one point
@@ -101,7 +107,8 @@ class Game {
           this.createMessage(
             currentIngredient.generateMessage(currentIngredient.type)
           );
-          this.updateScore(currentIngredient);
+          this.updatePoints(currentIngredient);
+          this.updateScore();
           // depending on ingredients, different nb of followers is generated
           const nbIterations = this.howManyFollowers(currentIngredient.type);
 
@@ -171,14 +178,13 @@ class Game {
     message.textContent = `You scored ${this.score} points in total`;
   }
 
-  updateScore(ingredient) {
+  updateScore() {
     const currentScore = document.getElementById("currentscore");
-    this.score += this.getPoints(ingredient);
     currentScore.textContent = this.score;
   }
 
-  getPoints(ingredient) {
-    return ingredient.types[ingredient.type].points;
+  updatePoints(ingredient) {
+    this.score += ingredient.types[ingredient.type].points;
   }
 
   // remove all elements except message to free up memory
@@ -190,6 +196,8 @@ class Game {
       message.remove();
     });
     this.messages = [];
+    this.score = 0;
+    this.updateScore();
   }
 
   emptyArray(array) {
