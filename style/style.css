@@ -365,19 +365,19 @@ h1 {
   padding: 1rem;
   background-color: white;
   width: 60%;
-  height: 100%;
+  height: 70%;
   text-align: center;
   box-shadow: 10px 5px 4px rgba(39, 34, 34, 0.466);
   & h2 {
-    font-size: 4rem;
+    margin-top: 0.5rem;
+    font-size: 3rem;
     text-shadow: 6px 3px 3px rgba(97, 90, 91, 0.384);
   }
   & p {
-    font-size: 3rem;
+    font-size: 2rem;
   }
-  & button {
-    margin: 2rem auto;
-    background-color: #fa6400;
+  & #restart-game-current {
+    background-color: var(--main-color-red);
     border: 1px solid transparent;
     padding: 1rem 2rem;
     font-size: 2rem;
@@ -386,14 +386,36 @@ h1 {
     color: white;
     justify-content: center;
     box-shadow: 3px 5px 4px rgb(129, 122, 122);
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    }
+    &:active {
+      box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    }
   }
+}
 
-  & button:hover {
-    background-color: #fb8332;
-    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+#restart-game-other {
+  height: 2rem;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 0.5rem;
+  &:hover {
+    color: var(--main-color-red);
+    transition: all 1s;
   }
-  & button:active {
-    background-color: #c85000;
-    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-  }
+}
+
+#end-current-high-score {
+  color: var(--main-color-red);
+  font-weight: bolder;
+}
+
+#final-score {
+  color: var(--main-color-red);
+  font-weight: bolder;
+}
+#try-again {
+  font-style: italic;
+  font-size: 2rem;
 }

@@ -154,6 +154,7 @@ class Game {
     this.player.element.style.top = `${this.player.position.y}px`;
     const greeting = document.getElementById("end-greeting");
     const isHighScore = document.getElementById("game-record");
+    const isHighScoreNumber = document.getElementById("end-current-high-score");
     let currentHighScore = 0;
     let currentGameMode = "coriander";
     let newHighScore = false;
@@ -174,18 +175,22 @@ class Game {
     if (this.score > currentHighScore) {
       greeting.textContent = "WELL DONE!";
       isHighScore.textContent = `This was your best score so far in ${currentGameMode}!`;
+      isHighScoreNumber.textContent = "";
     } else if (this.score === currentHighScore && this.score > 0) {
       greeting.textContent = "Almost there!";
       isHighScore.textContent = `You almost beat your best score in ${currentGameMode}!`;
+      isHighScoreNumber.textContent = "";
     } else if (this.score > 10) {
       greeting.textContent = "Good try!";
-      isHighScore.textContent = `The best score so far in ${currentGameMode} was ${currentHighScore} points`;
+      isHighScore.textContent = `The best score so far in ${currentGameMode} was`;
+      isHighScoreNumber.textContent = `${currentHighScore} points`;
     } else {
       greeting.textContent = "You can do better ...";
-      isHighScore.textContent = `The best score so far in ${currentGameMode} was ${currentHighScore} points`;
+      isHighScore.textContent = `The best score so far in ${currentGameMode} was`;
+      isHighScoreNumber.textContent = `${currentHighScore} points`;
     }
     const message = document.getElementById("end-message");
-    message.textContent = `You scored ${this.score} points in total`;
+    message.innerHTML = `You scored <span id="final-score">${this.score} points </span> in total`;
   }
 
   updateScore() {
