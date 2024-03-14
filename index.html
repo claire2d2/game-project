@@ -19,44 +19,42 @@
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <h1>🫕 Bool you can eat hotpot !🫕</h1>
     <nav>
-      <button id="sound-effect">
-        <img src="./img/sound-muted.png" alt="sound effect icon" />
-      </button>
-      <button id="music">
-        <img src="./img/music-off.png" alt="music icon" />
-      </button>
+      <div class="toggle-sound-buttons">
+        <button id="sound-effect">
+          <img src="./img/sound-muted.png" alt="sound effect icon" />
+        </button>
+        <button id="music">
+          <img src="./img/music-off.png" alt="music icon" />
+        </button>
+      </div>
+      <h1>🫕 Bool you can eat hotpot !🫕</h1>
     </nav>
     <!-- Elements to show before the game -->
     <div class="welcome">
       <!-- <div><img src="./img/welcome-image.jpg" alt="hotpot image" /></div> -->
       <div id="welcome-text">
-        <h2>
-          Welcome to a game of Snake ...
-          <span class="italic">for the foodies!</span>
-        </h2>
-        <div>
-          Here you will not play a snake, but someone at a all you can eat
-          hotpot where the objective, as in every all you can eat restaurant, is
-          to stuff yourself with the most foods possible!
+        <div class="welcome-center">
+          <h2>
+            Welcome to a game of Snake ...
+            <span class="italic">for the foodies!</span>
+          </h2>
+          <div>
+            Here you will not play a snake, but someone at a all you can eat
+            hotpot where the objective, as in every all you can eat restaurant,
+            is to stuff yourself with the most foods possible!
+          </div>
+          <div>
+            The game will be over if :
+            <ul>
+              <li>💥 you leave the restaurant (aka touch the game borders)</li>
+              <li>🤕 you run over your pile of plates</li>
+              <li>💀 pick coriander because that is the devil's herb</li>
+            </ul>
+          </div>
+          <button id="launch-game">Let's go!</button>
         </div>
-        <div>
-          The game will be over if :
-          <ul>
-            <li>💥 you leave the restaurant (aka touch the game borders)</li>
-            <li>🤕 you run over your pile of plates</li>
-            <li>💀 pick coriander because that is the devil's herb</li>
-          </ul>
-        </div>
-        <button id="launch-game">Let's go!</button>
       </div>
-    </div>
-
-    <div class="pause" hidden>
-      <button id="pause-button">
-        <img src="./img/pause-button.png" alt="pause button" />
-      </button>
     </div>
 
     <!-- Elements to show during the game -->
@@ -202,7 +200,7 @@
       <p id="try-again">Want to try again?</p>
       <div><button id="restart-game-current">Let's go !</button></div>
       <div>
-        <button id="restart-game-other">I want to try the other mode</button>
+        <button id="restart-game-other">I want to try the other mode!!</button>
       </div>
     </div>
 

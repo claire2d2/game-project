@@ -4,12 +4,12 @@
   --main-color-red: #d74844;
 }
 
-*:not(dialog) {
+* {
   padding: 0;
-  margin: 0;
   box-sizing: border-box;
   caret-color: transparent;
   font-family: "Manrope";
+  font-size: 1.5vw;
 }
 
 html {
@@ -39,30 +39,33 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 /* styling game title */
-
-h1 {
-  color: var(--main-color-red);
-  text-align: center;
-  font-size: 3rem;
-  text-shadow: 4px 2px 2px rgba(31, 31, 31, 0.274);
-}
 
 /* styling sound effects section */
 
 nav {
   height: 6rem;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 1rem;
   display: flex;
+  align-items: center;
+  justify-content: flex-start;
   & button {
     cursor: pointer;
   }
   & img {
     height: 3rem;
+  }
+  & h1 {
+    color: var(--main-color-red);
+    padding-left: 20%;
+    text-align: center;
+    font-size: 2rem;
+    text-shadow: 4px 2px 2px rgba(31, 31, 31, 0.274);
   }
 }
 
@@ -70,27 +73,31 @@ nav {
 .welcome {
   text-align: center;
   width: 100%;
-  padding: 25% auto;
-  position: absolute;
-  height: calc(100vh -6rem);
+  position: relative;
+  height: calc(100vh - 6rem);
 }
 
+.welcome-center {
+  padding: 1rem;
+}
 #welcome-text {
-  margin: 0 auto;
+  padding: 0.1rem;
   background-color: var(--main-color-red);
   color: white;
-  font-size: 1.5rem;
-  width: 75%;
-  padding: 2rem;
+  font-size: 0.9rem;
+  height: 60%;
+  width: 100%;
+  margin: 2rem auto;
   border-style: solid;
   border-color: white;
   border-width: 10px;
   border-radius: 5%;
-  /* max-height: 440px; */
   & h2 {
-    color: white;
+    margin: 0.5rem;
+    font-size: 1rem;
   }
   & ul {
+    margin: 0.5rem;
     text-align: left;
     padding: 0.2rem 6rem;
   }
@@ -99,16 +106,6 @@ nav {
 .italic {
   font-style: italic;
   font-weight: lighter;
-}
-
-#launch-game {
-  font-size: 3rem;
-  background-color: white;
-  border-color: var(--main-color-red);
-  border-width: 10px;
-  border-style: solid;
-  border-radius: 10%;
-  color: var(--main-color-red);
 }
 
 #launch-game {
@@ -121,23 +118,21 @@ nav {
   color: var(--main-color-red);
   cursor: pointer;
   display: inline-block;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: bolder;
   letter-spacing: 0.8px;
-  line-height: 20px;
-  margin: 0;
+  margin-top: 0.5rem;
   outline: none;
   overflow: visible;
-  padding: 13px 16px;
+  padding: 0.5rem 1rem;
   text-align: center;
   width: 50%;
   &:hover {
     background-color: rgb(255, 211, 68);
-    font-size: 3.1rem;
-    letter-spacing: 4px;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
     transition: all 1s;
     color: white;
-    padding: 1.2rem;
   }
   &:active {
     border-width: 4px 0 0;
@@ -148,30 +143,34 @@ nav {
 /* pre-game */
 
 dialog {
-  width: 60%;
-  height: 90%;
+  padding: 0;
+  width: 70%;
+  height: 80%;
   text-align: center;
   & h2 {
     color: var(--main-color-red);
     font-weight: bolder;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    padding: 0;
   }
   & p {
-    margin-top: 0.5rem;
-    font-size: 1.2rem;
+    margin-top: 0;
+    font-size: 0.9rem;
   }
   & table {
     width: 80%;
-    margin: 1rem auto;
+    margin: 0.2rem auto;
     text-align: left;
+    font-size: 0.9rem;
+    line-height: 1.2;
   }
 
   & button {
     color: white;
-    font-size: 3rem;
+    font-size: 1.3rem;
     background-color: var(--main-color-red);
     padding: 0.5rem 2rem;
-    margin: 1rem;
+    margin: 0.2rem;
     &:hover {
       color: var(--main-color-red);
       background-color: white;
@@ -180,7 +179,7 @@ dialog {
 
   & .emphasize {
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -201,6 +200,9 @@ dialog {
   font-weight: bold;
   color: red;
 }
+
+/* ! Start buttons styling */
+
 .start-game-buttons {
   position: absolute;
   top: 50%;
@@ -208,18 +210,24 @@ dialog {
   transform: translate(-50%, -50%);
   text-align: center;
   font-size: 3rem;
+  font-weight: bolder;
+  width: 20rem;
   background-color: white;
   border-color: var(--main-color-red);
   border-width: 10px;
   border-style: solid;
   border-radius: 2%;
+  & p {
+    font-size: 1.5rem;
+    margin: 0.5rem;
+  }
   & button {
     color: white;
-    font-size: 3rem;
+    font-size: 1.3rem;
     background-color: var(--main-color-red);
     padding: 0.5rem;
     border-radius: 12%;
-    margin: 1rem;
+    margin: 0.5rem;
   }
   & button:hover {
     color: var(--main-color-red);
@@ -230,13 +238,6 @@ dialog {
     border-style: solid;
   }
 }
-
-/* #start-button {
-  margin: 0 auto;
-  font-size: 2px;
-  padding: 0;
-} */
-/* format ongoing game content here*/
 
 #main-game {
   margin: auto;
@@ -254,28 +255,31 @@ dialog {
 .flex-display {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   height: calcl(100vh - 6rem);
 }
 .scores {
-  min-width: 200px;
-  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 18%;
   background-color: white;
-  height: 600px;
+  height: 30rem;
   border-style: solid;
   border-width: 10px;
   border-color: #d74844;
   background-color: white;
   border-radius: 2%;
+  padding: 0.5rem 0;
   margin: 0 0.5rem;
 }
 
 .all-scores {
-  margin-top: 0.5rem;
+  margin-top: 0.1rem;
   & p {
     text-align: center;
     font-size: 1rem;
+    margin: 0.2rem auto;
   }
   & .game-class {
     font-weight: bolder;
@@ -286,7 +290,7 @@ dialog {
   text-align: center;
   & p {
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold;
     margin: 0.2rem;
   }
@@ -300,66 +304,60 @@ dialog {
 }
 
 .game-container {
-  flex: 0 0 900px;
+  /* flex: 0 0 900px; */
+  width: 60%;
+  height: 30rem;
   border-style: solid;
   border-width: 10px;
   border-color: #d74844;
   border-radius: 2%;
-  height: 600px;
   background-color: rgba(255, 255, 255, 0.637);
   position: relative;
 }
 
 .game-messages {
-  max-width: 600px;
-  min-width: 230px;
-  /* padding: 1.5rem 1rem; */
-  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 18%;
+  height: 30rem;
   border-style: solid;
   border-width: 10px;
   border-color: #d74844;
   background-color: white;
   border-radius: 2%;
   text-align: center;
+  margin: 0 0.5rem;
   & h3 {
-    font-size: 2rem;
+    margin: 0.5rem;
+    font-size: 1.1rem;
+    padding: 0.1rem;
     text-align: center;
     color: #d74844;
   }
   & ul {
+    margin: 0.7rem 0;
+    padding-top: 1rem;
     text-align: left;
-    max-width: 300px;
-    margin-left: 3rem;
-    list-style: circle;
+    height: 20rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    /* margin-left: 3rem; */
+    /* list-style: circle; */
     & li {
-      max-width: 250px;
-    }
-  }
-}
-@media (width < 1500px) {
-  .scores {
-    height: 420px;
-  }
-  .game-container {
-    height: 420px;
-    flex: 0 0 720px;
-  }
-  .game-messages {
-    height: 420px;
-    padding: 0;
-    & h3 {
-      /* display: none; */
-    }
-    & ul {
-      width: 200px;
-      list-style-type: none;
-      padding: 2px;
-      margin-left: 2px;
+      font-size: 0.9rem;
     }
   }
 }
 
 @media (width < 1200px) {
+  .game-container {
+    margin: 0 auto;
+    height: 30rem;
+    width: 80%;
+  }
+
   .game-messages {
     display: none;
   }
@@ -371,7 +369,7 @@ dialog {
 /* format player here */
 
 #player {
-  height: 30px;
+  height: 1.5rem;
   aspect-ratio: 1;
   border-radius: 50%;
   background-size: contain;
@@ -395,10 +393,11 @@ dialog {
 /* format tail behind player */
 
 .follower {
-  height: 20px;
+  height: 1rem;
   aspect-ratio: 1;
   border-radius: 50%;
   background-image: url(../img/plate.png);
+  background-size: cover;
   position: absolute;
   top: 0;
   left: 0;
@@ -407,8 +406,8 @@ dialog {
 /* format ingredients here */
 
 .ingredient {
-  height: 30px;
-  font-size: 1.5rem;
+  height: 1rem;
+  font-size: 1rem;
   aspect-ratio: 1;
   background-color: transparent;
   position: absolute;
@@ -453,14 +452,16 @@ dialog {
     }
   }
   & h3 {
-    font-size: 4rem;
+    font-size: 3rem;
     color: white;
     text-align: center;
     align-self: center;
+    margin: 0;
   }
   & p {
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
+    margin: 0;
   }
 }
 
@@ -475,23 +476,23 @@ dialog {
   margin: 1rem auto;
   padding: 1rem;
   background-color: white;
-  width: 60%;
-  height: 70%;
+  width: 55%;
+  height: 55%;
   text-align: center;
   box-shadow: 10px 5px 4px rgba(39, 34, 34, 0.466);
   & h2 {
     margin-top: 0.5rem;
-    font-size: 3rem;
+    font-size: 2rem;
     text-shadow: 6px 3px 3px rgba(97, 90, 91, 0.384);
   }
   & p {
-    font-size: 2rem;
+    font-size: 1rem;
   }
   & #restart-game-current {
     background-color: var(--main-color-red);
     border: 1px solid transparent;
     padding: 1rem 2rem;
-    font-size: 2rem;
+    font-size: 1.4rem;
     border-radius: 0.25%;
     cursor: pointer;
     color: white;
@@ -508,10 +509,11 @@ dialog {
 
 #restart-game-other {
   height: 2rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: 1rem;
   margin: 0.5rem;
   &:hover {
+    cursor: pointer;
     color: var(--main-color-red);
     transition: all 1s;
   }
@@ -528,5 +530,11 @@ dialog {
 }
 #try-again {
   font-style: italic;
-  font-size: 2rem;
+  font-size: 1rem;
+}
+
+/* class to hide all flex displays */
+
+.hidden {
+  display: none;
 }
