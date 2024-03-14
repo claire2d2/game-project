@@ -140,6 +140,7 @@ dialog {
   }
   & p {
     margin-top: 0.5rem;
+    font-size: 1.2rem;
   }
   & table {
     width: 80%;
@@ -157,6 +158,11 @@ dialog {
       color: var(--main-color-red);
       background-color: white;
     }
+  }
+
+  & .emphasize {
+    font-weight: bold;
+    font-size: 1.3rem;
   }
 }
 
