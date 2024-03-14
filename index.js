@@ -3,16 +3,20 @@ const launchButton = document.getElementById("launch-game");
 const startButtons = document.getElementById("start-game-buttons");
 const startButtonNormal = document.getElementById("start-game-normal");
 const startButtonCoriander = document.getElementById("start-game-coriander");
-const restartButtonCurrent = document.getElementById("restart-game-current");
-const restartButtonOther = document.getElementById("restart-game-other");
 
 const welcomeSection = document.querySelector(".welcome");
+
 const modal = document.querySelector("dialog");
-const endSection = document.querySelector(".after-game");
+const closeModal = document.getElementById("close-dialog");
+
 const gameSection = document.getElementById("main-game");
 const gameContainer = document.querySelector(".game-container");
 const gameMessages = document.querySelector(".game-messages");
 const gameScore = document.querySelector(".scores");
+
+const endSection = document.querySelector(".after-game");
+const restartButtonCurrent = document.getElementById("restart-game-current");
+const restartButtonOther = document.getElementById("restart-game-other");
 
 let normalMode = true;
 let corianderOn = false;
@@ -26,7 +30,7 @@ if (localStorage.getItem("normalHighScore") === null) {
   localStorage.setItem("normalHighScore", 0);
 }
 
-// event listener to start game
+// event listener to show dialog game
 launchButton.addEventListener("click", () => {
   welcomeSection.hidden = true;
   gameSection.classList = "flex-display";
@@ -36,6 +40,8 @@ launchButton.addEventListener("click", () => {
   startButtons.hidden = false;
   modal.showModal();
 });
+
+// event listeners to start game
 
 startButtonNormal.addEventListener("click", () => {
   gameDifficulty = 150;
@@ -54,6 +60,12 @@ startButtonCoriander.addEventListener("click", () => {
   startButtons.hidden = true;
   game.startGame();
 });
+
+closeModal.addEventListener("click", () => {
+  modal.close();
+});
+
+// event listeners to restart a new game
 
 restartButtonCurrent.addEventListener("click", () => {
   gameContainer.hidden = false;

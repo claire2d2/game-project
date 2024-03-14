@@ -32,8 +32,7 @@
         <div>
           Here you will not play a snake, but someone at a all you can eat
           hotpot where the objective, as in every all you can eat restaurant, is
-          to stuff yourself with the most foods possible and get your money's
-          worth!
+          to stuff yourself with the most foods possible!
         </div>
         <div>
           The game will be over if :
@@ -131,7 +130,8 @@
     <!-- dialog box that appears when starting the game -->
 
     <dialog>
-      <p>Insert rules here</p>
+      <h2>How to play</h2>
+      <p>The rules are simple: get your money's worth or sashay away!</p>
       <p>Touching the following ingredients will :</p>
 
       <table>
@@ -182,15 +182,21 @@
           <td>🌿</td>
           <td>-5pts</td>
           <td>Coriander</td>
-          <td>Getting coriander will result in losing the game</td>
+          <td>Fuyoooh! You lost the game.</td>
         </tr>
       </table>
 
       <p>Touch the space bar anytime to pause and unpause the game.</p>
+      <p>
+        The game can be played with music and sound effects. Toggle with the
+        icons on the top left to mute or unmute!
+      </p>
+      <button id="close-dialog">Got it!</button>
     </dialog>
 
     <!-- Buttons to start the game -->
-    <div id="start-game-buttons" hidden>
+    <div id="start-game-buttons" class="start-game-buttons" hidden>
+      <p>Game mode:</p>
       <button id="start-game-normal">Normal</button>
       <button id="start-game-coriander">Coriander</button>
     </div>

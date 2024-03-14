@@ -146,16 +146,29 @@ h1 {
     width: 50%;
     height: 70%;
   }
+}
+
+.start-game-buttons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
   & button {
-    font-size: 1rem;
-    background-color: #d74844;
+    color: white;
+    font-size: 4rem;
+    background-color: var(--main-color-red);
     padding: 0.5rem;
     border-radius: 12%;
     margin: 1rem;
   }
   & button:hover {
-    color: white;
+    color: var(--main-color-red);
+    background-color: white;
     transition: all 1s;
+    border-color: var(--main-color-red);
+    border-width: 1px;
+    border-style: solid;
   }
 }
 
