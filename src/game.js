@@ -122,6 +122,7 @@ class Game {
       if (this.player.touchBorder()) {
         this.endGame("You left the restaurant! Game over.");
       }
+
       // if player touches tail, end game
       for (let follower of this.player.body) {
         if (this.player.touchElement(follower)) {
@@ -148,6 +149,9 @@ class Game {
   }
 
   endMessage() {
+    this.player.position = this.player.historicPosition;
+    this.player.element.style.left = `${this.player.position.x}px`;
+    this.player.element.style.top = `${this.player.position.y}px`;
     const greeting = document.getElementById("end-greeting");
     const isHighScore = document.getElementById("game-record");
     let currentHighScore = 0;
