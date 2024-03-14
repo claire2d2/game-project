@@ -206,7 +206,7 @@ dialog {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 4rem;
+  font-size: 3rem;
   background-color: white;
   border-color: var(--main-color-red);
   border-width: 10px;
@@ -214,7 +214,7 @@ dialog {
   border-radius: 2%;
   & button {
     color: white;
-    font-size: 4rem;
+    font-size: 3rem;
     background-color: var(--main-color-red);
     padding: 0.5rem;
     border-radius: 12%;
@@ -253,7 +253,7 @@ dialog {
   flex-direction: row;
 }
 .scores {
-  min-width: 250px;
+  min-width: 200px;
   max-width: 500px;
   background-color: white;
   height: 600px;
@@ -266,24 +266,24 @@ dialog {
 }
 
 .all-scores {
-  margin-top: 0.7rem;
+  margin-top: 0.5rem;
   & p {
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   & .game-class {
     font-weight: bolder;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
 }
 .points-reminder {
-  margin: 3rem;
+  margin: 0.4rem;
   text-align: center;
   & p {
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: bold;
-    margin: 1rem;
+    margin: 0.2rem;
   }
   & ul {
     text-align: left;
@@ -307,7 +307,7 @@ dialog {
 
 .game-messages {
   max-width: 600px;
-  min-width: 250px;
+  min-width: 230px;
   margin: 0 0.5rem;
   /* padding: 1.5rem 1rem; */
   height: 600px;
@@ -344,7 +344,7 @@ dialog {
     height: 420px;
     padding: 0;
     & h3 {
-      display: none;
+      /* display: none; */
     }
     & ul {
       width: 200px;

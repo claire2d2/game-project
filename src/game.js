@@ -255,7 +255,7 @@ class Game {
     li.textContent = content;
     messageList.append(li);
     this.messages.push(li);
-    if (this.messages.length > 10) {
+    if (this.messages.length > 5) {
       this.messages[0].remove();
       this.messages.splice(0, 1);
     }
