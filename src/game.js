@@ -1,24 +1,25 @@
 import Player from "./player.js";
 import Ingredient from "./ingredient.js";
 import Follower from "./follower.js";
-import Record from "./record.js";
 
 class Game {
   // ? takes for argument speed (later, if implementing levels)
-  constructor() {
+  constructor(difficulty, coriander) {
     this.gameContainer = document.querySelector(".game-container");
     this.intervalId = null;
     this.gameOn = false;
     this.gameOff = true;
     this.score = 0;
+    this.difficulty = 100; // interval
     this.gameSpeed = 30; // 30 = width of player
     this.player = new Player(this.gameContainer, this.gameSpeed);
     this.pauseMessage = document.getElementById("game-paused");
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];
+    this.coriander = coriander; // true or false
     this.corianderProbability = 0;
     // object that contains the different messages to
-    this.highscore = document.getElementById("highscore").textContent;
+    this.highscore = document.getElementById("highscore-normal").textContent;
     this.messages = [];
     this.pressedKeys = {
       right: true,
@@ -34,20 +35,33 @@ class Game {
   startGame() {
     // if game is already running, no need for the rest to follow
     if (this.gameOn) return;
+
     // make player move according to arrow keys, start game and enable pausing
     this.arrowKeysPressed();
     this.gameOn = true;
     this.gameOff = false;
     this.initiatePause();
 
+    const gameMode = document.getElementById("game-mode");
+    if (this.coriander) {
+      gameMode.textContent = "Coriander";
+    } else {
+      gameMode.textContent = "Normal";
+    }
+
     // generate food items randomly, each worth one point
     this.intervalId = setInterval(() => {
       //generate an ingredient ever few seconds
       if (this.counter % 10 === 0) {
-        this.corianderProbability += 0.5;
-        console.log(this.corianderProbability);
+        // increase probability of encountering coriander if coriander mode is checked
+        if (this.coriander === true) {
+          this.corianderProbability += 0.5;
+        }
         // introduce while loop, while !newIngredient.uniquePosition, remove NewIngredient and generate new const
-        const newIngredient = new Ingredient(this.gameContainer, this.corianderProbability);
+        const newIngredient = new Ingredient(
+          this.gameContainer,
+          this.corianderProbability
+        );
         let ingredientOverlap =
           this.player.touchElement(newIngredient) ||
           newIngredient.touchOtherIngredient(this.ingredients);
@@ -110,7 +124,7 @@ class Game {
           this.endGame("Oops! You made all your plates fall! Game over.");
         }
       }
-    }, 100);
+    }, this.difficulty);
   }
 
   // TODO: function to show the chronometer during the game (and then be able to send how much time at the end)
@@ -132,7 +146,13 @@ class Game {
   endMessage() {
     const greeting = document.getElementById("end-greeting");
     const isHighScore = document.getElementById("game-record");
-    const currentHighScore = document.getElementById("highscore");
+    let currentHighScore = 0;
+    if (this.coriander) {
+      currentHighScore = document.getElementById("highscore-coriander");
+    } else {
+      currentHighScore = document.getElementById("highscore-normal");
+    }
+
     if (this.score > this.highscore) {
       greeting.textContent = "WELL DONE!";
       isHighScore.textContent = "This was your best score so far!";

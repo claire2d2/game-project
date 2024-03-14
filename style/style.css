@@ -146,7 +146,7 @@ h1 {
 }
 
 .scores {
-  width: 350px;
+  min-width: 15%;
   background-color: white;
   height: 600px;
   border-style: solid;
@@ -154,7 +154,7 @@ h1 {
   border-color: #d74844;
   background-color: white;
   border-radius: 2%;
-  margin: 0 1rem;
+  margin: 0 0.5rem;
 }
 .points-reminder {
   margin-top: 3rem;
@@ -180,9 +180,9 @@ h1 {
 }
 
 .game-messages {
-  min-width: 400px;
+  min-width: 15%;
   max-width: 600px;
-  margin: 0 1rem;
+  margin: 0 0.5rem;
   height: 600px;
   border-style: solid;
   border-width: 10px;

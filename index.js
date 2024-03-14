@@ -1,6 +1,7 @@
 import Game from "./src/game.js";
 const launchButton = document.getElementById("launch-game");
-const startButton = document.getElementById("start-game");
+const startButtonNormal = document.getElementById("start-game-normal");
+const startButtonCoriander = document.getElementById("start-game-coriander");
 const restartButton = document.getElementById("restart-game");
 
 const preGame = document.querySelector(".pre-game");
@@ -9,6 +10,8 @@ const endSection = document.querySelector(".after-game");
 const gameContainer = document.querySelector(".game-container");
 const gameMessages = document.querySelector(".game-messages");
 const gameScore = document.querySelector(".scores");
+const highScoreNormal = document.getElementById("highscore-normal");
+const highScoreCoriander = document.getElementById("highscore-coriander");
 
 let gameArray = [];
 
@@ -19,13 +22,23 @@ launchButton.addEventListener("click", () => {
   gameContainer.hidden = false;
   gameMessages.hidden = false;
   gameScore.hidden = false;
-  startButton.hidden = false;
 });
 
-startButton.addEventListener("click", () => {
-  const game = new Game();
+startButtonNormal.addEventListener("click", () => {
+  const game = new Game(150, false);
   gameArray.push(game);
   preGame.hidden = true;
+  highScoreCoriander.hidden = true;
+  highScoreNormal.hidden = false;
+  game.startGame();
+});
+
+startButtonCoriander.addEventListener("click", () => {
+  const game = new Game(100, true);
+  gameArray.push(game);
+  preGame.hidden = true;
+  highScoreCoriander.hidden = false;
+  highScoreNormal.hidden = true;
   game.startGame();
 });
 

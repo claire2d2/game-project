@@ -21,21 +21,6 @@
   <body>
     <h1>Bool you can eat hotpot</h1>
 
-    <!-- <div class="panda-says">
-      <img
-        class="speech-bubble"
-        src="./img/text-bubble.png"
-        alt="speech bubble"
-      />
-      <p id="panda-message">Welcome!</p>
-      <img
-        class="panda-image"
-        src="./img/eating-panda.png"
-        alt="image of a panda
-    eating"
-      />
-    </div> -->
-
     <!-- Elements to show before the game -->
     <div class="welcome">
       <div id="welcome-text">
@@ -70,8 +55,11 @@
       <div class="scores" hidden>
         <div class="all-scores">
           <div id="high-score-div">
+            Game mode:
+            <p id="game-mode"></p>
             Best score :
-            <p id="highscore">0</p>
+            <p id="highscore-coriander">0</p>
+            <p id="highscore-normal" hidden>0</p>
           </div>
           <div id="current-score-div">
             Your score:
@@ -79,6 +67,7 @@
           </div>
         </div>
         <div class="points-reminder">
+          Points:
           <ul>
             <li>
               <img
@@ -188,7 +177,8 @@
         </table>
 
         <p>Touch the space bar anytime to pause and unpause the game.</p>
-        <button id="start-game">I'm ready!</button>
+        <button id="start-game-normal">Normal</button>
+        <button id="start-game-coriander">Coriander</button>
       </div>
     </div>
 
