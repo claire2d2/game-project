@@ -15,8 +15,16 @@ const highScoreNormal = document.getElementById("highscore-normal");
 const highScoreCoriander = document.getElementById("highscore-coriander");
 
 let normalMode = true;
-let gameDifficulty = 150;
 let corianderOn = false;
+let gameDifficulty = 150;
+
+// track high score, create items for local storage if they don't yet exist
+if (localStorage.getItem("corianderHighScore") === null) {
+  localStorage.setItem("corianderHighScore", 0);
+}
+if (localStorage.getItem("normalHighScore") === null) {
+  localStorage.setItem("normalHighScore", 0);
+}
 
 // event listener to start game
 launchButton.addEventListener("click", () => {
@@ -32,8 +40,6 @@ startButtonNormal.addEventListener("click", () => {
   corianderOn = false;
   const game = new Game(gameDifficulty, corianderOn);
   preGame.hidden = true;
-  highScoreCoriander.hidden = true;
-  highScoreNormal.hidden = false;
   normalMode = true;
   game.startGame();
 });
@@ -43,8 +49,6 @@ startButtonCoriander.addEventListener("click", () => {
   corianderOn = true;
   const game = new Game(gameDifficulty, corianderOn);
   preGame.hidden = true;
-  highScoreCoriander.hidden = false;
-  highScoreNormal.hidden = true;
   normalMode = false;
   game.startGame();
 });

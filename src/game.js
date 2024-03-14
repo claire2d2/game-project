@@ -19,7 +19,10 @@ class Game {
     this.coriander = coriander; // true or false
     this.corianderProbability = 0;
     // object that contains the different messages to
-    this.highscore = document.getElementById("highscore-normal").textContent;
+    this.highscoreCoriander = Number(
+      localStorage.getItem("corianderHighScore")
+    );
+    this.highscoreNormal = Number(localStorage.getItem("normalHighScore"));
     this.messages = [];
     this.pressedKeys = {
       right: true,
@@ -43,16 +46,10 @@ class Game {
     this.initiatePause();
 
     const gameMode = document.getElementById("game-mode");
-    const highScoreNormal = document.getElementById("highscore-normal");
-    const highScoreCoriander = document.getElementById("highscore-coriander");
     if (this.coriander) {
       gameMode.textContent = "Coriander";
-      highScoreNormal.hidden = true;
-      highScoreCoriander.hidden = false;
     } else {
       gameMode.textContent = "Normal";
-      highScoreNormal.hidden = false;
-      highScoreCoriander.hidden = true;
     }
 
     // generate food items randomly, each worth one point
@@ -154,25 +151,34 @@ class Game {
     const greeting = document.getElementById("end-greeting");
     const isHighScore = document.getElementById("game-record");
     let currentHighScore = 0;
+    let currentGameMode = "coriander";
+    let newHighScore = false;
     if (this.coriander) {
-      currentHighScore = document.getElementById("highscore-coriander");
+      currentHighScore = this.highscoreCoriander;
+      newHighScore = this.score > this.highscoreCoriander;
+      if (newHighScore) {
+        localStorage.setItem("corianderHighScore", this.score.toString());
+      }
     } else {
-      currentHighScore = document.getElementById("highscore-normal");
+      currentHighScore = this.highscoreNormal;
+      currentGameMode = "normal";
+      newHighScore = this.score > this.highscoreNormal;
+      if (newHighScore) {
+        localStorage.setItem("normalHighScore", this.score.toString());
+      }
     }
-
-    if (this.score > this.highscore) {
+    if (this.score > currentHighScore) {
       greeting.textContent = "WELL DONE!";
-      isHighScore.textContent = "This was your best score so far!";
-      currentHighScore.textContent = this.score;
-    } else if (this.score === this.highscore && this.score > 0) {
+      isHighScore.textContent = `This was your best score so far in ${currentGameMode}!`;
+    } else if (this.score === currentHighScore && this.score > 0) {
       greeting.textContent = "Almost there!";
-      isHighScore.textContent = "You almost beat your best score!";
+      isHighScore.textContent = `You almost beat your best score in ${currentGameMode}!`;
     } else if (this.score > 10) {
       greeting.textContent = "Good try!";
-      isHighScore.textContent = `The best score so far was ${this.highscore} points`;
+      isHighScore.textContent = `The best score so far in ${currentGameMode} was ${currentHighScore} points`;
     } else {
       greeting.textContent = "You can do better ...";
-      isHighScore.textContent = `The best score so far was ${this.highscore} points`;
+      isHighScore.textContent = `The best score so far in ${currentGameMode} was ${currentHighScore} points`;
     }
     const message = document.getElementById("end-message");
     message.textContent = `You scored ${this.score} points in total`;
