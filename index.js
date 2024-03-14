@@ -4,6 +4,12 @@ const startButtons = document.getElementById("start-game-buttons");
 const startButtonNormal = document.getElementById("start-game-normal");
 const startButtonCoriander = document.getElementById("start-game-coriander");
 
+const musicOnOff = document.getElementById("music");
+const backgroundMusic = document.getElementById("background-music");
+const soundOnOff = document.getElementById("sound-effect");
+let soundEffects = false;
+let musicOn = false;
+
 const welcomeSection = document.querySelector(".welcome");
 
 const modal = document.querySelector("dialog");
@@ -30,6 +36,27 @@ if (localStorage.getItem("normalHighScore") === null) {
   localStorage.setItem("normalHighScore", 0);
 }
 
+// ! Audio parameters
+
+musicOnOff.addEventListener("click", () => {
+  if (musicOn) {
+    backgroundMusic.pause();
+    musicOn = false;
+  } else {
+    backgroundMusic.play();
+    musicOn = true;
+  }
+});
+
+soundOnOff.addEventListener("click", () => {
+  if (!soundEffects) {
+    soundEffects = true;
+  } else {
+    soundEffects = false;
+  }
+  console.log(soundEffects);
+});
+
 // event listener to show dialog game
 launchButton.addEventListener("click", () => {
   welcomeSection.hidden = true;
@@ -46,7 +73,7 @@ launchButton.addEventListener("click", () => {
 startButtonNormal.addEventListener("click", () => {
   gameDifficulty = 150;
   corianderOn = false;
-  const game = new Game(gameDifficulty, corianderOn);
+  const game = new Game(gameDifficulty, corianderOn, soundEffect);
   normalMode = true;
   startButtons.hidden = true;
   game.startGame();
@@ -55,7 +82,7 @@ startButtonNormal.addEventListener("click", () => {
 startButtonCoriander.addEventListener("click", () => {
   gameDifficulty = 100;
   corianderOn = true;
-  const game = new Game(gameDifficulty, corianderOn);
+  const game = new Game(gameDifficulty, corianderOn, soundEffect);
   normalMode = false;
   startButtons.hidden = true;
   game.startGame();

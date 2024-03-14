@@ -4,15 +4,16 @@ import Follower from "./follower.js";
 
 class Game {
   // ? takes for argument speed (later, if implementing levels)
-  constructor(difficulty, coriander) {
+  constructor(difficulty, coriander, soundEffects) {
     this.gameContainer = document.querySelector(".game-container");
     this.intervalId = null;
     this.gameOn = false;
     this.gameOff = true;
     this.score = 0;
-    this.difficulty = 100; // interval
+    this.difficulty = difficulty; // interval
     this.gameSpeed = 30; // 30 = width of player
-    this.player = new Player(this.gameContainer, this.gameSpeed);
+    (this.soundEffects = soundEffects),
+      (this.player = new Player(this.gameContainer, this.gameSpeed));
     this.pauseMessage = document.getElementById("game-paused");
     // calls to create new ingredients (array because more than one ingredient will be called)
     this.ingredients = [];

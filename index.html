@@ -20,7 +20,14 @@
   </head>
   <body>
     <h1>🫕 Bool you can eat hotpot !🫕</h1>
-
+    <nav>
+      <button id="sound-effect">
+        <img src="./img/sound-muted.png" alt="sound effect icon" />
+      </button>
+      <button id="music">
+        <img src="./img/music-off.png" alt="music icon" />
+      </button>
+    </nav>
     <!-- Elements to show before the game -->
     <div class="welcome">
       <!-- <div><img src="./img/welcome-image.jpg" alt="hotpot image" /></div> -->
@@ -204,5 +211,14 @@
         <button id="restart-game-other">I want to try the other mode</button>
       </div>
     </div>
+
+    <!-- Audio section -->
+
+    <!-- Music -->
+    <audio id="background-music" src="./audio/bgm.mp3"></audio>
+    <!-- Sounds effects -->
+    <audio id="audio-plates-crash" src="./audio/plates-crash.wav"></audio>
+    <audio id="audio-coriander" src="./audio/vomi.wav"></audio>
+    <audio id="audio-wall-crash" src="./audio/wall-crash.ogg"></audio>
   </body>
 </html>

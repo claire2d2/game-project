@@ -50,6 +50,22 @@ h1 {
   text-shadow: 4px 2px 2px rgba(31, 31, 31, 0.274);
 }
 
+/* styling sound effects section */
+
+nav {
+  height: 1rem;
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  display: flex;
+  & button {
+    cursor: pointer;
+  }
+  & img {
+    height: 4rem;
+  }
+}
+
 /* format welcome section */
 .welcome {
   text-align: center;
