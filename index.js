@@ -26,7 +26,6 @@ const endSection = document.querySelector(".after-game");
 const restartButtonCurrent = document.getElementById("restart-game-current");
 const restartButtonOther = document.getElementById("restart-game-other");
 
-let normalMode = true;
 let corianderOn = false;
 let gameDifficulty = 150;
 
@@ -85,7 +84,6 @@ startButtonNormal.addEventListener("click", () => {
   gameDifficulty = 150;
   corianderOn = false;
   const game = new Game(gameDifficulty, corianderOn, soundEffect);
-  normalMode = true;
   startButtons.hidden = true;
   game.startGame();
 });
@@ -94,7 +92,6 @@ startButtonCoriander.addEventListener("click", () => {
   gameDifficulty = 100;
   corianderOn = true;
   const game = new Game(gameDifficulty, corianderOn, soundEffect);
-  normalMode = false;
   startButtons.hidden = true;
   game.startGame();
 });
@@ -110,12 +107,11 @@ restartButtonCurrent.addEventListener("click", () => {
   gameMessages.hidden = false;
   endSection.hidden = true;
   // restart game with the same mode that was previously played
-  if ((normalMode = true)) {
+  if (corianderOn) {
     gameDifficulty = 150;
-    corianderOn = false;
   } else {
     gameDifficulty = 100;
-    corianderOn = true;
+    corianderOn = false;
   }
   const game = new Game(gameDifficulty, corianderOn);
   game.startGame();
@@ -126,12 +122,12 @@ restartButtonOther.addEventListener("click", () => {
   gameMessages.hidden = false;
   endSection.hidden = true;
   // restart game with the same mode that was previously played
-  if ((normalMode = true)) {
+  if (corianderOn) {
     gameDifficulty = 100;
-    corianderOn = true;
+    corianderOn = false;
   } else {
     gameDifficulty = 150;
-    corianderOn = false;
+    corianderOn = true;
   }
   const game = new Game(gameDifficulty, corianderOn);
   game.startGame();
