@@ -1,5 +1,9 @@
 /* reset styling for initialization */
 
+:root {
+  --main-color-red: #d74844;
+}
+
 * {
   padding: 0;
   box-sizing: border-box;
@@ -37,64 +41,92 @@ body {
   overflow: hidden;
 }
 
-/* styling panda section */
-
-.panda-says {
-  position: absolute;
-  width: 200px;
-  height: 100px;
-  bottom: 350px;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.panda-image {
-  max-width: 20rem;
-  /* position: absolute; */
-  bottom: 0;
-  left: 0;
-}
-
-.speech-bubble {
-  /* position: absolute; */
-  bottom: 20;
-  left: 0;
-}
-
-@media (width<1000px) {
-  .panda-image {
-    display: none;
-  }
-}
+/* styling game title */
 
 h1 {
-  color: #d74844;
+  color: var(--main-color-red);
   text-align: center;
   font-size: 3rem;
+  text-shadow: 4px 2px 2px rgba(31, 31, 31, 0.274);
 }
 
 /* format welcome section */
 .welcome {
-  margin: 0 auto;
   text-align: center;
+  width: 100%;
+  padding: 25% auto;
 }
 
 #welcome-text {
   margin: 0 auto;
-  background-color: white;
+  background-color: var(--main-color-red);
+  color: white;
   font-size: 1.5rem;
-  width: 800px;
+  width: 75%;
+  padding: 2rem;
+  border-style: solid;
+  border-color: white;
+  border-width: 10px;
+  border-radius: 5%;
+  max-height: 440px;
+  & h2 {
+    color: white;
+  }
+  & ul {
+    text-align: left;
+    padding: 0.2rem 6rem;
+  }
+}
+
+.italic {
+  font-style: italic;
+  font-weight: lighter;
 }
 
 #launch-game {
   font-size: 3rem;
+  background-color: white;
+  border-color: var(--main-color-red);
+  border-width: 10px;
+  border-style: solid;
+  border-radius: 10%;
+  color: var(--main-color-red);
 }
 
-#launch-game:hover {
-  color: #d74844;
-  transition: ease-in-out 0.5s;
+#launch-game {
+  appearance: button;
+  background-color: white;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: var(--main-color-red);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  width: 50%;
+  &:hover {
+    background-color: rgb(255, 211, 68);
+    font-size: 3.1rem;
+    letter-spacing: 4px;
+    transition: all 1s;
+    color: white;
+    padding: 1.2rem;
+  }
+  &:active {
+    border-width: 4px 0 0;
+    background: none;
+  }
 }
+
 /* pre-game */
 
 .pre-game {
