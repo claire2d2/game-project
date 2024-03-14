@@ -177,7 +177,6 @@ class Game {
       newHighScore = this.score > this.highscoreCoriander;
       if (newHighScore) {
         localStorage.setItem("corianderHighScore", this.score.toString());
-        document.getElementById("applause").play();
       }
     } else {
       currentHighScore = this.highscoreNormal;
@@ -187,21 +186,22 @@ class Game {
         localStorage.setItem("normalHighScore", this.score.toString());
       }
     }
-    if (this.score > currentHighScore) {
+    if (this.score > currentHighScore && this.score > 30) {
+      document.getElementById("applause").play();
       greeting.textContent = "WELL DONE!";
-      isHighScore.textContent = `This was your best score so far in ${currentGameMode}!`;
+      isHighScore.textContent = `This was your best score so far in ${currentGameMode} mode!`;
       isHighScoreNumber.textContent = "";
     } else if (this.score === currentHighScore && this.score > 0) {
       greeting.textContent = "Almost there!";
-      isHighScore.textContent = `You almost beat your best score in ${currentGameMode}!`;
+      isHighScore.textContent = `You almost beat your best score in ${currentGameMode} mode!`;
       isHighScoreNumber.textContent = "";
-    } else if (this.score > 10) {
+    } else if (this.score > 30) {
       greeting.textContent = "Good try!";
-      isHighScore.textContent = `The best score so far in ${currentGameMode} was`;
+      isHighScore.textContent = `The best score so far in ${currentGameMode} mode was`;
       isHighScoreNumber.textContent = `${currentHighScore} points`;
     } else {
       greeting.textContent = "You can do better ...";
-      isHighScore.textContent = `The best score so far in ${currentGameMode} was`;
+      isHighScore.textContent = `The best score so far in ${currentGameMode} mode was`;
       isHighScoreNumber.textContent = `${currentHighScore} points`;
     }
     const message = document.getElementById("end-message");
@@ -270,7 +270,7 @@ class Game {
     li.textContent = content;
     messageList.append(li);
     this.messages.push(li);
-    if (this.messages.length > 7) {
+    if (this.messages.length > 8) {
       this.messages[0].remove();
       this.messages.splice(0, 1);
     }

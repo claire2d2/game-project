@@ -11,10 +11,10 @@ class Ingredient {
     // generate random position (add condition of other elements not existing in the place in Game method)
     this.position = {
       x:
-        Math.random() * (this.gameContainer.getBoundingClientRect().width - 30),
+        Math.random() * (this.gameContainer.getBoundingClientRect().width - 60),
       y:
         Math.random() *
-        (this.gameContainer.getBoundingClientRect().height - 30),
+        (this.gameContainer.getBoundingClientRect().height - 60),
     };
     this.type = null;
     this.types = {
@@ -173,9 +173,9 @@ class Ingredient {
 
   uniquePosition() {
     this.position.x =
-      Math.random() * this.gameContainer.getBoundingClientRect().width - 30;
+      Math.random() * this.gameContainer.getBoundingClientRect().width - 60;
     this.position.y =
-      Math.random() * this.gameContainer.getBoundingClientRect().height - 30;
+      Math.random() * this.gameContainer.getBoundingClientRect().height - 60;
   }
 }
 export default Ingredient;
