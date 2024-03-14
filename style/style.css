@@ -130,24 +130,53 @@ h1 {
 
 /* pre-game */
 
-.pre-game {
-  background-color: rgba(0, 0, 0, 0.507);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  padding: 5% 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+dialog {
+  width: 60%;
   text-align: center;
-  & div {
-    background-color: white;
-    margin: 0 auto;
-    width: 50%;
-    height: 70%;
+  & h2 {
+    color: var(--main-color-red);
+    font-weight: bolder;
+    font-size: 2rem;
+  }
+  & p {
+    margin-top: 0.5rem;
+  }
+  & table {
+    width: 80%;
+    margin: 1rem auto;
+    text-align: left;
+  }
+
+  & button {
+    color: white;
+    font-size: 3rem;
+    background-color: var(--main-color-red);
+    padding: 0.5rem 2rem;
+    margin: 1rem;
+    &:hover {
+      color: var(--main-color-red);
+      background-color: white;
+    }
   }
 }
 
+.ingredient-name {
+  font-weight: bold;
+}
+
+.ingredient-description {
+  font-style: italic;
+}
+
+.yay-points {
+  font-weight: bold;
+  color: green;
+}
+
+.boo-points {
+  font-weight: bold;
+  color: red;
+}
 .start-game-buttons {
   position: absolute;
   top: 50%;
