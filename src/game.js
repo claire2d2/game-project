@@ -3,7 +3,6 @@ import Ingredient from "./ingredient.js";
 import Follower from "./follower.js";
 
 class Game {
-  // ? takes for argument speed (later, if implementing levels)
   constructor(difficulty, coriander, soundEffects) {
     this.gameContainer = document.querySelector(".game-container");
     this.intervalId = null;
@@ -291,9 +290,6 @@ class Game {
   }
 
   // listen to the arrow keys being pressed
-  // BONUS :
-  // tally the score by how much the ingredient is worth
-  // add little animation of score appearing
   arrowKeysPressed() {
     document.addEventListener("keydown", (event) => {
       switch (event.key) {
