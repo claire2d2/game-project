@@ -38,9 +38,9 @@
         <div>
           The game will be over if :
           <ul>
-            <li>💥you leave the restaurant (aka touch the game borders)</li>
-            <li>🤕you run over your pile of plates</li>
-            <li>💀pick coriander because that is the devil's herb</li>
+            <li>💥 you leave the restaurant (aka touch the game borders)</li>
+            <li>🤕 you run over your pile of plates</li>
+            <li>💀 pick coriander because that is the devil's herb</li>
           </ul>
         </div>
         <button id="launch-game">Let's go!</button>
@@ -55,7 +55,7 @@
 
     <!-- Elements to show during the game -->
 
-    <div class="main-game">
+    <div id="main-game" hidden>
       <div class="scores" hidden>
         <div class="all-scores">
           <div id="high-score-div">
@@ -130,69 +130,70 @@
 
     <!-- dialog box that appears when starting the game -->
 
-    <div class="pre-game" hidden>
-      <div>
-        <p>Insert rules here</p>
-        <p>Touching the following ingredients will :</p>
+    <dialog>
+      <p>Insert rules here</p>
+      <p>Touching the following ingredients will :</p>
 
-        <table>
-          <tr>
-            <td>😊</td>
-            <td>🥬</td>
-            <td>+2pts</td>
-            <td>Bok choi</td>
-            <td>Not very filling but still delish</td>
-          </tr>
-          <tr>
-            <td>😊</td>
-            <td>🧈</td>
-            <td>+3pts</td>
-            <td>Tofu</td>
-            <td>Underrated ingredient</td>
-          </tr>
-          <tr>
-            <td>😊</td>
-            <td>🥩</td>
-            <td>+5pts</td>
-            <td>Meat</td>
-            <td>Get that protein!</td>
-          </tr>
-          <tr>
-            <td>🤩</td>
-            <td>🌶️</td>
-            <td>+10pts</td>
-            <td>Chili pepper</td>
-            <td>Keep it spicy!</td>
-          </tr>
-          <tr>
-            <td>🤩</td>
-            <td>🫚</td>
-            <td>+20pts</td>
-            <td>Ginger</td>
-            <td>Super rare item : it will clear up your entire stack!</td>
-          </tr>
-          <tr>
-            <td>😒</td>
-            <td>🥛</td>
-            <td>+0pts</td>
-            <td>Water</td>
-            <td>Eh... why not.</td>
-          </tr>
-          <tr>
-            <td>🤮</td>
-            <td>🌿</td>
-            <td>-5pts</td>
-            <td>Coriander</td>
-            <td>Getting coriander will result in losing the game</td>
-          </tr>
-        </table>
+      <table>
+        <tr>
+          <td>😊</td>
+          <td>🥬</td>
+          <td>+2pts</td>
+          <td>Bok choi</td>
+          <td>Not very filling but still delish</td>
+        </tr>
+        <tr>
+          <td>😊</td>
+          <td>🧈</td>
+          <td>+3pts</td>
+          <td>Tofu</td>
+          <td>Underrated ingredient</td>
+        </tr>
+        <tr>
+          <td>😊</td>
+          <td>🥩</td>
+          <td>+5pts</td>
+          <td>Meat</td>
+          <td>Get that protein!</td>
+        </tr>
+        <tr>
+          <td>🤩</td>
+          <td>🌶️</td>
+          <td>+10pts</td>
+          <td>Chili pepper</td>
+          <td>Keep it spicy!</td>
+        </tr>
+        <tr>
+          <td>🤩</td>
+          <td>🫚</td>
+          <td>+20pts</td>
+          <td>Ginger</td>
+          <td>Super rare item : it will clear up your entire stack!</td>
+        </tr>
+        <tr>
+          <td>😒</td>
+          <td>🥛</td>
+          <td>+0pts</td>
+          <td>Water</td>
+          <td>Eh... why not.</td>
+        </tr>
+        <tr>
+          <td>🤮</td>
+          <td>🌿</td>
+          <td>-5pts</td>
+          <td>Coriander</td>
+          <td>Getting coriander will result in losing the game</td>
+        </tr>
+      </table>
 
-        <p>Touch the space bar anytime to pause and unpause the game.</p>
-        <button id="start-game-normal">Normal</button>
-        <button id="start-game-coriander">Coriander</button>
-      </div>
+      <p>Touch the space bar anytime to pause and unpause the game.</p>
+    </dialog>
+
+    <!-- Buttons to start the game -->
+    <div id="start-game-buttons" hidden>
+      <button id="start-game-normal">Normal</button>
+      <button id="start-game-coriander">Coriander</button>
     </div>
-
     <!-- Div that shows during pauses -->
     <div id="game-paused" hidden>
       <div><img src="./img/pause.png" alt="panda sleeping" /></div>

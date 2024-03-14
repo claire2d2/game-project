@@ -1,18 +1,18 @@
 import Game from "./src/game.js";
 const launchButton = document.getElementById("launch-game");
+const startButtons = document.getElementById("start-game-buttons");
 const startButtonNormal = document.getElementById("start-game-normal");
 const startButtonCoriander = document.getElementById("start-game-coriander");
 const restartButtonCurrent = document.getElementById("restart-game-current");
 const restartButtonOther = document.getElementById("restart-game-other");
 
-const preGame = document.querySelector(".pre-game");
 const welcomeSection = document.querySelector(".welcome");
+const modal = document.querySelector("dialog");
 const endSection = document.querySelector(".after-game");
+const gameSection = document.getElementById("main-game");
 const gameContainer = document.querySelector(".game-container");
 const gameMessages = document.querySelector(".game-messages");
 const gameScore = document.querySelector(".scores");
-const highScoreNormal = document.getElementById("highscore-normal");
-const highScoreCoriander = document.getElementById("highscore-coriander");
 
 let normalMode = true;
 let corianderOn = false;
@@ -28,19 +28,21 @@ if (localStorage.getItem("normalHighScore") === null) {
 
 // event listener to start game
 launchButton.addEventListener("click", () => {
-  preGame.hidden = false;
   welcomeSection.hidden = true;
+  gameSection.classList = "flex-display";
   gameContainer.hidden = false;
   gameMessages.hidden = false;
   gameScore.hidden = false;
+  startButtons.hidden = false;
+  modal.showModal();
 });
 
 startButtonNormal.addEventListener("click", () => {
   gameDifficulty = 150;
   corianderOn = false;
   const game = new Game(gameDifficulty, corianderOn);
-  preGame.hidden = true;
   normalMode = true;
+  startButtons.hidden = true;
   game.startGame();
 });
 
@@ -48,8 +50,8 @@ startButtonCoriander.addEventListener("click", () => {
   gameDifficulty = 100;
   corianderOn = true;
   const game = new Game(gameDifficulty, corianderOn);
-  preGame.hidden = true;
   normalMode = false;
+  startButtons.hidden = true;
   game.startGame();
 });
 
