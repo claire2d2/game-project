@@ -19,5 +19,5 @@ Feel free to review my code, any feedback is more than welcome!
 
 ### Things to add/improve
 - [x] Adding sound effects
-- [] Responsiveness (WIP!)
-- [] Generate alert or dialog is screen width is too narrow
+- [ ] Responsiveness (WIP!)
+- [ ] Generate alert or dialog is screen width is too narrow
