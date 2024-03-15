@@ -5,6 +5,7 @@ class Player {
     this.element = document.createElement("div");
     this.element.id = "player";
     this.gameContainer.append(this.element);
+    // array to store the plates / followers
     this.body = [];
     this.element.classList = "right";
     this.position = {
@@ -53,7 +54,7 @@ class Player {
     this.element.style.left = `${this.position.x}px`;
     this.element.style.top = `${this.position.y}px`;
 
-    // positioning the tail relative to the player
+    // positioning the plates (followers) relative to the player
     for (let i = 0; i < this.body.length; i++) {
       const follower = this.body[i];
       if (i === 0) {

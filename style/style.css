@@ -243,8 +243,6 @@ dialog {
   /* background-color: white; */
 }
 
-/* use display: none for flex objects? */
-
 .flex-display {
   display: flex;
   flex-direction: row;

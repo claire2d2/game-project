@@ -17,6 +17,7 @@ class Ingredient {
         (this.gameContainer.getBoundingClientRect().height - 60),
     };
     this.type = null;
+    // ? How to optimize so that creating new types of ingredient is faster?
     this.types = {
       bokchoi: {
         name: "bok choi",

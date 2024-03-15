@@ -258,7 +258,6 @@ class Game {
   }
   // pause the game
   pauseGame() {
-    // TODO find a method to restart the game without resetting
     clearTimeout(this.intervalId);
     this.gameOn = false;
   }
