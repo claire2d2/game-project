@@ -14,10 +14,10 @@ Display may be weird if your screen height is low, the layout is optimal when vi
 - JavaScript for OOP and DOM manipulation
 
 ### See a bug in the game?
-This game was developed in less than a week, after just two weeks of being initiated to JavaScript! Hence, there may have been some things that I've overlooked or that could be improved.
+This game was developed during my IronHack Web Development bootcamp in less than a week, after just two weeks of being initiated to JavaScript! Hence, there may have been some things that I've overlooked or that could be improved.
 Feel free to review my code, any feedback is more than welcome!
 
 ### Things to add/improve
-[x] Adding sound effects
-[] Responsiveness (WIP!)
-[] Generate alert or dialog is screen width is too narrow
+- [x] Adding sound effects
+- [] Responsiveness (WIP!)
+- [] Generate alert or dialog is screen width is too narrow
